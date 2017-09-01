@@ -1,4 +1,6 @@
-# Lesson outline
+# HPC Python 
+
+This is the HPC Carpentry Python lesson.
 
 This lesson is focused on teaching the basics of high-performance computing (HPC).
 There are 4 primary components to this lesson. 
