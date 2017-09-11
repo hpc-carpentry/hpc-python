@@ -1,7 +1,14 @@
 ---
 title: "Scripts and imports"
-menu: main
-weight: 3
+teaching: 15
+exercises: 15
+questions:
+- "What is a Python program?"
+objectives:
+- "Explain what constitutes a Python program."
+- "Import Python modules."
+keypoints:
+- "To run a Python program, use `python3 program_name.py`."
 ---
 
 Everything we've learned so far is pretty cool. 
@@ -17,50 +24,39 @@ Enter the following text in a text editor and save it under any name you like
 ```
 print('it works!!!')
 ```
+{: .python}
 
 We can now run this program in several ways.
-The easiest, of course, is to click the `Run Script` button.
+If we were to open up a terminal in the folder where we had saved our program, 
+we could run the command `python3 our-script-name.py` to run it.
 
 ```
 it works!!!
 ```
+{: .output}
 
-Note that we can run things line-by-line.
-If we were to change our program to the following, we can run each line with `Ctrl+Enter`
-
-```
-print('it works!!!')
-print('this is line 2')
-```
-```
-it works!!!
-this is line 2
-```
-
-{{<admonition title="What's the point of print()?">}}
-We saw earlier that there was no difference between printing something with `print()`
-and just entering a command on the command line.
-But is this really the case?
-Is there a difference after all?
-
-Try executing the following code:
-
-```
-print('this involves print')
-'this does not'
-```
-
-What gets printed if you execute this as a script?
-What gets printed if you execute things line by line?
-Using this information, what's the point of `print()`?
-{{</admonition>}}
+> ## What's the point of print()?
+> We saw earlier that there was no difference between printing something with `print()`
+> and just entering a command on the command line.
+> But is this really the case?
+> Is there a difference after all?
+> 
+> Try executing the following code:
+> 
+> ```
+> print('this involves print')
+> 'this does not'
+> ```
+> {: .python}
+> 
+> What gets printed if you execute this as a script?
+> What gets printed if you execute things line by line?
+> Using this information, what's the point of `print()`?
+{: .challenge}
 
 ## `import`-ing things
 
-We can also run our script from the command line. 
-If we were to open up a terminal in the folder where we had saved our program, 
-we could run the command `python3 our-script-name.py` to run it.
-IPython has a neat trick we can use to test this out.
+IPython has a neat trick to run command line commands without exiting IPython.
 Any command that begins with `!` gets run on your computer's command line,
 and not the IPython terminal.
 
@@ -70,10 +66,11 @@ I've called my script `test.py` as an example.
 ```
 !python3 test.py
 ```
+{: .python}
 ```
 it works!!!
-this is line 2
 ```
+{: .output}
 
 What if we wanted to pass additional information to Python?
 For example, what if we want Python to print whatever we type back at us?
@@ -87,6 +84,7 @@ To access a package, we need to `import` it.
 ```
 import sys
 ```
+{: .python}
 
 You'll notice that there's no output.
 Only one thing is changed:
@@ -102,18 +100,17 @@ import sys
 
 print('we typed: ', sys.argv)
 ```
+{: .python}
 
 We can then execute this program with:
 ```
 !python3 test.py word1 word2 3
 ```
+{: .python}
 ```
 we typed: ['test.py', 'word1', 'word2', '3']
 ```
+{: .output}
 
 You'll notice that sys.argv looks different from other data types we've seen so far.
 `sys.argv` is a list (more about this in the next session).
-
-
-## [Next section](../lists/)
-
