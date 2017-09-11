@@ -1,7 +1,14 @@
 ---
 title: "Functional programming"
-menu: main
-weight: 6
+teaching: 15
+exercises: 15
+questions:
+- "How do I write functions?"
+objectives:
+- "Be able to write our own functions and use basic functional programming constructs like `map()` and `filter()`."
+keypoints:
+- "`map()` applies a function to every object in a data structure."
+- "`filter()` returns only the data objects for which some condition is true."
 ---
 
 Of course, at some point, we are going to want to define our ownfunctions
@@ -14,6 +21,7 @@ def function(arg1):
     # do stuff with arg1
     return ans
 ```
+{: .python}
 
 So, an example function that adds two numbers together might look a little like this:
 
@@ -23,9 +31,11 @@ def adder(x, y):
 
 adder(1, 2)
 ```
+{: .python}
 ```
 3
 ```
+{: .output}
 
 We can also add a default argument 
 (say if we wanted y to be equal to 10 unless we otherwise specified), 
@@ -37,19 +47,21 @@ def adder(x, y=10):
 
 adder(5)
 ```
+{: .python}
 ```
 15
 ```
+{: .output}
 
-{{<admonition title="Practice defining functions">}}
-Define a function that converts from temperatures in fahrenheit
-to temperatures in kelvin, and another function that converts
-back again.
-
-The general formula for the conversion from fahrenheit to kelvin is:
-
-`kelvin = (fahr - 32) * 5 / 9 + 273.15`
-{{</admonition>}}
+> ## Practice defining functions
+> Define a function that converts from temperatures in fahrenheit
+> to temperatures in kelvin, and another function that converts
+> back again.
+> 
+> The general formula for the conversion from fahrenheit to kelvin is:
+> 
+> `kelvin = (fahr - 32) * 5 / 9 + 273.15`
+{: .challenge}
 
 ## Conditional statements
 
@@ -63,10 +75,12 @@ True == True
 True == False
 'words' == 'words'
 ```
+{: .python}
 ```
 True
 False
 ```
+{: .output}
 
 `not` indicates the opposite of True or False, and `!=` means not equal to.
 
@@ -74,10 +88,12 @@ False
 not True == False
 True != False
 ```
+{: .python}
 ```
 True
 True
 ```
+{: .output}
 
 As with other programming languages, we can make the usual comparisons with the `>` and `<` operators.
 Adding an equals sign (`>=`, `<=`) indicates less than or equal to or greater than or equal to.
@@ -88,12 +104,14 @@ Adding an equals sign (`>=`, `<=`) indicates less than or equal to or greater th
 -4 >= -4
 1 <= 2
 ```
+{: .python}
 ```
 True
 False
 True
 False
 ```
+{: .output}
 
 These statements can be combined with the `if` statement to produce code that executes at various times.
 
@@ -102,9 +120,11 @@ number = 5
 if number <= 10:
 	print('number was less than 10')
 ```
+{: .python}
 ```
 number was less than 10
 ```
+{: .output}
 
 If the `if` statement is not equal to `True`,
 the statement does not execute:
@@ -114,6 +134,7 @@ number = 11
 if number <= 10:
 	print('number was less than 10')
 ```
+{: .python}
 
 However, we can add code to execute when the `if` condition is not met by adding an `else` statement.
 
@@ -124,9 +145,11 @@ if number <= 10:
 else:
 	print('number was greater than 10')
 ```
+{: .python}
 ```
 number was greater than 10
 ```
+{: .output}
 
 And if we want to check an additional statement, 
 we can use the `elif` keyword (else-if):
@@ -140,6 +163,7 @@ elif number == 10:
 else:
 	print('number was greater than 10')
 ```
+{: .python}
 
 One final note, to check if a value is equal to `None` in Python
 we must use `is None` and `is not None`.
@@ -149,10 +173,12 @@ Normal `==` operators will not work.
 None is None
 5 is not None
 ```
+{: .python}
 ```
 True
 True
 ```
+{: .output}
 
 Additionally, we can check if one value is in another set of values with the `in` operator:
 
@@ -160,10 +186,12 @@ Additionally, we can check if one value is in another set of values with the `in
 5 in [4, 5, 6]
 43 in [4, 5, 6]
 ```
+{: .output}
 ```
 True
 False
 ```
+{: .python}
 
 ## map(), filter(), and anonymous (lambda) functions
 
@@ -188,15 +216,18 @@ import math
 values = [0, 1, 2, 3, 4, 5, 6]
 map(math.sin, values)
 ```
+{: .python}
 ```
 <map at 0x7f31c246cba8>
 ```
+{: .output}
 
 To retrieve the actual values, we typically need to make the resulting output a list.
 
 ```
 list(map(math.sin, values))
 ```
+{: .python}
 ```
 [0.0,
  0.8414709848078965,
@@ -206,6 +237,7 @@ list(map(math.sin, values))
  -0.9589242746631385,
  -0.27941549819892586]
 ```
+{: .output}
 
 `filter()` applies a similar operation, but instead of applying a function to every piece, 
 it only returns points where a function returns true.
@@ -216,9 +248,11 @@ def less_than_3(val):
 
 list(filter(less_than_3, values))
 ```
+{: .python}
 ```
 [0, 1, 2]
 ```
+{: .output}
 
 That was very inconvenient.
 We had to define an entire function just to only use it once.
@@ -230,6 +264,7 @@ To define a lambda function in python, the general syntax is as follows:
 ```
 lambda x: x + 54
 ``` 
+{: .python}
 
 In this case, `lambda x:` indicates we are defining a lambda function with a single argument, `x`. 
 Everything following the `:` is our function.
@@ -240,23 +275,26 @@ So `lambda x: x + 54` equates to:
 def some_func(x):
 	return x + 54
 ```
+{: .python}
 
 Rewriting our filter statement to use a lambda function:
 
 ```
 list(filter(lambda x: x < 3, values))
 ```
+{: .python}
 ```
 [0, 1, 2]
 ```
+{: .output}
 
-{{<admonition title="Using lambdas in practice">}}
-Add `'-cheesecake'` to every word in the following list using `map()`.
-
-`['new york', 'chocalate', 'new york', 'ketchup', 'mayo']`
-
-Using `filter()`, remove the items which would be absolutely terrible to eat.
-{{</admonition>}}
+> ## Using lambdas in practice
+> Add `'-cheesecake'` to every word in the following list using `map()`.
+> 
+> `['new york', 'chocalate', 'new york', 'ketchup', 'mayo']`
+> 
+> Using `filter()`, remove the items which would be absolutely terrible to eat.
+{: .challenge}
 
 ## map/filter style functionality with Numpy arrays
 
@@ -270,9 +308,11 @@ vector_cube = np.vectorize(lambda x: x ** 3)
 
 vector_cube(np.array([1, 2, 3, 4, 5]))
 ```
+{: .python}
 ```
 array([  1,   8,  27,  64, 125])
 ```
+{: .output}
 
 To perform a similar option to `filter()`, 
 you can actually specify a conditional statement inside the `[]`
@@ -282,13 +322,11 @@ when indexing a Numpy array.
 arr = np.array([1, 2, 3, 4, 5])
 arr[arr >= 3]
 ```
+{: .python}
 
-{{<admonition title="Removing np.nan values">}}
-Remove all of the `np.nan` values from the following sequence
-using logical indexing.
-
-`np.array([np.nan, np.nan, 2, 3, 4, np.nan])`
-{{</admonition>}}
-
-## [Next section](../profiling/)
-
+> ## Removing np.nan values
+> Remove all of the `np.nan` values from the following sequence
+> using logical indexing.
+> 
+> `np.array([np.nan, np.nan, 2, 3, 4, np.nan])`
+{: .challenge}

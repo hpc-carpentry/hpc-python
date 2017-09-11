@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introduction to Snakemake"
 teaching: 15
 exercises: 15
 questions:

@@ -1,7 +1,13 @@
 ---
 title: "Running code in parallel"
-menu: main
-weight: 9
+teaching: 15
+exercises: 15
+questions:
+- "How do I run code in parallel?"
+objectives:
+- "Understand how to run parallel code with `multiprocessing`."
+keypoints:
+- "Pool.map() will perform an operation in parallel."
 ---
 
 Python does not thread very well.
@@ -25,9 +31,11 @@ import psutil
 # logical=True counts threads, but we are interested in cores
 psutil.cpu_count(logical=False)
 ```
+{: .python}
 ```
 8
 ```
+{: .output}
 
 Using this number, we can create a pool of worker processes withh which to parallelize our jobs:
 
@@ -35,6 +43,7 @@ Using this number, we can create a pool of worker processes withh which to paral
 from multiprocessing import Pool
 pool = Pool(psutil.cpu_count(logical=False))
 ```
+{: .python}
 
 The `pool` object gives us a set of parallel workers we can
 use to parallelize our calculations.
@@ -53,16 +62,19 @@ def sleeping(arg):
 %timeit list(map(sleeping, range(24)))
 %timeit pool.map(sleeping, range(24))
 ```
+{: .python}
 ```
 1 loop, best of 3: 2.4 s per loop
 1 loop, best of 3: 302 ms per loop
 ```
+{: .output}
 
 That worked nicely! However what happens when we try a lambda function?
 
 ```
 pool.map(lambda x: time.sleep(0.1), range(24))
 ```
+{: .python}
 ```
 ---------------------------------------------------------------------------
 PicklingError                             Traceback (most recent call last)
@@ -71,6 +83,7 @@ PicklingError                             Traceback (most recent call last)
 
 # more errors omitted
 ```
+{: .error}
 
 The `multiprocessing` module has a major limitation:
 it only accepts certain functions, and in certain situations.
@@ -94,15 +107,13 @@ pool = Pool(8)
 %timeit pool.map(lambda x: time.sleep(0.1), range(24))
 pool.close()
 ```
+{: .python}
 ```
 1 loop, best of 3: 309 ms per loop
 ```
+{: .output}
 
-{{<admonition title="Chunk size" type="note">}}
-The `chunksize` argument lets you process data in chunks, 
-cutting down time lost to inter-process communication.
-{{</admonition>}}
-
-## [Next section](../sm-intro/)
-
-
+> ## Chunk size
+> The `chunksize` argument lets you process data in chunks, 
+> cutting down time lost to inter-process communication.
+{: .callout}

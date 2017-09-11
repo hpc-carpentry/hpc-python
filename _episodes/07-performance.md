@@ -1,7 +1,14 @@
 ---
 title: "Common performance optimizations"
-menu: main
-weight: 8
+teaching: 15
+exercises: 15
+questions:
+- "What are some easy ways of speeding up my code?"
+objectives:
+- "Be aware of common performance optimizations."
+keypoints:
+- "Use pre-existing libraries wherever you can."
+- "Numba's JIT is an easy way to optimize."
 ---
 
 We'll quickly cover a number of common performance optimizations in Python.
@@ -18,18 +25,22 @@ Using these libraries will almost always be faster than using pure Python equiva
 array = np.arange(1000000)
 array = array ** 2 
 ```
+{: .python}
 ```
 100 loops, best of 3: 4.62 ms per loop
 ```
+{: .output}
 
 ```
 %%timeit
 slow = range(1000000)
 slow = list(map(lambda x: x ** 2, slow))
 ```
+{: .python}
 ```
 1 loop, best of 3: 589 ms per loop
 ```
+{: .output}
 
 ## Hard-disk no-nos
 
@@ -52,6 +63,7 @@ Using `numba` is rather easy - first we import it:
 ```
 from numba import jit
 ```
+{: .python}
 
 Then we place the `@jit` decorator above any functions we want to be compiled (I modified this bubble sort implementation from the [numba documentation](numba.pydata.org/numba-doc/0.12.2/tutorial_firststeps.html)):
 
@@ -83,26 +95,27 @@ def bubblesort_jit(Y):
 	return X
 
 randomized = np.random.shuffle(np.arange(1000))
-
 ```
+{: .python}
 
 Now lets see the performance difference between the two versions:
 
 ```
 %timeit bubblesort(randomized)
 ```
+{: .python}
 ```
 1 loop, best of 3: 313 ms per loop
 ```
+{: .output}
 
 ```
 %timeit bubblesort_jit(randomized)
 ```
+{: .python}
 ```
 1000 loops, best of 3: 1.52 ms per loop
 ```
+{: .output}
 
 The `@jit` version was considerably faster.
-
-## [Next section](../parallel/)
-
