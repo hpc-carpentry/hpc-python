@@ -44,4 +44,3 @@ see this lesson's <a href="{{ page.root }}/discuss/">discussion</a> page.
 >
 > The files used in this lesson can be downloaded [here](files/snakemake-lesson.tar.gz).
 {: .prereq}
-

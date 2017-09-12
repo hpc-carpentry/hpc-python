@@ -3,12 +3,11 @@ title: "Snakefiles"
 teaching: 15
 exercises: 15
 questions:
-- "How do I write a simple Snakefile?"
+- "How do I write a simple workflow?"
 objectives:
-- "Recognize the key parts of a Makefile, rules, targets, dependencies and actions."
+- "Understand the components of a Snakefile: rules, inputs, outputs, and actions."
 - "Write a simple Snakefile."
 - "Run Snakemake from the shell."
-- "Explain constraints on dependencies."
 keypoints:
 - "Snakemake follows Python syntax"
 - "Rules can have an input and/or outputs, and a command to be run."
