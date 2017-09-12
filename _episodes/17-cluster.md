@@ -3,7 +3,7 @@ title: "Scaling a pipeline across a cluster"
 teaching: 30
 exercises: 15
 questions:
-- "How do I scale my workflow across an HPC cluster?"
+- "How do I run my workflow on an HPC system?"
 objectives:
 - "Understand the Snakemake cluster job submission workflow."
 keypoints:
