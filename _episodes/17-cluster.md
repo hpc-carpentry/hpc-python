@@ -47,7 +47,7 @@ is executed with the resources it needs.
 We'll explore how to port our example Snakemake pipeline by example 
 Our current Snakefile is shown below:
 
-```
+```python
 # our zipf analysis pipeline
 DATS = glob_wildcards('books/{book}.txt').book
 
@@ -101,7 +101,7 @@ rule make_archive:
     output: 'zipf_analysis.tar.gz'
     shell: 'tar -czvf {output} {input}'
 ```
-{: .python}
+
 
 To run Snakemake on a cluster, we need to tell it how it to submit jobs.
 This is done using the `--cluster` argument.
@@ -118,7 +118,7 @@ The first step will be to transfer our files to the cluster and log on via SSH.
 Snakemake has a powerful archiving utility that we can use to bundle up our workflow and transfer it.
 
 
-```
+```bash
 snakemake clean
 tar -czvf pipeline.tar.gz .
 # transfer the pipeline via scp
@@ -126,7 +126,6 @@ scp pipeline.tar.gz yourUsername@graham.computecanada.ca:
 # log on to the cluster
 ssh -X yourUsername@graham.computecanada.ca
 ```
-{: .bash}
 
 > ## `snakemake --archive` and Conda deployment
 > 
@@ -146,17 +145,17 @@ ssh -X yourUsername@graham.computecanada.ca
 At this point we've archived our entire pipeline, sent it to the cluster, and logged on.
 Let's create a folder for our pipeline and unpack it there.
 
-```
+```bash
 mkdir pipeline
 mv pipeline.tar.gz pipeline
 cd pipeline
 tar -xvzf pipeline.tar.gz
 ```
-{: .bash}
 
 If Snakemake and Python are not already installed on your cluster, 
 you can install them using the following commands:
-```
+
+```bash
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b
 echo 'export PATH=~/miniconda3/bin:~/.local/bin:$PATH' >> ~/.bashrc
@@ -164,7 +163,6 @@ source ~/.bashrc
 conda install -y matplotlib numpy graphviz
 pip install --user snakemake
 ```
-{: .bash}
 
 Assuming you've transferred your files and everything is set to go, 
 the command `snakemake -n` should work without errors.
@@ -215,16 +213,17 @@ Let's define `all`, `clean`, and `make_archive` as localrules near the top of ou
 ```
 localrules: all, clean, make_archive
 ```
-{: .python}
+
 
 ## Running our workflow on the cluster
 
 Ok, time for the moment we've all been waiting for - let's run our workflow on the cluster.
 To run our Snakefile, we'll run the following command:
-```
+
+```bash
 snakemake -j 100 --cluster-config cluster.json --cluster "sbatch -A {cluster.account} --mem={cluster.mem} -t {cluster.time} -c {threads}"
 ```
-{: .bash}
+
 
 While things execute, you may wish to SSH to the cluster in another window so you can watch the pipeline's progress
 with `watch squeue -u $(whoami)`.

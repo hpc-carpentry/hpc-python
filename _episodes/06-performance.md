@@ -20,23 +20,22 @@ and not all have examples.
 Libraries like Numpy and Pandas are filled with lots of hyper-optimized C/C++/Fortran code.
 Using these libraries will almost always be faster than using pure Python equivalents:
 
-```
+```python
 %%timeit
 array = np.arange(1000000)
 array = array ** 2 
 ```
-{: .python}
 ```
 100 loops, best of 3: 4.62 ms per loop
 ```
 {: .output}
 
-```
+```python
 %%timeit
 slow = range(1000000)
 slow = list(map(lambda x: x ** 2, slow))
 ```
-{: .python}
+
 ```
 1 loop, best of 3: 589 ms per loop
 ```
@@ -60,14 +59,13 @@ into ultra-fast machine code for your CPU right before it runs.
 
 Using `numba` is rather easy - first we import it:
 
-```
+```python
 from numba import jit
 ```
-{: .python}
 
 Then we place the `@jit` decorator above any functions we want to be compiled (I modified this bubble sort implementation from the [numba documentation](numba.pydata.org/numba-doc/0.12.2/tutorial_firststeps.html)):
 
-```
+```python
 def bubblesort(Y):
 	X = Y.copy()
     N = len(X)
@@ -96,23 +94,21 @@ def bubblesort_jit(Y):
 
 randomized = np.random.shuffle(np.arange(1000))
 ```
-{: .python}
 
 Now lets see the performance difference between the two versions:
 
-```
+```python
 %timeit bubblesort(randomized)
 ```
-{: .python}
+
 ```
 1 loop, best of 3: 313 ms per loop
 ```
 {: .output}
 
-```
+```python
 %timeit bubblesort_jit(randomized)
 ```
-{: .python}
 ```
 1000 loops, best of 3: 1.52 ms per loop
 ```

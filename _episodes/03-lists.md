@@ -15,11 +15,11 @@ At the end of the last lesson, we saw noticed that `sys.argv` gave us a new data
 a list.
 A list is a set of objects enclosed by a set of square brackets (`[]`).
 
-```
+```python
 example = [1, 2, 4, 5]
 example
 ```
-{: .python}
+
 ```
 [1, 2, 4, 5]
 ```
@@ -27,11 +27,11 @@ example
 
 Note that a list can hold any type of item, even other lists!
 
-```
+```python
 example = [1, True, None, ["word", 123], "test"]
 example
 ```
-{: .python}
+
 ```
 [1, True, None, ['word', 123], 'test']
 ```
@@ -45,11 +45,11 @@ Note that in Python, all indices start from 0 - the first element is actually th
 The best way to think about array indices is that they are the number of offsets from the first position - 
 the first element does not require an offset to get to.
 
-![](https://imgs.xkcd.com/comics/donald_knuth.png)
+![Arrays start at 0](https://imgs.xkcd.com/comics/donald_knuth.png)
 
 And a few examples of this in action:
 
-```
+```python
 # first element
 example[0]
 # second element
@@ -57,7 +57,7 @@ example[1]
 # fetch the list inside the list
 example[3]
 ```
-{: .python}
+
 ```
 1
 True
@@ -68,10 +68,10 @@ True
 Note that we can index a range using the colon (`:`) operator.
 A colon by itself means fetch everything.
 
-```
+```python
 example[:]
 ```
-{: .python}
+
 ```
 [1, True, None, ['word', 123], 'test']
 ```
@@ -79,10 +79,10 @@ example[:]
 
 A colon on the right side of an index means everything after the specified index.
 
-```
+```python
 example[2:]
 ```
-{: .python}
+
 ```
 [None, ['word', 123], 'test']
 ```
@@ -90,10 +90,10 @@ example[2:]
 
 A colon on the left side  of an index means everyting before, but not including, the index.
 
-```
+```python
 example[:2]
 ```
-{: .python}
+
 ```
 [1, True]
 ```
@@ -102,13 +102,13 @@ example[:2]
 And if we use a negative index, it means get elements from the end,
 going backwards.
 
-```
+```python
 # last element
 example[-1]
 # everything except the last two elements
 example[:-2]
 ```
-{: .python}
+
 ```
 'test'
 [1, True, None]
@@ -117,10 +117,10 @@ example[:-2]
 
 Note that we can use the index multiple times to retrieve information from nested objects.
 
-```
+```python
 example[3][0]
 ```
-{: .python}
+
 ```
 'word'
 ```
@@ -128,10 +128,10 @@ example[3][0]
 
 If we index out of range, it is an error:
 
-```
+```python
 example[5]
 ```
-{: .python}
+
 ```
 ---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
@@ -144,10 +144,10 @@ IndexError: list index out of range
 
 We can also add two lists together to create a larger list.
 
-```
+```python
 [45, 2] + [3]
 ```
-{: .python}
+
 ```
 [45, 2, 3]
 ```
@@ -158,14 +158,14 @@ We can also add two lists together to create a larger list.
 Like other objects in Python, lists have a unique behavior that can catch a lot of people off guard.
 What happens when we run the following code?
 
-```
+```python
 list1 = [1, 2, 3, 4]
 list2 = list1
 list2 += [5, 6, 7]
 print('List 2 is: ', list2)
 print('List 1 is: ', list1)
 ```
-{: .python}
+
 ```
 print('List 2 is: ' + list2)                                                                  
 print('List 1 is: ' + list1)  
@@ -184,11 +184,11 @@ We can verify this with the `id()` function.
 `id()` prints an objects unique identifier.
 Two objects will not have the same ID unless they are the same object.
 
-```
+```python
 id(list1)
 id(list2)
 ```
-{: .python}
+
 ```
 140319556870408
 140319556870408
@@ -198,7 +198,7 @@ id(list2)
 In order to create `list2` as a unique copy of `list1`. 
 We have to use the `.copy()` method.
 
-```
+```python
 list1 = [1, 2, 3, 4]                                                                          
 list2 = list1.copy()                                                                          
 list2 += [5, 6, 7]                                                                            
@@ -207,7 +207,7 @@ print('List 1 is: ', list1)
 id(list2)
 id(list1)
 ```
-{: .python}
+
 ```
 List 2 is:  [1, 2, 3, 4, 5, 6, 7]
 List 1 is:  [1, 2, 3, 4]
@@ -222,19 +222,19 @@ They always follow the syntax `object.method(arg1, arg2=some_value)`.
 
 Other frequently used methods of lists include `.append()`:
 
-```
+```python
 list1.append(77)
 ```
-{: .python}
+
 ```
 [1, 2, 3, 4, 77]
 ```
 {: .output}
-```
+```python
 # this adds a one-element list
 list1.append([88])
 ```
-{: .python}
+
 ```
 [1, 2, 3, 4, 77, [88]]
 ```
@@ -242,10 +242,10 @@ list1.append([88])
 
 And `.extend()` (combines two lists, instead of adding the second list as an element):
 
-```
+```python
 list1.extend([99, 88, 101])
 ```
-{: .python}
+
 ```
 [1, 2, 3, 4, 77, [88], 99, 88, 101]
 ```
@@ -253,13 +253,13 @@ list1.extend([99, 88, 101])
 
 And of course, `.remove()` and `.clear()` (both do exactly what you think they should do):
 
-```
+```python
 list1.remove([88])
 print(list1)
 list1.clear()
 print(list1)
 ```
-{: .python}
+
 ```
 [1, 2, 3, 4, 77, 99, 88, 101]
 []
@@ -279,18 +279,18 @@ We do this using a for loop.
 
 A for loop generally looks like the following:
 
-```
+```python
 for variable in things_to_iterate_over:
 	do_stuff_with(variable)
 ```
 
 An example of an actually functioning for loop is shown below:
 
-```
+```python
 for i in range(10):
 	print(i)
 ```
-{: .python}
+
 ```
 0
 1
@@ -311,11 +311,11 @@ a sequence of numbers.
 
 We can also iterate over a list, or any collection of elements:
 
-```
+```python
 for element in ['a', True, None]:
 	print(type(element))
 ```
-{: .python}
+
 ```
 <class 'str'>
 <class 'bool'>
@@ -332,7 +332,7 @@ For example, say we had a list of a thousand numbers.
 There's no way to do vector math without iterating through all the
 elements!
 
-```
+```python
 vals = list(range(1000))
 
 new_vals = vals.copy()
@@ -342,7 +342,7 @@ for idx in range(1000):
 
 print(new_vals[:5])
 ```
-{: .python}
+
 ```
 [0, 1, 2, 3, 4]
 [10, 11, 12, 13, 14]
@@ -356,14 +356,14 @@ array from a list.
 A numpy array is a collection of numbers that can have any number of dimensions.
 In this case, there is only one dimension, since we created the array from a list.
 
-```
+```python
 import numpy as np
 
 new_vals = np.array(vals)
 new_vals += 10
 new_vals[:5]
 ```
-{: .python}
+
 ```
 array([10, 11, 12, 13, 14])
 ```
@@ -375,22 +375,22 @@ Anything following the `%timeit` gets measured for speed.
 Adding `%%` to the `timeit` command instead of `%` means that `timeit` is run on the entire cell, not just a single line.
 
 Using Python's lists:
-```
+```python
 %%timeit
 for idx in range(1000):
 	vals[idx] + 10
 ```
-{: .python}
+
 ```
 10000 loops, best of 3: 165 µs per loop
 ```
 {: .output}
 
 Using numpy:
-```
+```python
 %timeit new_vals + 10
 ```
-{: .python}
+
 ```
 The slowest run took 22.13 times longer than the fastest. This could mean that an intermediate result is being cached.
 1000000 loops, best of 3: 1.63 µs per loop
@@ -404,12 +404,12 @@ Even in Numpy's worst case scenario however, it still ran 5x faster than using P
 
 Sometimes, you'll encounter a dataset with multiple dimensions and will need to be able to retrieve elements from it as such.
 
-```
+```python
 arr2d = np.arange(0, 40)  # sequence of numbers from 0 to 39
 arr2d = arr2d.reshape([5, 8])  # reshape so it has 5 rows and 8 columns
 arr2d
 ```
-{: .python}
+
 ```
 array([[ 0,  1,  2,  3,  4,  5,  6,  7],
        [ 8,  9, 10, 11, 12, 13, 14, 15],
@@ -423,10 +423,10 @@ In this case, we must index using multiple indices, separated by a comma.
 
 To grab the first element, we would use `[0, 0]`
 
-```
+```python
 arr2d[0, 0]
 ```
-{: .python}
+
 ```
 0
 ```
@@ -434,11 +434,11 @@ arr2d[0, 0]
 
 The first index, corresponds to rows, the second corresponds to columns, and the third to the next dimension...
 
-```
+```python
 arr2d[0, :]
 arr2d[:, 0]
 ```
-{: .python}
+
 ```
 array([0, 1, 2, 3, 4, 5, 6, 7])
 array([ 0,  8, 16, 24, 32])

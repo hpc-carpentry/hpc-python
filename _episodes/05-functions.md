@@ -16,22 +16,22 @@ rather than just use the ones provided by Python and its various modules.
 
 The general syntax for defining a function is as follows:
 
-```
+```python
 def function(arg1):
     # do stuff with arg1
     return ans
 ```
-{: .python}
+
 
 So, an example function that adds two numbers together might look a little like this:
 
-```
+```python
 def adder(x, y):
 	return x + y
 
 adder(1, 2)
 ```
-{: .python}
+
 ```
 3
 ```
@@ -41,13 +41,13 @@ We can also add a default argument
 (say if we wanted y to be equal to 10 unless we otherwise specified), 
 by using an equals sign and a default value in our function definition:
 
-```
+```python
 def adder(x, y=10):
     return x + y
 
 adder(5)
 ```
-{: .python}
+
 ```
 15
 ```
@@ -70,12 +70,12 @@ This relies upon comparisons between items:
 
 In python, comparison is done using the `==` operator:
 
-```
+```python
 True == True
 True == False
 'words' == 'words'
 ```
-{: .python}
+
 ```
 True
 False
@@ -84,11 +84,11 @@ False
 
 `not` indicates the opposite of True or False, and `!=` means not equal to.
 
-```
+```python
 not True == False
 True != False
 ```
-{: .python}
+
 ```
 True
 True
@@ -98,13 +98,13 @@ True
 As with other programming languages, we can make the usual comparisons with the `>` and `<` operators.
 Adding an equals sign (`>=`, `<=`) indicates less than or equal to or greater than or equal to.
 
-```
+```python
 5 < 10
 5 > 10
 -4 >= -4
 1 <= 2
 ```
-{: .python}
+
 ```
 True
 False
@@ -115,12 +115,12 @@ False
 
 These statements can be combined with the `if` statement to produce code that executes at various times.
 
-```
+```python
 number = 5
 if number <= 10:
 	print('number was less than 10')
 ```
-{: .python}
+
 ```
 number was less than 10
 ```
@@ -129,23 +129,23 @@ number was less than 10
 If the `if` statement is not equal to `True`,
 the statement does not execute:
 
-```
+```python
 number = 11
 if number <= 10:
 	print('number was less than 10')
 ```
-{: .python}
+
 
 However, we can add code to execute when the `if` condition is not met by adding an `else` statement.
 
-```
+```python
 number = 11
 if number <= 10:
 	print('number was less than 10')
 else:
 	print('number was greater than 10')
 ```
-{: .python}
+
 ```
 number was greater than 10
 ```
@@ -154,7 +154,7 @@ number was greater than 10
 And if we want to check an additional statement, 
 we can use the `elif` keyword (else-if):
 
-```
+```python
 number = 10
 if number <= 10:
 	print('number was less than 10')
@@ -163,17 +163,17 @@ elif number == 10:
 else:
 	print('number was greater than 10')
 ```
-{: .python}
+
 
 One final note, to check if a value is equal to `None` in Python
 we must use `is None` and `is not None`.
 Normal `==` operators will not work.
 
-```
+```python
 None is None
 5 is not None
 ```
-{: .python}
+
 ```
 True
 True
@@ -182,16 +182,15 @@ True
 
 Additionally, we can check if one value is in another set of values with the `in` operator:
 
-```
+```python
 5 in [4, 5, 6]
 43 in [4, 5, 6]
 ```
-{: .output}
 ```
 True
 False
 ```
-{: .python}
+{: .output}
 
 ## map(), filter(), and anonymous (lambda) functions
 
@@ -204,19 +203,19 @@ Finally, "filtering" means returning only a set of elements where a certain valu
 Let's explore what that means with our own functions.
 The syntax of map/reduce/filter is identical:
 
-```
+```python
 map(function, thing_to_iterate_over, next_thing_to_iterate_over)
 ```
 
 Let's apply this to a few test cases using map. 
 Note that when selecting which function we are going to "map" with, 
 
-```
+```python
 import math
 values = [0, 1, 2, 3, 4, 5, 6]
 map(math.sin, values)
 ```
-{: .python}
+
 ```
 <map at 0x7f31c246cba8>
 ```
@@ -224,10 +223,10 @@ map(math.sin, values)
 
 To retrieve the actual values, we typically need to make the resulting output a list.
 
-```
+```python
 list(map(math.sin, values))
 ```
-{: .python}
+
 ```
 [0.0,
  0.8414709848078965,
@@ -242,13 +241,13 @@ list(map(math.sin, values))
 `filter()` applies a similar operation, but instead of applying a function to every piece, 
 it only returns points where a function returns true.
 
-```
+```python
 def less_than_3(val):
 	return val < 3
 
 list(filter(less_than_3, values))
 ```
-{: .python}
+
 ```
 [0, 1, 2]
 ```
@@ -261,28 +260,28 @@ Such functions are called either anonymous functions or lamdba ufunctions (both 
 
 To define a lambda function in python, the general syntax is as follows:
 
-```
+```python
 lambda x: x + 54
 ``` 
-{: .python}
+
 
 In this case, `lambda x:` indicates we are defining a lambda function with a single argument, `x`. 
 Everything following the `:` is our function.
 Whatever value this evaluates to is automatically returned.
 So `lambda x: x + 54` equates to:
 
-```
+```python
 def some_func(x):
 	return x + 54
 ```
-{: .python}
+
 
 Rewriting our filter statement to use a lambda function:
 
-```
+```python
 list(filter(lambda x: x < 3, values))
 ```
-{: .python}
+
 ```
 [0, 1, 2]
 ```
@@ -302,13 +301,13 @@ Although you *could* use a for-loop to apply a custom function to a numpy array 
 there is a handy `np.vectorize()` function you can use to convert your functions to a vectorized numpy equivalent.
 Note that this is purely for convenience - this uses a `for-loop` internally.
 
-```
+```python
 # create a function to perform cubes of a number
 vector_cube = np.vectorize(lambda x: x ** 3)
 
 vector_cube(np.array([1, 2, 3, 4, 5]))
 ```
-{: .python}
+
 ```
 array([  1,   8,  27,  64, 125])
 ```
@@ -318,11 +317,11 @@ To perform a similar option to `filter()`,
 you can actually specify a conditional statement inside the `[]`
 when indexing a Numpy array.
 
-```
+```python
 arr = np.array([1, 2, 3, 4, 5])
 arr[arr >= 3]
 ```
-{: .python}
+
 
 > ## Removing np.nan values
 > Remove all of the `np.nan` values from the following sequence

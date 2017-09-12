@@ -26,12 +26,12 @@ Long story short, cores are the actual computation units,
 threads allow additional multitasking using the cores you have.
 For heavy compute jobs, you are generally interested in cores.
 
-```
+```python
 import psutil
 # logical=True counts threads, but we are interested in cores
 psutil.cpu_count(logical=False)
 ```
-{: .python}
+
 ```
 8
 ```
@@ -39,11 +39,11 @@ psutil.cpu_count(logical=False)
 
 Using this number, we can create a pool of worker processes withh which to parallelize our jobs:
 
-```
+```python
 from multiprocessing import Pool
 pool = Pool(psutil.cpu_count(logical=False))
 ```
-{: .python}
+
 
 The `pool` object gives us a set of parallel workers we can
 use to parallelize our calculations.
@@ -53,7 +53,7 @@ that runs a workflow in parallel.
 
 Let's try `map()` out with a test function that just runs sleep.
 
-```
+```python
 import time
 
 def sleeping(arg):
@@ -62,7 +62,7 @@ def sleeping(arg):
 %timeit list(map(sleeping, range(24)))
 %timeit pool.map(sleeping, range(24))
 ```
-{: .python}
+
 ```
 1 loop, best of 3: 2.4 s per loop
 1 loop, best of 3: 302 ms per loop
@@ -71,10 +71,10 @@ def sleeping(arg):
 
 That worked nicely! However what happens when we try a lambda function?
 
-```
+```python
 pool.map(lambda x: time.sleep(0.1), range(24))
 ```
-{: .python}
+
 ```
 ---------------------------------------------------------------------------
 PicklingError                             Traceback (most recent call last)
@@ -98,7 +98,7 @@ that works just fine (`pip install --user multiprocess`).
 and does not suffer the same issues.
 Usage is identical:
 
-```
+```python
 # shut down the old workers
 pool.close()
 
@@ -107,7 +107,7 @@ pool = Pool(8)
 %timeit pool.map(lambda x: time.sleep(0.1), range(24))
 pool.close()
 ```
-{: .python}
+
 ```
 1 loop, best of 3: 309 ms per loop
 ```

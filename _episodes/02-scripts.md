@@ -21,10 +21,10 @@ To demonstrate this, let's write our first program!
 Enter the following text in a text editor and save it under any name you like 
 (Python files are typically given the extension `.py`).
 
-```
+```python
 print('it works!!!')
 ```
-{: .python}
+
 
 We can now run this program in several ways.
 If we were to open up a terminal in the folder where we had saved our program, 
@@ -43,11 +43,10 @@ it works!!!
 > 
 > Try executing the following code:
 > 
-> ```
+> ```python
 > print('this involves print')
 > 'this does not'
 > ```
-> {: .python}
 > 
 > What gets printed if you execute this as a script?
 > What gets printed if you execute things line by line?
@@ -66,7 +65,7 @@ I've called my script `test.py` as an example.
 ```
 !python3 test.py
 ```
-{: .python}
+
 ```
 it works!!!
 ```
@@ -81,10 +80,10 @@ Python includes a lot of extra features in the form of packages,
 but not all of them get loaded by default.
 To access a package, we need to `import` it.
 
-```
+```python
 import sys
 ```
-{: .python}
+
 
 You'll notice that there's no output.
 Only one thing is changed:
@@ -95,18 +94,18 @@ that stores any additional arguments we provide on the command-line
 after `python3 our-script-name.py`.
 Let's make a new script called `command-args.py` to try this out.
 
-```
+```python
 import sys
 
 print('we typed: ', sys.argv)
 ```
-{: .python}
+
 
 We can then execute this program with:
 ```
 !python3 test.py word1 word2 3
 ```
-{: .python}
+
 ```
 we typed: ['test.py', 'word1', 'word2', '3']
 ```
