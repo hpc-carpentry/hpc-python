@@ -13,7 +13,7 @@ keypoints:
 
 We'll quickly cover a number of common performance optimizations in Python.
 Most of these things deal with heavy-duty number crunching, 
-and not all have examples (was a bit pressed for time when writing these lessons).
+and not all have examples.
 
 ## Use optimized libraries like Numpy wherever possible
 

@@ -21,7 +21,7 @@ and needs to be run on a cluster.
 > ## HPC cluster architecture
 > 
 > Most HPC clusters are run using a scheduler.
-> The scheduler is a piece of software that handles which compute jobs are run when and where.
+> The scheduler is a piece of software that handles which compute jobs are run on which compute nodes and where.
 > It allows a set of users to share a shared computing system as efficiently as possible.
 > In order to use it, users typically must write their commands to be run into a shell script
 > and then "submit" it to the scheduler.
@@ -70,11 +70,9 @@ rule count_words:
         book='books/{file}.txt'
     output: 'dats/{file}.dat'
     threads: 4
-    log: 'dats/{file}.log'
     shell:
         '''
-        echo "Running {input.wc} with {threads} cores on {input.book}." &> {log} &&
-            python {input.wc} {input.book} {output} &>> {log}
+        python {input.wc} {input.book} {output}
         '''
 
 # create a plot for each book
@@ -136,6 +134,10 @@ ssh -X yourUsername@graham.computecanada.ca
 > and scripts under version control: `snakemake --archive`.
 > What's more, it also installs any required dependencies if they can be installed
 > using Anaconda's `conda` package manager.
+> You can use this feature for this tutorial
+> (I've already added all of the files to version control for you),
+> but if you want to use this feature in your own work, 
+> you should familiarize yourself with a VCS tool like Git.
 >
 > For more information on how to use this feature, see 
 > [http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html](http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
@@ -178,7 +180,7 @@ the box at [jsonlint.com](https://jsonlint.com).
 {
     "__default__":
     {
-        "account": "aSLURMSubmissionAccount",
+        "account": "a_slurm_submission_account",
         "mem": "1G",
         "time": "0:5:0"
     },
