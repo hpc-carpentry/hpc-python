@@ -4,33 +4,23 @@ root: .
 ---
 Python is probably the most versatile language in existence. However one of its most useful features is its ability to tie things together and automate the execution of other programs.
 
-This tutorial focuses on using Python in HPC environments to automate data analysis pipelines with 
-[Snakemake](http://snakemake.readthedocs.io/en/stable/). 
+This tutorial focuses on using Python in high-performance computing environments to automate data analysis pipelines with 
+[Snakemake](http://snakemake.readthedocs.io/en/stable/)
+(for a detailed discussion for why we are teaching Snakemake, see this lesson's 
+<a href="{{ page.root }}/discuss/">discussion page</a>). 
 We’ll start with the basics and cover everything you need to get started. 
 Some elements of writing performance-oriented code will be covered, 
 but it is not the main focus. 
 There is no prerequisite knowlege for this tutorial, 
-although having some prior experience with the command-line or an HPC cluster will be very helpful.
+although having some prior experience with the command-line or a compute cluster will be very helpful.
 
-## What is Snakemake?
+At the end of this lesson, you will know how to:
 
-Snakemake is a “pipelining tool”. 
-It replaces the role of the researcher in running an analysis. 
-A researcher specifies their workflow’s tasks in a special file (called “Snakefile”) and runs Snakemake. 
-Snakemake then handles the specifics of running the researchers’ tasks as efficiently as possible.
-This has several key advantages over just running things ourselves:
+* Write and run basic Python programs.
 
-* Our work is reproducible. Snakemake will run our analysis the same way every time. We can demonstrate that repeating the workflow returns the same result.
+* Create a reproducible analysis pipeline in Python. 
 
-* Snakemake runs our tasks in parallel and has a built-in scheduler designed to maximize throughput. When we run a workflow, we can be confident that our work is getting done as fast as possible.
-
-* Snakemake automatically takes into account updates to our starting data and code. If we make a change, Snakemake will only re-run the analysis affected files and downstream output. By the same token, if a workflow fails halfway through, it will pick up from where things left off.
-
-* Workflows are portable - the same pipeline can be used on any system, anywhere. Snakemake handles all of the intricacies of running jobs (no need to write scripts for a cluster scheduler, Snakemake does that for you!). The same pipeline can be run on a Windows laptop or a HPC Linux cluster with no modification.
-
-Long story short, Snakemake makes our analyses scalable, reproducible, and more efficient in general. 
-For a detailed discussion on why Snakemake was chosen over competing tools (and other Python topics), 
-see this lesson's <a href="{{ page.root }}/discuss/">discussion</a> page.
+* Run your pipeline on your computer or on a high-performance computing cluster and have it scale appropriately. 
 
 > ## Setup
 >

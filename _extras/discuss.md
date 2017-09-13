@@ -45,8 +45,9 @@ it is very simple to script the execution of these types of high-throughput/comp
 The goal of this workshop is to teach students how to automate their work with Python,
 and make their workflows reproducible.
 Importantly, this also covers how to use Snakemake to automate submission of jobs to an HPC scheduler in a reasonable manner
-(no runaway submission of tens of thousands of jobs, easily cancel child jobs, 
-recover from an error without repeating work, etc.).
+(no runaway submission of tens of thousands of jobs, 
+encountering an error safely stops the workflow without losing work, 
+logfiles and output are handled appropriately, etc.).
 
 ## Why not other workflow/pipeline tools?
 
@@ -56,7 +57,7 @@ Why teach Snakemake instead of these other tools?
 
 * It's free, open-source, and installs in about 5 seconds flat via `pip`. 
 
-* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC schedulers. More importantly, the same workflow will work and scale appropriately regardless of whether it's on a laptop or HPC cluster *without modification*. 
+* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC schedulers. More importantly, the same workflow will work and scale appropriately regardless of whether it's on a laptop or cluster *without modification*. 
 
 * Snakemake uses pure Python syntax. There is no tool specific-language to learn like in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you've still taught them how to program in Python at the end of the day.
 
