@@ -14,12 +14,6 @@ The primary goal of these lesson materials is to accelerate your workflows
 by executing them in a massively parallel (and reproducible!) manner.
 Of course, what does this actually mean?
 
-Lots of people will talk about parallelization, 
-but this is a vague term that can mean many different things.
-So what is parallelization? What is concurrency? What does a term like *embarrasingly parallel* even mean?
-
-## Parallel concepts
-
 The basic concept of parallel computing is simple to understand: 
 we divide our job in tasks that can be executed at the same time, 
 so that we finish the job in a fraction of the time 
@@ -42,8 +36,6 @@ then start painting another one, then work for a little bit in the third one, an
 **The tasks are being executed concurrently but not in parallel.** 
 Only one task is being performed at a time.
 If we have 2 or more painters for the job, then the tasks can be performed in parallel
-(though the benefits to be gained from parallelisation top out at 4 painters 
-if we assume that only one painter can work on a wall at a time).
 
 In our analogy, the painters represent CPU cores in your computer.
 The number of CPU cores available determines 
@@ -68,7 +60,6 @@ In this scenario, each worker can complete its task totally on their own.
 They don’t even have to be in the same room, 
 they could be painting walls of different rooms in the house, 
 on different houses in the city, and different cities in the country.
-
 In many cases, however, we need a communication system in place. 
 Suppose that worker A, needs a colour that is only available in the dispenser of worker B - 
 worker A should request the paint to worker B and worker B should respond by sending the required colour.
@@ -86,6 +77,8 @@ Technically, the work being done by each arm is the work of a single painter.
 In this example, each painter would be a process (an individual instance of a program). 
 The painters' arms represent a "thread" of a program.
 Threads are separate points of execution within a single program, and can be executed either synchronously or asynchronously.
+
+------------------------------------------------
 
 ## How does parallelization work in practice?
 
@@ -151,6 +144,8 @@ As an extra benefit, this works the same for every program, regardless of what i
 This technique is known as serial farming, and is the primary focus of this lesson.
 We will learn to use [Snakemake](http://snakemake.readthedocs.io/en/stable/) 
 to coordinate the parallel launch of dozens, if not hundreds or thousands of independent tasks.
+
+-------------------------------------------------
 
 ## Parallelization in Python
 
@@ -297,7 +292,6 @@ result2 = pool.map(another_function, more_stuff_to_iterate_over)
 pool.close()
 ```
 
-Note that these types of computations are performed in a distributed-memory fashion.
 Parallel workers (with their own copy of everything) are created, 
 data are sent to these workers, and then results are combined back together again.
 There is also an optional `chunksize` argument (for `pool.map()`) 
@@ -305,6 +299,5 @@ that lets you control how big each chunk of data is before it's sent off to each
 A larger chunksize means that less time is spent shuttling data to and from workers,
 and will be more useful if you have a large number of very fast computations to perform.
 When each iteration takes a very long time to run, you will want to use a smaller chunk size.
-
 
 
