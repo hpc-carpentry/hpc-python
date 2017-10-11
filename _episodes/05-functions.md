@@ -287,6 +287,17 @@ list(filter(lambda x: x < 3, values))
 ```
 {: .output}
 
+And a side-by-side example that demonstrates the difference between `map()` and `filter()`.
+```python
+list(map(lambda x: x+100, [1,2,3,4,5]))
+list(filter(lambda x: x<3, [1,2,3,4,5]))
+```
+```
+[101, 102, 103, 104, 105]   # map()
+[1, 2]   # filter()
+```
+{: .output}
+
 > ## Using lambdas in practice
 > Add `'-cheesecake'` to every word in the following list using `map()`.
 > 

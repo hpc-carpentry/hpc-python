@@ -92,7 +92,8 @@ def bubblesort_jit(Y):
                 X[i + 1] = tmp
 	return X
 
-randomized = np.random.shuffle(np.arange(1000))
+randomized = np.arange(1000)
+np.random.shuffle(randomized)
 ```
 
 Now lets see the performance difference between the two versions:
@@ -115,3 +116,11 @@ Now lets see the performance difference between the two versions:
 {: .output}
 
 The `@jit` version was considerably faster.
+Are there any drawbacks to using Numba?
+Why not just use it all the time?
+
+Numba is specifically good at array and math-heavy Python code. 
+You won't see too much of a benefit when doing other types of operations.
+For more info and troubleshooting information, 
+check out the Numba documentation at [http://numba.pydata.org/numba-doc/latest/index.html](http://numba.pydata.org/numba-doc/latest/index.html)
+

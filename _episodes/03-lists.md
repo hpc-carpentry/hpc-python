@@ -1,5 +1,5 @@
 ---
-title: "Lists and arrays"
+title: "Numpy arrays and lists"
 teaching: 15
 exercises: 15
 questions:
@@ -372,7 +372,7 @@ array([10, 11, 12, 13, 14])
 One very nice thing about Numpy is that it's much more performant than ordinary Python lists.
 A nice trick we can use with IPython to measure execution times is the `%timeit` magic function.
 Anything following the `%timeit` gets measured for speed.
-Adding `%%` to the `timeit` command instead of `%` means that `timeit` is run on the entire cell, not just a single line.
+Adding `%%` to the `timeit` command instead of `%` means that `timeit` is run on the entire cell, not just a single line. Note that `%%timeit` must be on the first line of an IPython/Jupyter cell for it to work, whereas the `%timeit` command can be used anywhere. 
 
 Using Python's lists:
 ```python
