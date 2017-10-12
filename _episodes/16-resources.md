@@ -305,6 +305,8 @@ Snakemake knows nothing about them aside from the fact that they have a name and
 In this case `gpu` indicates simply that there is a resource called `gpu` used by `make_plot`.
 We provided 1 `gpu` to the workflow, and the `gpu` is considered in use as long as the rule is running.
 Once the `make_plot` rule completes, the `gpu` it consumed is added back to the pool of available `gpu`s.
+To be extra clear: `gpu` in this case does not actually represent a GPU, 
+it is an arbitrary limit used to prevent multiple tasks that use a `gpu` from executing at the same time.
 
 But what happens if we run our pipeline without specifying the number of GPUs?
 
@@ -334,4 +336,5 @@ Snakemake will assume that the resources in question are unlimited.
 > to arbitrary compute resources so that each rule can run at it's most efficient.
 > Snakemake will run your rules in such a way as to maximize throughput given your
 > resource constraints.
+{: .callout}
 

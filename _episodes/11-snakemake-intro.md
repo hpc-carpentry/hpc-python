@@ -5,20 +5,14 @@ exercises: 15
 questions:
 - "How can I make my results easier to reproduce?"
 objectives:
-- "Explain what Snakemake is for."
-- "Explain why Snakemake differs from shell scripts."
+- "Understand our example problem."
 keypoints:
-- "Snakemake allows us to specify what depends on what and how to update things that are out of date."
+- "Bash scripts are not an efficient way of storing a workflow."
+- "Snakemake is one method of managing a complex computational workflow."
 ---
 
 Let's imagine that we're interested in
-testing Zipf's Law in some of our favorite books.
-
-> ## Zipf's Law
->
-> The most frequently-occurring word occurs approximately twice as
-> often as the second most frequent word. This is [Zipf's Law][zipfs-law].
-{: .callout}
+seeing the frequency of various words in various books.
 
 We've compiled our raw data i.e. the books we want to analyze
 and have prepared several Python scripts that together make up our
@@ -43,6 +37,8 @@ we will be working with:
 {: .output}
 
 The first step is to count the frequency of each word in a book.
+The first argument (`books/isles.txt`) to wordcount.py is the file to analyze,
+and the the last argument (`isles.dat`) specifies the output file to write.
 
 ```bash
 python wordcount.py books/isles.txt isles.dat
@@ -137,8 +133,6 @@ isles	3822	2460	1.55
 ```
 {: .output}
 
-So we're not too far off from Zipf's law.
-
 Together these scripts implement a common workflow:
 
 1. Read a data file.
@@ -231,7 +225,7 @@ Another popular option is to comment out a subset of the lines in
 ```bash
 # USAGE: bash run_pipeline.sh
 # to produce plots for isles and abyss
-# and the summary table for the Zipf's law tests
+# and the summary table 
 
 # These lines are commented out because they don't need to be rerun.
 #python wordcount.py books/isles.txt isles.dat
@@ -244,13 +238,37 @@ python plotcount.py abyss.dat abyss.png
 python zipf_test.py abyss.dat isles.dat > results.txt
 ```
 
-
 Then, we would run our modified shell script using `bash run_pipeline.sh`.
 
 But commenting out these lines, and subsequently uncommenting them,
 can be a hassle and source of errors in complicated pipelines.
+What happens if we have hundreds of input files?
+No one wants to enter the same command a hundred times, and then edit the result.
 
 What we really want is an executable _description_ of our pipeline that
 allows software to do the tricky part for us:
-figuring out what steps need to be rerun.
+figuring out what tasks need to be run where and when,
+then perform those tasks for us.
+
+## What is Snakemake and why are we using it?
+
+There are many different tools that researchers use to automate this type of work.
+Snakemake is a very popular tool, and the one we have selected for this tutorial. 
+There are several reasons this tool was chosen:
+
+* It’s free, open-source, and installs in about 5 seconds flat via `pip`.
+
+* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC schedulers. More importantly, the same workflow will work and scale appropriately regardless of whether it’s on a laptop or cluster without modification.
+
+* Snakemake uses pure Python syntax. There is no tool specific-language to learn like in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you’ve still taught them how to program in Python at the end of the day.
+
+* Anything that you can do in Python, you can do with Snakemake (since you can pretty much execute arbitrary Python code anywhere).
+
+* Snakemake was written to be as similar to GNU Make as possible. Users already familiar with Make will find Snakemake quite easy to use.
+
+* It’s easy. You can (hopefully!) learn Snakemake in an afternoon!
+
+The rest of these lessons aim to teach you how to use Snakemake by example. 
+Our goal is to automate our example workflow, and have it do everything for us in parallel
+regardless of where and how it is run (and have it be reproducible!).
 
