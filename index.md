@@ -20,7 +20,9 @@ At the end of this lesson, you will know how to:
 
 * Create a reproducible analysis pipeline in Python. 
 
-* Run your pipeline on your computer or on a high-performance computing cluster and have it scale appropriately. 
+* Run your pipeline on your computer or on a high-performance computing cluster and have it scale appropriately.
+
+**NOTE: This is the draft HPC Carpentry release. Comments and feedback are welcome.** 
 
 > ## Setup
 >
