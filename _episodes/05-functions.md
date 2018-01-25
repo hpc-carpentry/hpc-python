@@ -27,7 +27,7 @@ So, an example function that adds two numbers together might look a little like 
 
 ```python
 def adder(x, y):
-	return x + y
+    return x + y
 
 adder(1, 2)
 ```
