@@ -1,5 +1,5 @@
 ---
-title: "Functional programming"
+title: "Functions and Conditions"
 teaching: 15
 exercises: 15
 questions:
