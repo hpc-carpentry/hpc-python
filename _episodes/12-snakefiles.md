@@ -18,7 +18,7 @@ Create a file, called `Snakefile`, with the following content:
 ```python
 # Count words.
 rule count_words:
-    input: 'books/isles.txt',
+    input: 'books/isles.txt'
     output: 'isles.dat'
     shell: 'python wordcount.py books/isles.txt isles.dat'
 ```
