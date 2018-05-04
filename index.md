@@ -34,5 +34,5 @@ At the end of this lesson, you will know how to:
 > To install snakemake, please run the following in a command-line terminal:
 > `pip install --user snakemake`
 >
-> The files used in this lesson can be downloaded [here](files/snakemake-lesson.tar.gz).
+> The files used in this lesson can be downloaded [here](files/snakemake-lesson.zip).
 {: .prereq}
