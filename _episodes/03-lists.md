@@ -447,5 +447,5 @@ array([ 0,  8, 16, 24, 32])
 
 > ## Practicing indexing
 > Retrieve everything defined in the range of
-> rows 4-5 and columns 1 - 4.
+> rows 4-5 and columns 1-4.
 {: .challenge}
