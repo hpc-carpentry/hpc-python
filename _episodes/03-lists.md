@@ -218,7 +218,7 @@ List 1 is:  [1, 2, 3, 4]
 
 `.copy()` is a method. 
 Methods are special functions associated with an object and define what it can do.
-They always follow the syntax `object.method(arg1, arg2=some_value)`.
+They always follow the syntax `object.method(arg1, arg2)` and have predefined number of arguments mostly with default values. We may also specify a subset of agruments, e.g. `object.method(arg1, arg4=some_value)`.
 
 Other frequently used methods of lists include `.append()`:
 
