@@ -167,8 +167,8 @@ print('List 1 is: ', list1)
 ```
 
 ```
-print('List 2 is: ' + list2)                                                                  
-print('List 1 is: ' + list1)  
+List 2 is:  [1, 2, 3, 4, 5, 6, 7]
+List 1 is:  [1, 2, 3, 4, 5, 6, 7]
 ```
 {: .output}
 
