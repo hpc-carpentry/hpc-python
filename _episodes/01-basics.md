@@ -292,8 +292,8 @@ type("this is also a string")
 ```
 
 ```
-str
-str
+<class 'str'>
+<class 'str'>
 ```
 {: .output}
 
@@ -318,7 +318,7 @@ multiple
 lines
 !!!!
 
-str
+<class 'str'>
 ```
 {: .output}
 
@@ -367,9 +367,9 @@ type(6 + -33)
 ```
 
 ```
-int
-int
-int
+<class 'int'>
+<class 'int'>
+<class 'int'>
 ```
 {: .output}
 
@@ -380,7 +380,7 @@ type(10 / 3)
 ```
 
 ```
-float
+<class 'float'>
 ```
 {: .output}
 
@@ -394,8 +394,8 @@ type(22.)
 ```
 
 ```
-float
-float
+<class 'float'>
+<class 'float'>
 ```
 {: .output}
 
@@ -410,8 +410,8 @@ type(False)
 ```
 
 ```
-bool
-bool
+<class 'bool'>
+<class 'bool'>
 ```
 {: .output}
 
@@ -423,7 +423,7 @@ type(None)
 ```
 
 ```
-NoneType
+<class 'NoneType'>
 ```
 {: .output}
 
