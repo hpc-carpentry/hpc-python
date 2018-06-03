@@ -110,7 +110,7 @@ Adding an equals sign (`>=`, `<=`) indicates less than or equal to or greater th
 True
 False
 True
-False
+True
 ```
 {: .output}
 
