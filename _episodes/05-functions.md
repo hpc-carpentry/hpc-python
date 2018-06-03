@@ -157,7 +157,7 @@ we can use the `elif` keyword (else-if):
 
 ```python
 number = 10
-if number <= 10:
+if number < 10:
 	print('number was less than 10')
 elif number == 10:
 	print('number was equal to 10')
@@ -218,7 +218,7 @@ map(math.sin, values)
 ```
 
 ```
-<map at 0x7f31c246cba8>
+<map object at 0x7f31c246cba8>
 ```
 {: .output}
 
@@ -257,7 +257,7 @@ list(filter(less_than_3, values))
 That was very inconvenient.
 We had to define an entire function just to only use it once.
 The solution for this is to write a one-time use function that has no name.
-Such functions are called either anonymous functions or lamdba ufunctions (both mean the same thing).
+Such functions are called either anonymous functions or lamdba functions (both mean the same thing).
 
 To define a lambda function in python, the general syntax is as follows:
 
@@ -314,6 +314,7 @@ there is a handy `np.vectorize()` function you can use to convert your functions
 Note that this is purely for convenience - this uses a `for-loop` internally.
 
 ```python
+import numpy as np
 # create a function to perform cubes of a number
 vector_cube = np.vectorize(lambda x: x ** 3)
 
