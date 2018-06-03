@@ -11,7 +11,7 @@ keypoints:
 - "`filter()` returns only the data objects for which some condition is true."
 ---
 
-Of course, at some point, we are going to want to define our ownfunctions
+Of course, at some point, we are going to want to define our own functions
 rather than just use the ones provided by Python and its various modules.
 
 The general syntax for defining a function is as follows:
