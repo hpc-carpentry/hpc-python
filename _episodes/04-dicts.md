@@ -46,7 +46,7 @@ Let's add several more values to demonstrate this.
 example[1] = 2
 example[4] = False
 example['test'] = 5
-example[7] = 9
+example[7] = 'myvalue'
 ```
 
 
@@ -69,7 +69,7 @@ list(example.values())
 ```
 
 ```
-['value', 2, False, 5, 9]
+['value', 2, False, 5, 'myvalue']
 ```
 {: .output}
 
