@@ -292,8 +292,8 @@ type("this is also a string")
 ```
 
 ```
-<class 'str'>
-<class 'str'>
+str
+str
 ```
 {: .output}
 
@@ -318,7 +318,7 @@ multiple
 lines
 !!!!
 
-<class 'str'>
+str
 ```
 {: .output}
 
@@ -367,9 +367,9 @@ type(6 + -33)
 ```
 
 ```
-<class 'int'>
-<class 'int'>
-<class 'int'>
+int
+int
+int
 ```
 {: .output}
 
@@ -380,7 +380,7 @@ type(10 / 3)
 ```
 
 ```
-<class 'float'>
+float
 ```
 {: .output}
 
@@ -394,8 +394,8 @@ type(22.)
 ```
 
 ```
-<class 'float'>
-<class 'float'>
+float
+float
 ```
 {: .output}
 
@@ -410,8 +410,8 @@ type(False)
 ```
 
 ```
-<class 'bool'>
-<class 'bool'>
+bool
+bool
 ```
 {: .output}
 
@@ -423,7 +423,7 @@ type(None)
 ```
 
 ```
-<class 'NoneType'>
+NoneType
 ```
 {: .output}
 
