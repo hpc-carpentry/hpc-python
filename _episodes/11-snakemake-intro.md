@@ -38,7 +38,7 @@ we will be working with:
 
 The first step is to count the frequency of each word in a book.
 The first argument (`books/isles.txt`) to wordcount.py is the file to analyze,
-and the the last argument (`isles.dat`) specifies the output file to write.
+and the last argument (`isles.dat`) specifies the output file to write.
 
 ```bash
 python wordcount.py books/isles.txt isles.dat

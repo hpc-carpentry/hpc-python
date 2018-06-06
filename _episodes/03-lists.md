@@ -167,8 +167,8 @@ print('List 1 is: ', list1)
 ```
 
 ```
-print('List 2 is: ' + list2)                                                                  
-print('List 1 is: ' + list1)  
+List 2 is:  [1, 2, 3, 4, 5, 6, 7]
+List 1 is:  [1, 2, 3, 4, 5, 6, 7]
 ```
 {: .output}
 
@@ -177,8 +177,8 @@ In Python, lists are objects.
 Objects are not copied when we assign them to a new value (like in R).
 This is an important optimization, 
 as we won't accidentally fill up all of our computer's memory by renaming a variable a couple of times.
-When we ran `list2 == list1`, it just created a new name for `list2`.
-`list2` still points at the same underlying object.
+When we ran `list2 = list1`, it just created a new name for `list1`.
+`list1` still points at the same underlying object.
 
 We can verify this with the `id()` function.
 `id()` prints an objects unique identifier.
@@ -218,7 +218,7 @@ List 1 is:  [1, 2, 3, 4]
 
 `.copy()` is a method. 
 Methods are special functions associated with an object and define what it can do.
-They always follow the syntax `object.method(arg1, arg2=some_value)`.
+They always follow the syntax `object.method(arg1, arg2)` and have predefined number of arguments mostly with default values. We may also specify a subset of agruments, e.g. `object.method(arg1, arg4=some_value)`.
 
 Other frequently used methods of lists include `.append()`:
 
@@ -447,5 +447,5 @@ array([ 0,  8, 16, 24, 32])
 
 > ## Practicing indexing
 > Retrieve everything defined in the range of
-> rows 4-5 and columns 1 - 4.
+> rows 4-5 and columns 1-4.
 {: .challenge}
