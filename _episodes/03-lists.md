@@ -8,10 +8,10 @@ objectives:
 - "Learn to use lists and Numpy arrays, and explain the difference between each."
 keypoints:
 - "Lists store a sequence of elements." 
-- "Numpy allows vector math in Python."
+- "Numpy allows vector maths in Python."
 ---
 
-At the end of the last lesson, we saw noticed that `sys.argv` gave us a new datastructure:
+At the end of the last lesson, we saw noticed that `sys.argv` gave us a new data structure:
 a list.
 A list is a set of objects enclosed by a set of square brackets (`[]`).
 
@@ -41,7 +41,7 @@ We can get different pieces of a list via indexing.
 We add a set of square brackets after the list in question along with the index of the values
 we want.
 Note that in Python, all indices start from 0 - the first element is actually the 0th element 
-(this is different from languages like R or Matlab).
+(this is different from languages like R or MATLAB).
 The best way to think about array indices is that they are the number of offsets from the first position - 
 the first element does not require an offset to get to.
 
@@ -88,7 +88,7 @@ example[2:]
 ```
 {: .output}
 
-A colon on the left side  of an index means everyting before, but not including, the index.
+A colon on the left side  of an index means everything before, but not including, the index.
 
 ```python
 example[:2]
@@ -155,7 +155,7 @@ We can also add two lists together to create a larger list.
 
 ## Lists as objects
 
-Like other objects in Python, lists have a unique behavior that can catch a lot of people off guard.
+Like other objects in Python, lists have a unique behaviour that can catch a lot of people off guard.
 What happens when we run the following code?
 
 ```python
@@ -175,7 +175,7 @@ List 1 is:  [1, 2, 3, 4, 5, 6, 7]
 Modifying `list2` actually modified `list1` as well.
 In Python, lists are objects.
 Objects are not copied when we assign them to a new value (like in R).
-This is an important optimization, 
+This is an important optimisation, 
 as we won't accidentally fill up all of our computer's memory by renaming a variable a couple of times.
 When we ran `list2 = list1`, it just created a new name for `list1`.
 `list1` still points at the same underlying object.
@@ -218,7 +218,7 @@ List 1 is:  [1, 2, 3, 4]
 
 `.copy()` is a method. 
 Methods are special functions associated with an object and define what it can do.
-They always follow the syntax `object.method(arg1, arg2)` and have predefined number of arguments mostly with default values. We may also specify a subset of agruments, e.g. `object.method(arg1, arg4=some_value)`.
+They always follow the syntax `object.method(arg1, arg2)` and have predefined number of arguments mostly with default values. We may also specify a subset of arguments, e.g. `object.method(arg1, arg4=some_value)`.
 
 Other frequently used methods of lists include `.append()`:
 
@@ -267,9 +267,9 @@ print(list1)
 {: .output}
 
 > ## Dynamic resizing of lists
-> Python's lists are an extremely optimized data structure.
+> Python's lists are an extremely optimised data structure.
 > Unlike R's vectors, there is no time penalty to continuously adding elements to list.
-> You never need to preallocate a list at a certain size for performance reasons.
+> You never need to pre-allocate a list at a certain size for performance reasons.
 {: .callout}
 
 ## Iterating through lists
@@ -323,13 +323,13 @@ for element in ['a', True, None]:
 ```
 {: .output}
 
-## Vectorized operations with Numpy
+## Vectorised operations with Numpy
 
 Numpy is a numerical library designed to make working with numbers
 easier than it would otherwise be.
 
 For example, say we had a list of a thousand numbers.
-There's no way to do vector math without iterating through all the
+There's no way to do vector maths without iterating through all the
 elements!
 
 ```python
@@ -350,7 +350,7 @@ print(new_vals[:5])
 {: .output}
 
 That was a lot of work.
-Numpy lets us do vector math like in R, saving us a lot of effort.
+Numpy lets us do vector maths like in R, saving us a lot of effort.
 The most basic function is `np.array()` which creates a numerical
 array from a list.
 A numpy array is a collection of numbers that can have any number of dimensions.
@@ -397,7 +397,7 @@ The slowest run took 22.13 times longer than the fastest. This could mean that a
 ```
 {: .output}
 
-Numpy was about 100x faster, though %timeit did mention that Numpy could be cheating a bit.
+Numpy was about 100x faster, though `%timeit` did mention that Numpy could be cheating a bit.
 Even in Numpy's worst case scenario however, it still ran 5x faster than using Python's basic lists.
 
 ## Working with multiple dimensions
@@ -445,7 +445,7 @@ array([ 0,  8, 16, 24, 32])
 ```
 {: .output}
 
-> ## Practicing indexing
+> ## Practising indexing
 > Retrieve everything defined in the range of
 > rows 4-5 and columns 1-4.
 {: .challenge}

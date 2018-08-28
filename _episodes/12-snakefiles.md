@@ -432,8 +432,8 @@ our Makefile, involved in building the `dats` target:
 
 ![Dependencies represented within the Makefile](../fig/02-dats-dag.svg "Dependencies represented within the Makefile")
 
-At this point, it becomes important to see what snakemake is doing behind the scenes.
-What commands is snakemake actually running?
+At this point, it becomes important to see what Snakemake is doing behind the scenes.
+What commands is Snakemake actually running?
 Snakemake has a special option (`-p`), that prints every command it is about to run.
 Additionally, we can also perform a dry run with `-n`. 
 A dry run does nothing, and simply prints out commands instead of actually executing them.
