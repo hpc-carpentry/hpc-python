@@ -237,7 +237,7 @@ rule count_words_abyss:
     jobid: 0
 
 Finished job 0.
-1 of 1 steps (100%) doneat
+1 of 1 steps (100%) done
 ```
 {: .output}
 
@@ -475,3 +475,6 @@ The following figure shows the dependencies embodied within our
 Makefile, involved in building the `results.txt` target:
 
 ![results.txt dependencies represented within the Makefile](../fig/02-challenge-dag.svg "results.txt dependencies represented within the Makefile")
+
+<!--  LocalWords:  wordcount Snakefiles
+ -->

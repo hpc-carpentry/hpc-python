@@ -47,7 +47,7 @@ The number of concurrent tasks that can be started at the same time, however is 
 Now imagine that all workers have to obtain their paint form a central dispenser located at the middle of the room. 
 If each worker is using a different colour, then they can work asynchronously. 
 However, if they use the same colour, and two of them run out of paint at the same time, 
-then they have to synchronise to use the dispenser - 
+then they have to synchronize to use the dispenser - 
 one should wait while the other is being serviced.
 
 In our analogy, the paint dispenser represents access to the memory in your computer.
@@ -65,7 +65,7 @@ Suppose that worker A, needs a colour that is only available in the dispenser of
 worker A should request the paint to worker B and worker B should respond by sending the required colour.
 
 Think of the memory distributed on each node/computer of a cluster as the different dispensers for your workers.
-A *fine-grained* parallel program needs lots of communication/synchronisation between tasks, 
+A *fine-grained* parallel program needs lots of communication/synchronization between tasks, 
 in contrast with a *course-grained* one that barely communicates at all. 
 An embarrassingly/massively parallel problem is one where all tasks can be executed completely independent from each other (no communications required).
 
@@ -88,7 +88,7 @@ each good at certain types of tasks:
 ### Asynchronous programming
 
 Often times, certain computations involve a lot of waiting. 
-Perhaps you sent some information to a webserver on the internet and are waiting back on a response.
+Perhaps you sent some information to a web server on the internet and are waiting back on a response.
 In this case, if you needed to make lots of requests over the internet, 
 your program would spend ages just waiting to hear back.
 In this scenario, it would be very advantageous to fire off a bunch of requests to the internet,
@@ -250,13 +250,13 @@ AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
 The `multiprocessing` module has a major limitation:
 it only accepts certain functions, and in certain situations.
 For instance any class methods, lambdas, or functions defined in `__main__` wont' work.
-This is due to the way Python "pickles" (read: serialises) data
+This is due to the way Python "pickles" (read: serializes) data
 and sends it to the worker processes.
 "Pickling" simply can't handle a lot of different types of Python objects.
 
 Fortunately, there is a fork of the `multiprocessing` module called `multiprocess` 
 that works just fine (`pip install --user multiprocess`). 
-`multiprocess` uses `dill` instead of `pickle` to serialise Python objects
+`multiprocess` uses `dill` instead of `pickle` to serialize Python objects
 (read: send your data and functions to the Python workers),
 and does not suffer the same issues.
 Usage is identical:

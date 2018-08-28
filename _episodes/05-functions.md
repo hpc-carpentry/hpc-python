@@ -257,7 +257,7 @@ list(filter(less_than_3, values))
 That was very inconvenient.
 We had to define an entire function just to only use it once.
 The solution for this is to write a one-time use function that has no name.
-Such functions are called either anonymous functions or lamdba functions (both mean the same thing).
+Such functions are called either anonymous functions or lambda functions (both mean the same thing).
 
 To define a lambda function in python, the general syntax is as follows:
 
@@ -310,7 +310,7 @@ list(filter(lambda x: x<3, [1,2,3,4,5]))
 ## map/filter style functionality with Numpy arrays
 
 Although you *could* use a for-loop to apply a custom function to a numpy array in a single go, 
-there is a handy `np.vectorize()` function you can use to convert your functions to a vectorised numpy equivalent.
+there is a handy `np.vectorize()` function you can use to convert your functions to a vectorized numpy equivalent.
 Note that this is purely for convenience - this uses a `for-loop` internally.
 
 ```python

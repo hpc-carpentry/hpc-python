@@ -27,7 +27,7 @@ rule count_words:
 
 
 `{file}` is another arbitrary [wildcard]({{ page.root }}/reference/#wildcard),
-that we can use as a placeholder for any generic book to analyse.
+that we can use as a placeholder for any generic book to analyze.
 Note that we don't have to use `{file}` as the name of our wildcard - 
 it can be anything we want!
 

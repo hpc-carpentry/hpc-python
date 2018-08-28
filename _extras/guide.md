@@ -5,7 +5,7 @@ permalink: /guide/
 ---
 
 This lesson does not cover the specifics of using a Python IDE. 
-As the instructor, you should be familar with the editor you intend to teach, 
+As the instructor, you should be familiar with the editor you intend to teach, 
 as well as how to install/set it up across all three platforms (Windows, MacOS, Linux).
 If you don't have a preference for one editor over another, 
 we recommend using either Jupyter Notebooks, Spyder, or a text editor/IPython console
