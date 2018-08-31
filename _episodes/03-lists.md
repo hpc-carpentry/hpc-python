@@ -8,7 +8,7 @@ objectives:
 - "Learn to use lists and Numpy arrays, and explain the difference between each."
 keypoints:
 - "Lists store a sequence of elements." 
-- "Numpy allows vector math in Python."
+- "Numpy allows vector maths in Python."
 ---
 
 At the end of the last lesson, we saw noticed that `sys.argv` gave us a new data structure:
@@ -175,7 +175,7 @@ List 1 is:  [1, 2, 3, 4, 5, 6, 7]
 Modifying `list2` actually modified `list1` as well.
 In Python, lists are objects.
 Objects are not copied when we assign them to a new value (like in R).
-This is an important optimization, 
+This is an important optimisation, 
 as we won't accidentally fill up all of our computer's memory by renaming a variable a couple of times.
 When we ran `list2 = list1`, it just created a new name for `list1`.
 `list1` still points at the same underlying object.
@@ -267,7 +267,7 @@ print(list1)
 {: .output}
 
 > ## Dynamic resizing of lists
-> Python's lists are an extremely optimized data structure.
+> Python's lists are an extremely optimised data structure.
 > Unlike R's vectors, there is no time penalty to continuously adding elements to list.
 > You never need to pre-allocate a list at a certain size for performance reasons.
 {: .callout}
@@ -323,13 +323,13 @@ for element in ['a', True, None]:
 ```
 {: .output}
 
-## Vectorized operations with Numpy
+## Vectorised operations with Numpy
 
 Numpy is a numerical library designed to make working with numbers
 easier than it would otherwise be.
 
 For example, say we had a list of a thousand numbers.
-There's no way to do vector math without iterating through all the
+There's no way to do vector maths without iterating through all the
 elements!
 
 ```python
@@ -350,7 +350,7 @@ print(new_vals[:5])
 {: .output}
 
 That was a lot of work.
-Numpy lets us do vector math like in R, saving us a lot of effort.
+Numpy lets us do vector maths like in R, saving us a lot of effort.
 The most basic function is `np.array()` which creates a numerical
 array from a list.
 A numpy array is a collection of numbers that can have any number of dimensions.
@@ -449,6 +449,3 @@ array([ 0,  8, 16, 24, 32])
 > Retrieve everything defined in the range of
 > rows 4-5 and columns 1-4.
 {: .challenge}
-
-<!--  LocalWords:  sys argv th IndexError Traceback idx vals np timeit
- -->

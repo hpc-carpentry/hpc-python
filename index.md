@@ -11,7 +11,7 @@ This tutorial focuses on using Python in high-performance computing environments
 We’ll start with the basics and cover everything you need to get started. 
 Some elements of writing performance-oriented code will be covered, 
 but it is not the main focus. 
-There is no prerequisite knowledge for this tutorial, 
+There is no prerequisite knowlege for this tutorial, 
 although having some prior experience with the command-line or a compute cluster will be very helpful.
 
 At the end of this lesson, you will know how to:
@@ -26,7 +26,7 @@ At the end of this lesson, you will know how to:
 
 > ## Setup
 >
-> You will want to have Python 3 and your favourite Python editor preinstalled and ready to go. 
+> You will want to have Python 3 and your favorite Python editor preinstalled and ready to go. 
 > If you don’t know where to get things or what to install, 
 > just install Anaconda (the Python 3 version) from [https://www.continuum.io/downloads](https://www.continuum.io/downloads). 
 > Anaconda is an extremely comprehensive Python distribution that comes with all of the bells and whistles ready to go.

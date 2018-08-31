@@ -239,7 +239,7 @@ is use a Python multiline string (begin and end with `'''`)
 One important addition we should be aware of is the `&&` operator.
 `&&` is a bash operator that runs commands as part of a chain. 
 If the first command fails, the remaining steps are not run.
-This is more forgiving than bash's default "hit an error and keep going" behaviour.
+This is more forgiving than bash's default "hit an error and keep going" behavior.
 After all, if the first command failed, it's unlikely the other steps will work.
 
 ```python
@@ -334,7 +334,7 @@ Snakemake will assume that the resources in question are unlimited.
 > Or maybe a type of rule uses a lot of network bandwidth as it downloads data.
 > In all of these cases, `resources` can be used to constrain access 
 > to arbitrary compute resources so that each rule can run at it's most efficient.
-> Snakemake will run your rules in such a way as to maximize throughput given your
+> Snakemake will run your rules in such a way as to maximise throughput given your
 > resource constraints.
 {: .callout}
 

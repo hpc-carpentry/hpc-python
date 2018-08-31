@@ -17,7 +17,7 @@ keypoints:
 Despite our efforts, our pipeline still has repeated content, 
 for instance the names of output files/dependencies.
 Our `zipf_test` rule, for instance, is extremely clunky.
-What happens if we want to analyze `books/sierra.txt` as well?
+What happens if we want to analyse `books/sierra.txt` as well?
 We'd have to update everything!
 
 ```python

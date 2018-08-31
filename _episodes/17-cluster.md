@@ -136,7 +136,7 @@ ssh -X yourUsername@graham.computecanada.ca
 > You can use this feature for this tutorial
 > (I've already added all of the files to version control for you),
 > but if you want to use this feature in your own work, 
-> you should familiarize yourself with a VCS tool like Git.
+> you should familiarise yourself with a VCS tool like Git.
 >
 > For more information on how to use this feature, see 
 > [http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html](http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)

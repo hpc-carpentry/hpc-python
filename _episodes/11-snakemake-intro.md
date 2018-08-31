@@ -14,7 +14,7 @@ keypoints:
 Let's imagine that we're interested in
 seeing the frequency of various words in various books.
 
-We've compiled our raw data i.e. the books we want to analyze
+We've compiled our raw data i.e. the books we want to analyse
 and have prepared several Python scripts that together make up our
 analysis pipeline.
 
@@ -37,7 +37,7 @@ we will be working with:
 {: .output}
 
 The first step is to count the frequency of each word in a book.
-The first argument (`books/isles.txt`) to wordcount.py is the file to analyze,
+The first argument (`books/isles.txt`) to wordcount.py is the file to analyse,
 and the last argument (`isles.dat`) specifies the output file to write.
 
 ```bash
@@ -85,7 +85,7 @@ to 1515 2.38057825267
 ```
 {: .output}
 
-Let's visualize the results.
+Let's visualise the results.
 The script `plotcount.py` reads in a data file and plots the 10 most
 frequently occurring words as a text-based bar plot:
 

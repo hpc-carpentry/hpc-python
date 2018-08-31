@@ -11,7 +11,7 @@ keypoints:
 ---
 
 The most basic use of Python is to use it as a fancy calculator.
-It is very easy to do basic math in Python.
+It is very easy to do basic maths in Python.
 
 ```python
 print(5 + 1)
@@ -33,7 +33,7 @@ Notice how leaving out `print()` gives us the same result as above.
 ```
 {: .output}
 
-Python can do all of the normal basic math operations you'd expect.
+Python can do all of the normal basic maths operations you'd expect.
 
 ```python
 5 + 3
@@ -76,7 +76,7 @@ Remainder division (`%`), gives the remainder after division.
 ```
 {: .output}
 
-Python follows the normal order of operations for math.
+Python follows the normal order of operations for maths.
 
 ```python
 4 + 1 * 6
@@ -124,7 +124,7 @@ weight_kg
 ```
 {: .output}
 
-We can perform math on variables the same way we would normally.
+We can perform maths on variables the same way we would normally.
 
 ```python
 print('weight in pounds:', 2.2 * weight_kg)
@@ -269,7 +269,7 @@ and pointed an arrow (`^`) at the bad part.
 ## Different types of data
 
 Computers are not smart, and have to be explicitly told how to handle different types of data.
-Although a human might know that you can't do math on a word, 
+Although a human might know that you can't do maths on a word, 
 our computer does not. 
 To work around this problem, programming languages store different types of data in different ways. 
 
@@ -336,7 +336,7 @@ For instance, we can even use the `+` sign to put strings together!
 ```
 {: .output}
 
-Note that math operations on strings will only work within reason.
+Note that maths operations on strings will only work within reason.
 Attempting to add a string to a number doesn't work!
 
 ```python
@@ -373,7 +373,7 @@ int
 ```
 {: .output}
 
-But what happens when we perform a math operation that would result in a decimal?
+But what happens when we perform a maths operation that would result in a decimal?
 
 ```python
 type(10 / 3)
