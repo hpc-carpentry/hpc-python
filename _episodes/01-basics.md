@@ -194,16 +194,17 @@ Don't know how something works?
 Try it and find out!
 
 > ## Where are variables stored?
+>
 > Your computer has two places where it stores information: hard disk and memory.
 > What are they and what are they used for?
 > Where do variables get stored?
-> 
+>
 > Memory is where temporary information on your computer gets placed.
 > It is very fast and easy to access, but has one important drawback: 
 > data here is erased when your program quits or your computer shuts down.
 > All information you save as variables in Python will be stored in memory! 
 > When programming, we always need to save our data as a file (on our hard disk) if we want to keep it!
-> 
+>
 > Your computer's hard disk is used to store information long-term.
 > This is where files get stored, and the information on your hard drive is more or less permanent.
 > Hard drives can also store lots of data very cheaply - a terabyte of hard drive space is very cheap, whereas the same amount of memory costs a lot more.

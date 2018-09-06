@@ -16,7 +16,7 @@ replace these rules with a single [pattern
 rule]({{ page.root }}/reference/#pattern-rule) which can be used to build any
 `.dat` file from a `.txt` file in `books/`:
 
-```python
+```make
 rule count_words:
     input: 	
         wc='wordcount.py',
@@ -24,7 +24,7 @@ rule count_words:
     output: '{file}.dat'
     shell: 	'python {input.wc} {input.book} {output}'
 ```
-{: .language-python}
+{: .language-make}
 
 `{file}` is another arbitrary [wildcard]({{ page.root }}/reference/#wildcard),
 that we can use as a placeholder for any generic book to analyze.
@@ -82,7 +82,7 @@ Finished job 0.
 
 Our Snakefile is now much shorter and cleaner:
 
-```python
+```make
 # generate summary table
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'
@@ -105,4 +105,4 @@ rule count_words:
     output: '{file}.dat'
     shell: 	'python {input.wc} {input.book} {output}'
 ```
-{: .language-python}
+{: .language-make}

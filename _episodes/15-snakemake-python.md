@@ -20,7 +20,7 @@ Our `zipf_test` rule, for instance, is extremely clunky.
 What happens if we want to analyze `books/sierra.txt` as well?
 We'd have to update everything!
 
-```python
+```make
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -32,7 +32,7 @@ First, let's cut down on a little bit of the clunkiness of the "shell" rule.
 One thing you've probably noticed is that all of our rules are using Python strings.
 Other data structures work too - let's try a list:
 
-```python
+```make
 rule zipf_test:
     input:  
         zipf='zipf_test.py',
@@ -47,9 +47,9 @@ rule zipf_test:
 This illustrates a key feature of Snakemake. 
 Snakefiles are just Python code.
 We can make our list into a variable to demonstrate this. 
-Let's create the variable DATS and use it in our `zipf_test` and `dats` rules.
+Let's create the variable `DATS` and use it in our `zipf_test` and `dats` rules.
 
-```python
+```make
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
 
 # generate summary table
@@ -74,14 +74,14 @@ The last example illustrated that we can use arbitrary Python code in our Snakef
 It's important to understand when this code gets executed.
 Let's add a print statement to the top of our Snakefile.
 
-```python
+```make
 print('Snakefile is being executed!')
 
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
 
 # generate summary table
 rule zipf_test:
-    input:  
+    input:
 # more output below
 ```
 {: .language-make}

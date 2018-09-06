@@ -54,6 +54,7 @@ adder(5)
 {: .output}
 
 > ## Practice defining functions
+>
 > Define a function that converts from temperatures in fahrenheit
 > to temperatures in kelvin, and another function that converts
 > back again.
@@ -303,6 +304,7 @@ list(filter(lambda x: x<3, [1,2,3,4,5]))
 {: .output}
 
 > ## Using lambdas in practice
+>
 > Add `'-cheesecake'` to every word in the following list using `map()`.
 > 
 > `['new york', 'chocalate', 'new york', 'ketchup', 'mayo']`
@@ -340,6 +342,7 @@ arr[arr >= 3]
 {: .language-python}
 
 > ## Removing np.nan values
+>
 > Remove all of the `np.nan` values from the following sequence
 > using logical indexing.
 > 

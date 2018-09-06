@@ -36,6 +36,7 @@ it works!!!
 {: .output}
 
 > ## What's the point of print()?
+>
 > We saw earlier that there was no difference between printing something with `print()`
 > and just entering a command on the command line.
 > But is this really the case?
@@ -96,7 +97,6 @@ Let's make a new script called `command-args.py` to try this out.
 
 ```python
 import sys
-
 print('we typed: ', sys.argv)
 ```
 {: .language-python}

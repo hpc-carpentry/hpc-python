@@ -118,7 +118,7 @@ Close the window to exit the plot.
 `plotcount.py` can also create the plot as an image file (e.g. a PNG file):
 
 ```bash
-python plotcount.py isles.dat isles.png
+$ python plotcount.py isles.dat isles.png
 ```
 {: .language-bash}
 
@@ -172,7 +172,7 @@ python plotcount.py abyss.dat abyss.png
 # Generate summary table
 python zipf_test.py abyss.dat isles.dat > results.txt
 ```
-{: .source}
+{: .language-bash}
 
 Run the script and check that the output is the same as before:
 
@@ -237,7 +237,7 @@ python plotcount.py abyss.dat abyss.png
 # This line is also commented out because it doesn't need to be rerun.
 python zipf_test.py abyss.dat isles.dat > results.txt
 ```
-{: .source}
+{: .language-bash}
 
 Then, we would run our modified shell script using `bash run_pipeline.sh`.
 

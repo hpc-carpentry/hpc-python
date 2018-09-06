@@ -43,7 +43,7 @@ Two things before we start:
 * `&>` is a handy operator in bash that redirects both stdout and stderr to a file.
 * `&>>` does the same thing as `&>`, but appends to a file instead of overwriting it.
 
-```python
+```make
 # count words in one of our "books"
 rule count_words:
     input: 	
@@ -92,7 +92,7 @@ A token file is simply an empty file that you can create with the touch command
 (`touch some_file.txt` creates an empty file called `some_file.txt`).
 An example rule using this technique is shown below:
 
-```python
+```make
 rule token_example:
     input:  'some_file.txt'
     output: 'some_file.tkn'   # marks some_file.txt as modified

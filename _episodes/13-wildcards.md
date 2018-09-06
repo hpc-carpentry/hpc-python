@@ -16,7 +16,7 @@ keypoints:
 
 After the exercise at the end of the previous episode, our Snakefile looked like this:
 
-```python
+```make
 # generate summary table
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
@@ -46,7 +46,7 @@ rule count_words_last:
     output: 'last.dat'
     shell: 	'python wordcount.py books/last.txt last.dat'
 ```
-{: .language-python}
+{: .language-make}
 
 Our Snakefile has a lot of duplication. For example, the names of text
 files and data files are repeated in many places throughout the
@@ -70,7 +70,7 @@ Let us set about removing some of the repetition from our Snakefile.
 In our `zip_test` rule we duplicate the data file names and the
 name of the results file name:
 
-```python
+```make
 rule zipf_test:
     input:
             'abyss.dat',
@@ -79,31 +79,31 @@ rule zipf_test:
     output: 'results.txt'
     shell:  'python zipf_test.py abyss.dat isles.dat last.dat > results.txt'
 ```
-{: .language-python}
+{: .language-make}
 
 Looking at the results file name first, we can replace it in the action
 with `{output}`:
 
-```python
+```make
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
     shell:  'python zipf_test.py abyss.dat isles.dat last.dat > {output}'
 ```
-{: .language-python}
+{: .language-make}
 
 `{output}` is a Snakemake [wildcard]({{ page.root }}/reference/#automatic-variable)
 which is equivalent to the value we specified for {output}. 
 
 We can replace the dependencies in the action with `{input}`:
 
-```python
+```make
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
     shell:  'python zipf_test.py {input} > {output}'
 ```
-{: .language-python}
+{: .language-make}
 
 `{input}` is another wildcard which means 'all the dependencies
 of the current rule'. Again, when Make is run it will replace this
@@ -112,8 +112,8 @@ variable with the dependencies.
 Let's update our text files and re-run our rule:
 
 ```bash
-> touch books/*.txt
-> snakemake results.txt
+$ touch books/*.txt
+$ snakemake results.txt
 ```
 {: .language-bash}
 
@@ -223,17 +223,17 @@ We need to add `wordcount.py` as a dependency of each of our data files.
 In this case, we can use `{input[0]}` to refer to the first dependency, 
 and `{input[1]}` to refer to the second.
 
-```python
+```make
 rule count_words:
     input: 	'wordcount.py', 'books/isles.txt'
     output: 'isles.dat'
     shell: 	'python {input[0]} {input[1]} {output}'
 ```
-{: .language-python}
+{: .language-make}
 
 Alternatively, we can name our dependencies.
 
-```python
+```make
 rule count_words_abyss:
     input: 	
         wc='wordcount.py',
@@ -241,7 +241,7 @@ rule count_words_abyss:
     output: 'abyss.dat'
     shell: 	'python {input.wc} {input.book} {output}'
 ```
-{: .language-python}
+{: .language-make}
 
 Let's mark `wordcount.py` as updated, and re-run the pipeline.
 

@@ -47,7 +47,7 @@ is executed with the resources it needs.
 We'll explore how to port our example Snakemake pipeline by example 
 Our current Snakefile is shown below:
 
-```python
+```make
 # our zipf analysis pipeline
 DATS = glob_wildcards('books/{book}.txt').book
 

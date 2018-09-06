@@ -194,13 +194,13 @@ Let's add another rule to the end of `Snakefile`.
 Note that rules cannot have the same name, 
 so we'll call this one `count_words_abyss`.
 
-```python
+```make
 rule count_words_abyss:
 	input: 	'books/abyss.txt'
 	output: 'abyss.dat'
 	shell: 	'python wordcount.py books/abyss.txt abyss.dat'
 ```
-{: .language-python}
+{: .language-make}
 
 If we run Snakemake,
 
@@ -279,11 +279,11 @@ them all. We can introduce a new target, and associated rule, to do
 this. We will call it `clean`, as this is a common name for rules that
 delete auto-generated files, like our `.dat` files:
 
-```python
+```make
 rule clean:
     shell: 'rm -f *.dat'
 ```
-{: .language-python}
+{: .language-make}
 
 This is an example of a rule that has no inputs or outputs!. We just want to remove the data files whether or
 not they exist. If we run Make and specify this target,
@@ -318,13 +318,13 @@ this at the top of our Snakefile so that it is the [default
 target]({{ page.root }}/reference/#default-target), which is executed by default
 if no target is given to the `snakemake` command:
 
-```python
+```make
 rule dats:
      input:
          'isles.dat',
          'abyss.dat'
 ```
-{: .language-python}
+{: .language-make}
 
 This is an example of a rule that has dependencies that are targets of
 other rules. When Make runs, it will check to see if the dependencies
@@ -405,7 +405,7 @@ Nothing to be done
 
 Our Snakefile now looks like this:
 
-```python
+```make
 rule dats:
      input:
          'isles.dat',
@@ -429,7 +429,7 @@ rule count_words_abyss:
     output: 'abyss.dat'
     shell: 	'python wordcount.py books/abyss.txt abyss.dat'
 ```
-{: .language-python}
+{: .language-make}
 
 The following figure shows a graph of the dependencies embodied within
 our Makefile, involved in building the `dats` target:

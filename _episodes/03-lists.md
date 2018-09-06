@@ -285,6 +285,7 @@ for variable in things_to_iterate_over:
 	do_stuff_with(variable)
 ```
 {: .language-python}
+
 An example of an actually functioning for loop is shown below:
 
 ```python
