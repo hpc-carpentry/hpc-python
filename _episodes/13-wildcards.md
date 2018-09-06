@@ -46,7 +46,7 @@ rule count_words_last:
     output: 'last.dat'
     shell: 	'python wordcount.py books/last.txt last.dat'
 ```
-
+{: .language-python}
 
 Our Snakefile has a lot of duplication. For example, the names of text
 files and data files are repeated in many places throughout the
@@ -79,6 +79,7 @@ rule zipf_test:
     output: 'results.txt'
     shell:  'python zipf_test.py abyss.dat isles.dat last.dat > results.txt'
 ```
+{: .language-python}
 
 Looking at the results file name first, we can replace it in the action
 with `{output}`:
@@ -89,6 +90,7 @@ rule zipf_test:
     output: 'results.txt'
     shell:  'python zipf_test.py abyss.dat isles.dat last.dat > {output}'
 ```
+{: .language-python}
 
 `{output}` is a Snakemake [wildcard]({{ page.root }}/reference/#automatic-variable)
 which is equivalent to the value we specified for {output}. 
@@ -101,6 +103,7 @@ rule zipf_test:
     output: 'results.txt'
     shell:  'python zipf_test.py {input} > {output}'
 ```
+{: .language-python}
 
 `{input}` is another wildcard which means 'all the dependencies
 of the current rule'. Again, when Make is run it will replace this
@@ -109,9 +112,10 @@ variable with the dependencies.
 Let's update our text files and re-run our rule:
 
 ```bash
-touch books/*.txt
-snakemake results.txt
+> touch books/*.txt
+> snakemake results.txt
 ```
+{: .language-bash}
 
 We get:
 
@@ -166,10 +170,10 @@ Finished job 0.
 > What will happen if you now execute:
 >
 > ```bash
-> touch *.dat
-> snakemake results.txt
+> $ touch *.dat
+> $ snakemake results.txt
 > ```
-> 
+> {: .language-bash}
 >
 > 1. nothing
 > 2. all files recreated
@@ -185,10 +189,10 @@ Finished job 0.
 > > If you run:
 > >
 > > ```bash
-> > touch books/*.txt
-> > snakemake results.txt
+> > $ touch books/*.txt
+> > $ snakemake results.txt
 > > ```
-> > 
+> > {: .language-bash}
 > >
 > > you will find that the `.dat` files as well as `results.txt` are recreated.
 > {: .solution}
@@ -225,6 +229,7 @@ rule count_words:
     output: 'isles.dat'
     shell: 	'python {input[0]} {input[1]} {output}'
 ```
+{: .language-python}
 
 Alternatively, we can name our dependencies.
 
@@ -236,14 +241,15 @@ rule count_words_abyss:
     output: 'abyss.dat'
     shell: 	'python {input.wc} {input.book} {output}'
 ```
-
+{: .language-python}
 
 Let's mark `wordcount.py` as updated, and re-run the pipeline.
 
 ```bash
-touch wordcount.py
-snakemake
+$ touch wordcount.py
+$ snakemake
 ```
+{: .language-bash}
 
 ```
 Provided cores: 1
@@ -288,10 +294,10 @@ Intuitively, we should also add `wordcount.py` as dependency for
 happens to `results.txt` when we update `wordcount.py`:
 
 ```bash
-touch wordcount.py
-snakemake results.txt
+$ touch wordcount.py
+$ snakemake results.txt
 ```
-
+{: .language-bash}
 
 then we get:
 
@@ -346,10 +352,10 @@ downstream steps.
 > What will happen if you now execute:
 >
 > ```bash
-> touch books/last.txt
-> make results.txt
+> $ touch books/last.txt
+> $ make results.txt
 > ```
-> 
+> {: .language-bash}
 >
 > 1. only `last.dat` is recreated
 > 2. all `.dat` files are recreated

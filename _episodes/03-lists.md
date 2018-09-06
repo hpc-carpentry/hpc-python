@@ -19,7 +19,7 @@ A list is a set of objects enclosed by a set of square brackets (`[]`).
 example = [1, 2, 4, 5]
 example
 ```
-
+{: .language-python}
 ```
 [1, 2, 4, 5]
 ```
@@ -31,7 +31,7 @@ Note that a list can hold any type of item, even other lists!
 example = [1, True, None, ["word", 123], "test"]
 example
 ```
-
+{: .language-python}
 ```
 [1, True, None, ['word', 123], 'test']
 ```
@@ -57,7 +57,7 @@ example[1]
 # fetch the list inside the list
 example[3]
 ```
-
+{: .language-python}
 ```
 1
 True
@@ -71,7 +71,7 @@ A colon by itself means fetch everything.
 ```python
 example[:]
 ```
-
+{: .language-python}
 ```
 [1, True, None, ['word', 123], 'test']
 ```
@@ -82,7 +82,7 @@ A colon on the right side of an index means everything after the specified index
 ```python
 example[2:]
 ```
-
+{: .language-python}
 ```
 [None, ['word', 123], 'test']
 ```
@@ -93,7 +93,7 @@ A colon on the left side  of an index means everyting before, but not including,
 ```python
 example[:2]
 ```
-
+{: .language-python}
 ```
 [1, True]
 ```
@@ -108,7 +108,7 @@ example[-1]
 # everything except the last two elements
 example[:-2]
 ```
-
+{: .language-python}
 ```
 'test'
 [1, True, None]
@@ -120,7 +120,7 @@ Note that we can use the index multiple times to retrieve information from neste
 ```python
 example[3][0]
 ```
-
+{: .language-python}
 ```
 'word'
 ```
@@ -131,7 +131,7 @@ If we index out of range, it is an error:
 ```python
 example[5]
 ```
-
+{: .language-python}
 ```
 ---------------------------------------------------------------------------
 IndexError                                Traceback (most recent call last)
@@ -147,7 +147,7 @@ We can also add two lists together to create a larger list.
 ```python
 [45, 2] + [3]
 ```
-
+{: .language-python}
 ```
 [45, 2, 3]
 ```
@@ -165,7 +165,7 @@ list2 += [5, 6, 7]
 print('List 2 is: ', list2)
 print('List 1 is: ', list1)
 ```
-
+{: .language-python}
 ```
 List 2 is:  [1, 2, 3, 4, 5, 6, 7]
 List 1 is:  [1, 2, 3, 4, 5, 6, 7]
@@ -188,7 +188,7 @@ Two objects will not have the same ID unless they are the same object.
 id(list1)
 id(list2)
 ```
-
+{: .language-python}
 ```
 140319556870408
 140319556870408
@@ -199,15 +199,15 @@ In order to create `list2` as a unique copy of `list1`.
 We have to use the `.copy()` method.
 
 ```python
-list1 = [1, 2, 3, 4]                                                                          
-list2 = list1.copy()                                                                          
-list2 += [5, 6, 7]                                                                            
-print('List 2 is: ', list2)                                                                   
+list1 = [1, 2, 3, 4]
+list2 = list1.copy()
+list2 += [5, 6, 7]
+print('List 2 is: ', list2)
 print('List 1 is: ', list1)
 id(list2)
 id(list1)
 ```
-
+{: .language-python}
 ```
 List 2 is:  [1, 2, 3, 4, 5, 6, 7]
 List 1 is:  [1, 2, 3, 4]
@@ -225,16 +225,17 @@ Other frequently used methods of lists include `.append()`:
 ```python
 list1.append(77)
 ```
-
+{: .language-python}
 ```
 [1, 2, 3, 4, 77]
 ```
 {: .output}
+
 ```python
 # this adds a one-element list
 list1.append([88])
 ```
-
+{: .language-python}
 ```
 [1, 2, 3, 4, 77, [88]]
 ```
@@ -245,7 +246,7 @@ And `.extend()` (combines two lists, instead of adding the second list as an ele
 ```python
 list1.extend([99, 88, 101])
 ```
-
+{: .language-python}
 ```
 [1, 2, 3, 4, 77, [88], 99, 88, 101]
 ```
@@ -259,7 +260,7 @@ print(list1)
 list1.clear()
 print(list1)
 ```
-
+{: .language-python}
 ```
 [1, 2, 3, 4, 77, 99, 88, 101]
 []
@@ -283,14 +284,14 @@ A for loop generally looks like the following:
 for variable in things_to_iterate_over:
 	do_stuff_with(variable)
 ```
-
+{: .language-python}
 An example of an actually functioning for loop is shown below:
 
 ```python
 for i in range(10):
 	print(i)
 ```
-
+{: .language-python}
 ```
 0
 1
@@ -315,7 +316,7 @@ We can also iterate over a list, or any collection of elements:
 for element in ['a', True, None]:
 	print(type(element))
 ```
-
+{: .language-python}
 ```
 <class 'str'>
 <class 'bool'>
@@ -342,7 +343,7 @@ for idx in range(1000):
 
 print(new_vals[:5])
 ```
-
+{: .language-python}
 ```
 [0, 1, 2, 3, 4]
 [10, 11, 12, 13, 14]
@@ -363,7 +364,7 @@ new_vals = np.array(vals)
 new_vals += 10
 new_vals[:5]
 ```
-
+{: .language-python}
 ```
 array([10, 11, 12, 13, 14])
 ```
@@ -380,7 +381,7 @@ Using Python's lists:
 for idx in range(1000):
 	vals[idx] + 10
 ```
-
+{: .language-python}
 ```
 10000 loops, best of 3: 165 µs per loop
 ```
@@ -390,7 +391,7 @@ Using numpy:
 ```python
 %timeit new_vals + 10
 ```
-
+{: .language-python}
 ```
 The slowest run took 22.13 times longer than the fastest. This could mean that an intermediate result is being cached.
 1000000 loops, best of 3: 1.63 µs per loop
@@ -409,7 +410,7 @@ arr2d = np.arange(0, 40)  # sequence of numbers from 0 to 39
 arr2d = arr2d.reshape([5, 8])  # reshape so it has 5 rows and 8 columns
 arr2d
 ```
-
+{: .language-python}
 ```
 array([[ 0,  1,  2,  3,  4,  5,  6,  7],
        [ 8,  9, 10, 11, 12, 13, 14, 15],
@@ -426,7 +427,7 @@ To grab the first element, we would use `[0, 0]`
 ```python
 arr2d[0, 0]
 ```
-
+{: .language-python}
 ```
 0
 ```
@@ -438,7 +439,7 @@ The first index, corresponds to rows, the second corresponds to columns, and the
 arr2d[0, :]
 arr2d[:, 0]
 ```
-
+{: .language-python}
 ```
 array([0, 1, 2, 3, 4, 5, 6, 7])
 array([ 0,  8, 16, 24, 32])

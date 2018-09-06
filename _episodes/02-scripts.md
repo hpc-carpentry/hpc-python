@@ -24,7 +24,7 @@ Enter the following text in a text editor and save it under any name you like
 ```python
 print('it works!!!')
 ```
-
+{: .language-python}
 
 We can now run this program in several ways.
 If we were to open up a terminal in the folder where we had saved our program, 
@@ -47,7 +47,7 @@ it works!!!
 > print('this involves print')
 > 'this does not'
 > ```
-> 
+> {: .language-python}
 > What gets printed if you execute this as a script?
 > What gets printed if you execute things line by line?
 > Using this information, what's the point of `print()`?
@@ -65,7 +65,7 @@ I've called my script `test.py` as an example.
 ```
 !python3 test.py
 ```
-
+{: .language-python}
 ```
 it works!!!
 ```
@@ -83,7 +83,7 @@ To access a package, we need to `import` it.
 ```python
 import sys
 ```
-
+{: .language-python}
 
 You'll notice that there's no output.
 Only one thing is changed:
@@ -99,13 +99,13 @@ import sys
 
 print('we typed: ', sys.argv)
 ```
-
+{: .language-python}
 
 We can then execute this program with:
 ```
 !python3 test.py word1 word2 3
 ```
-
+{: .language-python}
 ```
 we typed: ['test.py', 'word1', 'word2', '3']
 ```

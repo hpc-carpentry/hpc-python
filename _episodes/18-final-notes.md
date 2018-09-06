@@ -58,14 +58,14 @@ rule count_words:
         python {input.wc} {input.book} {output} &>> {log}
         '''
 ```
-
+{: .language-make}
 
 ```bash
-snakemake clean
-snakemake -j 8
-cat dats/abyss.log
+$ snakemake clean
+$ snakemake -j 8
+$ cat dats/abyss.log
 ```
-
+{: .language-bash}
 ```
 # snakemake output omitted
 Running wordcount.py with 4 cores on books/abyss.txt.
@@ -102,7 +102,7 @@ rule token_example:
             touch {output}
         '''
 ```
-
+{: .language-make}
 
 ## Directory locks
 
@@ -131,9 +131,10 @@ which you can view using any picture viewing program.
 In fact this was the tool used to create all of the diagrams in this lesson:
 
 ```bash
-snakemake --dag | dot -Tsvg > dag.svg
-eog dag.svg     # eog is an image viewer installed on many linux systems
+$ snakemake --dag | dot -Tsvg > dag.svg
+$ eog dag.svg     # eog is an image viewer installed on many linux systems
 ```
+{: .language-bash}
 
 ![Example DAG plot](../fig/05-final-dag.svg)
 

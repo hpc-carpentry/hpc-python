@@ -24,7 +24,7 @@ rule count_words:
     output: '{file}.dat'
     shell: 	'python {input.wc} {input.book} {output}'
 ```
-
+{: .language-python}
 
 `{file}` is another arbitrary [wildcard]({{ page.root }}/reference/#wildcard),
 that we can use as a placeholder for any generic book to analyze.
@@ -37,19 +37,20 @@ find a file named `books/[that same something].txt` (the dependency)
 and run `wordcount.py [the dependency] [the target]`."
 
 ```bash
-snakemake clean
+$ snakemake clean
 # use the -p option to show that it is running things correctly!
-snakemake -p dats   
+$ snakemake -p dats
 ```
+{: .language-bash}
 
 We should see the same output as before.
 Note that we can still use snakemake to build individual `.dat` targets as before,
 and that our new rule will work no matter what stem is being matched.
 
 ```bash
-snakemake -p sierra.dat
+$ snakemake -p sierra.dat
 ```
-
+{: .language-bash}
 
 which gives the output below:
 
@@ -104,4 +105,4 @@ rule count_words:
     output: '{file}.dat'
     shell: 	'python {input.wc} {input.book} {output}'
 ```
-
+{: .language-python}

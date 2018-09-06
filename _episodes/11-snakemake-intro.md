@@ -41,16 +41,16 @@ The first argument (`books/isles.txt`) to wordcount.py is the file to analyze,
 and the last argument (`isles.dat`) specifies the output file to write.
 
 ```bash
-python wordcount.py books/isles.txt isles.dat
+$ python wordcount.py books/isles.txt isles.dat
 ```
-
+{: .language-bash}
 
 Let's take a quick peek at the result.
 
 ```bash
-head -5 isles.dat
+$ head -5 isles.dat
 ```
-
+{: .language-bash}
 
 This shows us the top 5 lines in the output file:
 
@@ -71,11 +71,10 @@ number of words in the text file.
 We can do the same thing for a different book:
 
 ```bash
-python wordcount.py books/abyss.txt abyss.dat
-head -5 abyss.dat
+$ python wordcount.py books/abyss.txt abyss.dat
+$ head -5 abyss.dat
 ```
-
-
+{: .language-bash}
 ```
 the 4044 6.35449402891
 and 2807 4.41074795726
@@ -90,8 +89,9 @@ The script `plotcount.py` reads in a data file and plots the 10 most
 frequently occurring words as a text-based bar plot:
 
 ```bash
-python plotcount.py isles.dat ascii
+$ python plotcount.py isles.dat ascii
 ```
+{: .language-bash}
 ```
 the   ########################################################################
 of    ##############################################
@@ -109,9 +109,9 @@ it    ###########
 `plotcount.py` can also show the plot graphically:
 
 ```bash
-python plotcount.py isles.dat show
+$ python plotcount.py isles.dat show
 ```
-
+{: .language-bash}
 
 Close the window to exit the plot.
 
@@ -120,12 +120,14 @@ Close the window to exit the plot.
 ```bash
 python plotcount.py isles.dat isles.png
 ```
+{: .language-bash}
 
 Finally, let's test Zipf's law for these books:
 
 ```bash
-python zipf_test.py abyss.dat isles.dat
+$ python zipf_test.py abyss.dat isles.dat
 ```
+{: .language-bash}
 ```
 Book	First	Second	Ratio
 abyss	4044	2807	1.44
@@ -170,15 +172,15 @@ python plotcount.py abyss.dat abyss.png
 # Generate summary table
 python zipf_test.py abyss.dat isles.dat > results.txt
 ```
-
+{: .source}
 
 Run the script and check that the output is the same as before:
 
 ```bash
-bash run_pipeline.sh
-cat results.txt
+$ bash run_pipeline.sh
+$ cat results.txt
 ```
-
+{: .language-bash}
 
 This shell script solves several problems in computational reproducibility:
 
@@ -210,11 +212,9 @@ Alternatively, we could manually rerun the plotting for each word-count file.
 for-loop.)
 
 ```bash
-for book in abyss isles; do
-    python plotcount.py $book.dat $book.png
-done
+$ for book in abyss isles; do python plotcount.py $book.dat $book.png; done
 ```
-
+{: .language-bash}
 
 With this approach, however,
 we don't get many of the benefits of having a shell script in the first place.
@@ -237,6 +237,7 @@ python plotcount.py abyss.dat abyss.png
 # This line is also commented out because it doesn't need to be rerun.
 python zipf_test.py abyss.dat isles.dat > results.txt
 ```
+{: .source}
 
 Then, we would run our modified shell script using `bash run_pipeline.sh`.
 
@@ -271,4 +272,3 @@ There are several reasons this tool was chosen:
 The rest of these lessons aim to teach you how to use Snakemake by example. 
 Our goal is to automate our example workflow, and have it do everything for us in parallel
 regardless of where and how it is run (and have it be reproducible!).
-

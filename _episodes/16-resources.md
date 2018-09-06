@@ -26,7 +26,7 @@ rule all:
 
 # delete everything so we can re-run things
 rule clean:
-    shell:  
+    shell:
         '''
         rm -rf results dats plots
         rm -f results.txt zipf_analysis.tar.gz
@@ -50,7 +50,7 @@ rule make_plot:
 
 # generate summary table
 rule zipf_test:
-    input:  
+    input:
         zipf='zipf_test.py',
         books=expand('dats/{book}.dat', book=DATS)
     output: 'results.txt'
@@ -65,7 +65,7 @@ rule make_archive:
     output: 'zipf_analysis.tar.gz'
     shell: 'tar -czvf {output} {input}'
 ```
-
+{: .language-make}
 
 At this point, we have a complete data analysis pipeline.
 Very cool.
@@ -89,10 +89,10 @@ The only change we need to make is run Snakemake with the `-j` argument.
 and on a cluster, maximum number of jobs (we'll get to that part later).
 
 ```bash
-snakemake clean
-snakemake -j 4    # 4 cores is usually a safe assumption when working on a laptop/desktop
+$ snakemake clean
+$ snakemake -j 4    # 4 cores is usually a safe assumption when working on a laptop/desktop
 ```
-
+{: .language-bash}
 ```
 Provided cores: 4
 Rules claiming more threads will be scaled down.
@@ -121,7 +121,7 @@ serial pipeline is run `snakemake` with the `-j` option.
 > import psutil
 > psutil.cpu_count(logical=False)
 > ```
-> 
+> {: .language-python}
 {: .callout}
 
 ## Managing CPUs
@@ -155,7 +155,7 @@ rule count_words:
         python {input.wc} {input.book} {output}
         '''
 ```
-
+{: .language-make}
 
 Now, when we run `snakemake -j 4`, the `count_words` rules are run one at a time,
 so as to give each execution the resources it needs.
@@ -187,15 +187,15 @@ Finished job 3.
 
 # other output follows
 ```
-
+{: .output}
 
 What happens when we don't have 4 cores available?
 What if we tell Snakemake to run with 2 cores instead?
 
 ```bash
-snakemake -j 2
+$ snakemake -j 2
 ```
-
+{: .language-bash}
 ```
 Provided cores: 2
 Rules claiming more threads will be scaled down.
@@ -256,8 +256,7 @@ rule count_words:
             python {input.wc} {input.book} {output}
         '''
 ```
-
-
+{: .language-make}
 
 ## Managing other types of resources
 
@@ -283,15 +282,15 @@ rule make_plot:
     resources: gpu=1
     shell:  'python {input.plotcount} {input.book} {output}'
 ```
-
+{: .language-make}
 
 We can execute our pipeline using the following (using 8 cores and 1 gpu):
 
 ```bash
-snakemake clean
-snakemake -j 8 --resources gpu=1
+$ snakemake clean
+$ snakemake -j 8 --resources gpu=1
 ```
-
+{: .language-bash}
 ```
 Provided cores: 8
 Rules claiming more threads will be scaled down.
@@ -311,10 +310,10 @@ it is an arbitrary limit used to prevent multiple tasks that use a `gpu` from ex
 But what happens if we run our pipeline without specifying the number of GPUs?
 
 ```bash
-snakemake clean
-snakemake -j 8
+$ snakemake clean
+$ snakemake -j 8
 ```
-
+{: .language-bash}
 ```
 Provided cores: 8
 Rules claiming more threads will be scaled down.

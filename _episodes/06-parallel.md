@@ -182,7 +182,7 @@ Using this number, we can create a pool of worker processes withh which to paral
 from multiprocessing import Pool
 pool = Pool(psutil.cpu_count(logical=False))
 ```
-
+{: .language-python}
 
 The `pool` object gives us a set of parallel workers we can
 use to parallelize our calculations.
@@ -200,6 +200,7 @@ def sleeping(arg):
 
 %timeit list(map(sleeping, range(24)))
 ```
+{: .language-python}
 ```
 1 loop, best of 3: 2.4 s per loop
 ```
@@ -210,8 +211,10 @@ Now let's try it in parallel:
 ```python
 %timeit pool.map(sleeping, range(24))
 ```
+{: .language-python}
 
 If you are using a Jupyter notebook, this will fail:
+
 ```
 # more errors omitted
 AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
@@ -236,6 +239,7 @@ AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
 > ```python
 > pool.map(lambda x: time.sleep(0.1), range(24))
 > ```
+> {: .language-python}
 > ```
 > ---------------------------------------------------------------------------
 > PicklingError                             Traceback (most recent call last)
@@ -270,7 +274,7 @@ pool = Pool(8)
 %timeit pool.map(lambda x: time.sleep(0.1), range(24))
 pool.close()
 ```
-
+{: .language-python}
 ```
 1 loop, best of 3: 309 ms per loop
 ```
@@ -291,6 +295,7 @@ result2 = pool.map(another_function, more_stuff_to_iterate_over)
 # turn off your parallel workers at the end of your script
 pool.close()
 ```
+{: .language-python}
 
 Parallel workers (with their own copy of everything) are created, 
 data are sent to these workers, and then results are combined back together again.
@@ -299,5 +304,3 @@ that lets you control how big each chunk of data is before it's sent off to each
 A larger chunksize means that less time is spent shuttling data to and from workers,
 and will be more useful if you have a large number of very fast computations to perform.
 When each iteration takes a very long time to run, you will want to use a smaller chunk size.
-
-

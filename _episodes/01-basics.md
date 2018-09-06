@@ -16,6 +16,7 @@ It is very easy to do basic math in Python.
 ```python
 print(5 + 1)
 ```
+{: .language-python}
 ```
 6
 ```
@@ -27,7 +28,7 @@ Notice how leaving out `print()` gives us the same result as above.
 ```python
 5 + 1
 ```
-
+{: .language-python}
 ```
 6
 ```
@@ -41,7 +42,7 @@ Python can do all of the normal basic math operations you'd expect.
 4 * 6
 14 / 3
 ```
-
+{: .language-python}
 ```
 8
 -7
@@ -55,7 +56,7 @@ You can also use it to more complicated operations, like exponentiation (`**`):
 ```python
 5 ** 2
 ```
-
+{: .language-python}
 ```
 25
 ```
@@ -69,7 +70,7 @@ Remainder division (`%`), gives the remainder after division.
 5 // 2  # floor division
 5 % 2   # remainder division
 ```
-
+{: .language-python}
 ```
 2
 1
@@ -81,7 +82,7 @@ Python follows the normal order of operations for math.
 ```python
 4 + 1 * 6
 ```
-
+{: .language-python}
 ```
 10
 ```
@@ -94,7 +95,7 @@ Note that there is no limit to the number of parentheses you can use.
 ```python
 (4 + 1) * 6
 ```
-
+{: .language-python}
 ```
 30
 ```
@@ -110,7 +111,7 @@ We can set them with the `=` sign.
 ```python
 weight_kg = 55
 ```
-
+{: .language-python}
 
 If we want to retrieve the information we've stored, 
 we can do it by simply typing the name of the variable again.
@@ -118,7 +119,7 @@ we can do it by simply typing the name of the variable again.
 ```python
 weight_kg
 ```
-
+{: .language-python}
 ```
 55
 ```
@@ -129,7 +130,7 @@ We can perform math on variables the same way we would normally.
 ```python
 print('weight in pounds:', 2.2 * weight_kg)
 ```
-
+{: .language-python}
 ```
 weight in pounds: 121.00000000000001
 ```
@@ -144,7 +145,7 @@ We can also change a variable’s value by assigning it a new one:
 weight_lb = 2.2 * weight_kg
 print(weight_lb)
 ```
-
+{: .language-python}
 ```
 121.00000000000001
 ```
@@ -159,7 +160,7 @@ weight_kg = 10000
 print('after updating, weight_kg ending value is', weight_kg)
 print('weight in lb ending value is', weight_lb)
 ```
-
+{: .language-python}
 ```
 weight_kg starting value is 55
 after updating, weight_kg ending value is 10000
@@ -181,7 +182,7 @@ we will need to perform this operation explicitly.
 weight_lb = weight_kg * 2.2
 print('new value for weight_lb is', weight_lb)
 ```
-
+{: .language-python}
 ```
 new value for weight_lb is 22000.0
 ```
@@ -220,7 +221,7 @@ For instance, what happens if we accidentally don't finish a command?
 ```python
 1 + 
 ```
-
+{: .language-python}
 ```
 SyntaxError: invalid syntax (<ipython-input-15-70475fc083df, line 1)
   File "<ipython-input-15-70475fc083df", line 1
@@ -290,7 +291,7 @@ It will print the data type of whatever is inside the parentheses.
 type('this is a string')
 type("this is also a string")
 ```
-
+{: .language-python}
 ```
 str
 str
@@ -310,7 +311,7 @@ multiline = '''
 print(multiline)
 type(multiline)
 ```
-
+{: .language-python}
 ```
 This string
 spans
@@ -329,7 +330,7 @@ For instance, we can even use the `+` sign to put strings together!
 'some text' + 'MORE TEXT'
 'repetition' * 3
 ```
-
+{: .language-python}
 ```
 'some textMORE TEXT'
 'repetitionrepetitionrepetition'
@@ -342,7 +343,7 @@ Attempting to add a string to a number doesn't work!
 ```python
 '5' + 5
 ```
-
+{: .language-python}
 ```
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
@@ -365,7 +366,7 @@ type(5)
 type(-1000)
 type(6 + -33)
 ```
-
+{: .language-python}
 ```
 int
 int
@@ -378,7 +379,7 @@ But what happens when we perform a math operation that would result in a decimal
 ```python
 type(10 / 3)
 ```
-
+{: .language-python}
 ```
 float
 ```
@@ -392,7 +393,7 @@ To explicitly set a number as a float, just add a decimal point.
 type(1.3)
 type(22.)
 ```
-
+{: .language-python}
 ```
 float
 float
@@ -408,7 +409,7 @@ Unsurprisingly, these are defined as `True` and `False`.
 type(True)
 type(False)
 ```
-
+{: .language-python}
 ```
 bool
 bool
@@ -421,7 +422,7 @@ We will revisit `None` in more detail later, so for now, just be aware it exists
 ```python
 type(None)
 ```
-
+{: .language-python}
 ```
 NoneType
 ```
@@ -440,7 +441,7 @@ NoneType
 > ```python
 > print(int('5') + 5)
 > ```
-> 
+> {: .language-python}
 > ```
 > 10
 > ```
@@ -458,12 +459,13 @@ NoneType
 > Use only the commands shown above.
 > 
 > ```python
-> 1 + '1' == '11'  
-> '6' - 7 == -1  
-> 7.23 == 7  
-> '5' == True  
-> 4 / 1.3 == 4  
+> 1 + '1' == '11'
+> '6' - 7 == -1
+> 7.23 == 7
+> '5' == True
+> 4 / 1.3 == 4
 > ```
+> {: .language-python}
 {: .challenge}
 
 > ## Data type conversion pitfalls
