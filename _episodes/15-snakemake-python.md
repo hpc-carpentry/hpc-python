@@ -344,7 +344,7 @@ Finished job 0.
 > Add new rules and update existing rules to:
 >
 > * Create `.png` files from `.dat` files using `plotcount.py`.
-> * Remove all auto-generated files (`.dat`, `.png`,
+> * Update rule clean to remove all auto-generated files (`.dat`, `.png`,
 >   `results.txt`).
 >
 > Finally, many Snakefiles define a default target called `all` as first target,
