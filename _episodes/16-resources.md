@@ -29,7 +29,7 @@ rule clean:
     shell:  
         '''
         rm -rf results dats plots
-        rm -f results.txt zipf_analysis.tar.gz
+        rm results.txt zipf_analysis.tar.gz
         '''
 
 # count words in one of our "books"

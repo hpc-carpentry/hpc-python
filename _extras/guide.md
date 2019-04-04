@@ -16,7 +16,7 @@ If you end up going the laptop route,
 be aware of how to run things via the Windows command line 
 (since Snakemake natively works on Windows).
 The only significant change is the `snakemake clean` rule:
-`rm -f *.dat` should be changed to `del *.dat`. 
+`rm *.dat` should be changed to `del *.dat`. 
 
 If students get lost, there is a hidden `.Snakemake` file in the lesson materials 
 (`snakemake-lesson.tar.gz`)
