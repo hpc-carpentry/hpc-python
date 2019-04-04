@@ -322,10 +322,10 @@ rule dats:
 
 
 This is an example of a rule that has dependencies that are targets of
-other rules. When Make runs, it will check to see if the dependencies
+other rules. When snakemake runs, it will check to see if the dependencies
 exist and, if not, will see if rules are available that will create
 these. If such rules exist it will invoke these first, otherwise
-Make will raise an error.
+snakemake will raise an error.
 
 > ## Dependencies
 >
@@ -428,9 +428,9 @@ rule count_words_abyss:
 
 
 The following figure shows a graph of the dependencies embodied within
-our Makefile, involved in building the `dats` target:
+our Snakefile, involved in building the `dats` target:
 
-![Dependencies represented within the Makefile](../fig/02-dats-dag.svg "Dependencies represented within the Makefile")
+![Dependencies represented within the Snakefile](../fig/02-dats-dag.svg "Dependencies represented within the Snakefile")
 
 At this point, it becomes important to see what snakemake is doing behind the scenes.
 What commands is snakemake actually running?
