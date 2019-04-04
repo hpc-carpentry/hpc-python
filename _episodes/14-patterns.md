@@ -32,9 +32,9 @@ Note that we don't have to use `{file}` as the name of our wildcard -
 it can be anything we want!
 
 This rule can be interpreted as:
-"In order to build a file named `[something].dat` (the target)
-find a file named `books/[that same something].txt` (the dependency)
-and run `wordcount.py [the dependency] [the target]`."
+"In order to build a file named `{something}.dat` (the target)
+find a file named `books/{that same something}.txt` (the dependency)
+and run `wordcount.py {the dependency} {the target}`."
 
 ```bash
 snakemake clean
