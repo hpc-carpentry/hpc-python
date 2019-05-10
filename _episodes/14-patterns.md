@@ -94,7 +94,7 @@ rule dats:
 
 # delete everything so we can re-run things
 rule clean:
-    shell:  'rm *.dat results.txt'
+    shell:  'rm -f *.dat results.txt'
 
 # count words in one of our "books"
 rule count_words:

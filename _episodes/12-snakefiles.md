@@ -277,7 +277,7 @@ delete auto-generated files, like our `.dat` files:
 
 ```python
 rule clean:
-    shell: 'rm *.dat'
+    shell: 'rm -f *.dat'
 ```
 
 This is an example of a rule that has no inputs or outputs!. We just want to remove the data files whether or
@@ -410,7 +410,7 @@ rule dats:
 
 # delete everything so we can re-run things
 rule clean:
-    shell:  'rm *.dat'
+    shell:  'rm -f *.dat'
 
 
 # count words in one of our "books"
