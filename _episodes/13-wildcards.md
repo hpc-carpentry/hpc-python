@@ -335,9 +335,9 @@ The whole pipeline is triggered, even the creation of the
 `results.txt` file! To understand this, note that according to the
 dependency figure, `results.txt` depends on the `.dat` files. The
 update of `wordcount.py` triggers an update of the `*.dat`
-files. Thus, `Snakemake` sees that the dependencies (the `.dat` files) are
+files. Thus, `snakemake` sees that the dependencies (the `.dat` files) are
 newer than the target file (`results.txt`) and thus it recreates
-`results.txt`. This is an example of the power of `Snakemake`: updating a
+`results.txt`. This is an example of the power of `snakemake`: updating a
 subset of the files in the pipeline triggers rerunning the appropriate
 downstream steps.
 
@@ -347,7 +347,7 @@ downstream steps.
 >
 > ```bash
 > touch books/last.txt
-> Snakemake results.txt
+> snakemake results.txt
 > ```
 > 
 >
