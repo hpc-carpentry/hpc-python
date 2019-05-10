@@ -18,6 +18,8 @@ We've compiled our raw data i.e. the books we want to analyze
 and have prepared several Python scripts that together make up our
 analysis pipeline.
 
+Let's take quick look at one of the books using the command `head books/isles.txt`.
+
 Our directory has the Python scripts and data files we
 we will be working with:
 
