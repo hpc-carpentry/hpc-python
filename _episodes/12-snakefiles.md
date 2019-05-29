@@ -32,7 +32,7 @@ it follows standard Python 3 syntax.
 Let us go through each line in turn:
 
 * `#` denotes a *comment*. Any text from `#` to the end of the line is
-  ignored by Make.
+  ignored by Snakemake.
 * `isles.dat` is a [target]({{ page.root }}/reference/#target), a file to be
   created, or built. In Snakemake, these are called "outputs", for simplicity's sake.
 * `books/isles.txt` is a [dependency]({{ page.root }}/reference/#dependency), a
@@ -41,10 +41,10 @@ Let us go through each line in turn:
 * `python wordcount.py books/isles.txt isles.dat` is an
   [action]({{ page.root }}/reference/#action), a command to run to build or update
   the target using the dependencies. In this case the action is a set of 
-  shell commands (we can also use python code... more on that later).
-* Like python, you can use either tabs or spaces for indentation (don't use both!).
+  shell commands (we can also use Python code... more on that later).
+* Like Python, you can use either tabs or spaces for indentation (don't use both!).
 * Together, the target, dependencies, and actions form a
-  a [rule]({{ page.root }}/reference/#rule). A rule is a recipe for how to make things.
+  [rule]({{ page.root }}/reference/#rule). A rule is a recipe for how to make things.
 
 Our rule above describes how to build the target `isles.dat` using the
 action `python wordcount.py` and the dependency `books/isles.txt`.
