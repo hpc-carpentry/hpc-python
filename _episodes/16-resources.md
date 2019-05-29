@@ -117,7 +117,7 @@ serial pipeline is run `snakemake` with the `-j` option.
 > Using `logical=False` returns the number of true CPU cores.
 > `logical=True` gives the number of CPU threads on your system.
 >
-> ```
+> ```python
 > import psutil
 > psutil.cpu_count(logical=False)
 > ```
@@ -137,7 +137,9 @@ Let's pretend that our `count_words` rule is actually very CPU-intensive.
 We'll say that it needs a whopping 4 CPUs per run.
 We can specify this with the `threads` keyword in our rule.
 We will also modify the rule to print out the number of threads it thinks it is using.
-Please note that just giving something 4 threads in Snakemake does not make it run in parallel!
+Please note that just giving a Snakemake rule 4 threads does not automatically make
+its action run in parallel! The action also needs to be threads-capable and to
+explicitly use the `{threads}` information for this to happen.
 In this case `wordcount.py` is actually still running with 1 core,
 we are simply using it as a demonstration of how to go about
 running something with multiple cores.
