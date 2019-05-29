@@ -335,7 +335,7 @@ Finished job 0.
 > Alter the rules in your Snakefile so that the `.dat` files are created in
 > their own `dats/` folder.
 > Note that creating this folder beforehand is unnecessary.
-> Snakemake automatically create any folders for you, as needed.
+> Snakemake automatically creates any folders for you, as needed.
 {: .challenge}
 
 > ## Creating PNGs
@@ -351,7 +351,7 @@ Finished job 0.
 > our case, the `.png` files and the `results.txt` file).
 > Add an `all` target to your Snakefile (Hint: this rule
 > has the `results.txt` file and the `.png` files as dependencies, but
-> no actions).  With that in place, instead of running `make
+> no actions).  With that in place, instead of running `snakemake
 > results.txt`, you should now run `snakemake all`, or just simply
 > `snakemake`.
 {: .challenge}
@@ -391,6 +391,6 @@ After these excercises our final workflow should look something like the followi
 > * optionally, open the file in a text editor and remove extraneous text at the beginning and end
 > (look for the phrase `End of Project Gutenberg's [title], by [author]`)
 > * run `snakemake` and check that the correct commands are run
-> * check the results.txt file to see how this book compares to the others
+> * check the `results.txt` file to see how this book compares to the others
 {: .challenge}
 
