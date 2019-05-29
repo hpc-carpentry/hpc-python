@@ -235,7 +235,7 @@ python plotcount.py isles.dat isles.png
 python plotcount.py abyss.dat abyss.png
 
 # This line is also commented out because it doesn't need to be rerun.
-python zipf_test.py abyss.dat isles.dat > results.txt
+# python zipf_test.py abyss.dat isles.dat > results.txt
 ```
 
 Then, we would run our modified shell script using `bash run_pipeline.sh`.
