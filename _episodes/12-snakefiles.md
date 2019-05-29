@@ -26,7 +26,7 @@ rule count_words:
 
 This is a [build file]({{ page.root }}/reference/#build-file), which for
 Snakemake is called a [Snakefile]({{ page.root }}/reference/#makefile) - a file executed
-by Snakemake. Note that aside from a few keyword additions like `rule`, 
+by Snakemake. Note that aside from a few keyword additions like `rule`,
 it follows standard Python 3 syntax.
 
 Let us go through each line in turn:
@@ -40,7 +40,7 @@ Let us go through each line in turn:
   zero or more dependencies. Dependencies in Snakemake are called "inputs".
 * `python wordcount.py books/isles.txt isles.dat` is an
   [action]({{ page.root }}/reference/#action), a command to run to build or update
-  the target using the dependencies. In this case the action is a set of 
+  the target using the dependencies. In this case the action is a set of
   shell commands (we can also use Python code... more on that later).
 * Like Python, you can use either tabs or spaces for indentation (don't use both!).
 * Together, the target, dependencies, and actions form a
@@ -89,7 +89,7 @@ Finished job 0.
 {: .output}
 
 If we see an error, check your syntax.
-Remember, aside from stuff like `rule` and `input`, 
+Remember, aside from stuff like `rule` and `input`,
 Snakemake follows Python syntax.
 Let's see if we got what we expected:
 
@@ -109,7 +109,7 @@ The first 5 lines of `isles.dat` should look exactly like before.
 > ```bash
 > snakemake -s MyOtherSnakefile
 > ```
-> 
+>
 {: .callout}
 
 When we re-run our Snakefile, Snakemake now informs us that:
@@ -187,7 +187,7 @@ build]({{ page.root }}/reference/#incremental-build).
 {: .callout}
 
 Let's add another rule to the end of `Snakefile`.
-Note that rules cannot have the same name, 
+Note that rules cannot have the same name,
 so we'll call this one `count_words_abyss`.
 
 ```python
@@ -257,7 +257,7 @@ Finished job 0.
 > ```bash
 > snakemake wordcount.py
 > ```
-> 
+>
 >
 > ```
 > MissingRuleException:
@@ -386,7 +386,7 @@ Finished job 0.
 {: .output}
 
 If we run `dats` again, then snakemake will see that the dependencies (`isles.dat`
-and `abyss.dat`) are already up to date. 
+and `abyss.dat`) are already up to date.
 Given the target `dats` has no actions, there is `nothing to be done`:
 
 ```bash
@@ -435,7 +435,7 @@ our Snakefile, involved in building the `dats` target:
 At this point, it becomes important to see what snakemake is doing behind the scenes.
 What commands is snakemake actually running?
 Snakemake has a special option (`-p`), that prints every command it is about to run.
-Additionally, we can also perform a dry run with `-n`. 
+Additionally, we can also perform a dry run with `-n`.
 A dry run does nothing, and simply prints out commands instead of actually executing them.
 Very useful for debugging!
 

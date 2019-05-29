@@ -12,7 +12,7 @@ keypoints:
 - "`snakemake --gui` opens a browser window with your workflow."
 ---
 
-Now that we know how to write and scale a pipeline, 
+Now that we know how to write and scale a pipeline,
 here are some tips and tricks for making the process go more smoothly.
 
 ## `snakemake -n` is your friend
@@ -29,7 +29,7 @@ The most common source of errors is a mismatch in filenames
 By default, Snakemake prints all output from stderr and stdout from rules.
 This is useful, but if a failure occurs (or we otherwise need to inspect the logs)
 it can be extremely difficult to determine what happened
-or which rule had an issue, 
+or which rule had an issue,
 especially when running in parallel.
 
 The solution to this issue is to redirect the output from each rule/
@@ -46,7 +46,7 @@ Two things before we start:
 ```python
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: 'dats/{file}.dat'
@@ -72,11 +72,11 @@ Running wordcount.py with 4 cores on books/abyss.txt.
 ```
 {: .output}
 
-Notice how the pipeline no longer prints to the pipeline's log, 
+Notice how the pipeline no longer prints to the pipeline's log,
 and instead redirects this to a logfile.
 
 > ## Choosing a good logfile location
-> 
+>
 > Though you can put a log anywhere (and name it anything),
 > it is often a good practice to put the log in the same directory
 > where the rule's output will be created.
@@ -88,7 +88,7 @@ and instead redirects this to a logfile.
 
 Often, a rule does not generate a unique output, and merely modifies a file.
 In these cases it is often worthwhile to create a placeholder, or "token file" as output.
-A token file is simply an empty file that you can create with the touch command 
+A token file is simply an empty file that you can create with the touch command
 (`touch some_file.txt` creates an empty file called `some_file.txt`).
 An example rule using this technique is shown below:
 
@@ -107,7 +107,7 @@ rule token_example:
 ## Directory locks
 
 Only one instance of Snakemake can run in a directory at a time.
-If a Snakemake run fails without unlocking the directory 
+If a Snakemake run fails without unlocking the directory
 (if you killed the process, for instance), you can run
 `snakemake --unlock` to unlock it.
 
@@ -125,7 +125,7 @@ and block until execution is complete.
 Assuming graphviz is installed (`conda install graphviz`),
 you can create a diagram of your workflow with the command:
 `snakemake --dag | dot -Tsvg > dag.svg`.
-This creates a plot of your "directed acyclic graph" 
+This creates a plot of your "directed acyclic graph"
 (a plot of all of the rules Snakemake thinks it needs to complete),
 which you can view using any picture viewing program.
 In fact this was the tool used to create all of the diagrams in this lesson:
@@ -139,18 +139,18 @@ eog dag.svg     # eog is an image viewer installed on many linux systems
 
 Rules that have yet to be completed are indicated with solid outlines.
 Already completed tasks will be indicated with dashed outlines.
-In this case, I ran `snakemake clean`, just before creating the diagram - 
+In this case, I ran `snakemake clean`, just before creating the diagram -
 no rules have been run yet.
 
 ## Viewing the GUI
 
 Snakemake has an experimental web browser GUI.
-I personally haven't used it for anything, 
+I personally haven't used it for anything,
 but it's cool to know it's there and can be used to view your workflow on the fly.
 
 `snakemake --gui`
 
 ## Where to go for documentation / help
 
-The Snakemake documentation is located at 
+The Snakemake documentation is located at
 [snakemake.readthedocs.io](http://snakemake.readthedocs.io)

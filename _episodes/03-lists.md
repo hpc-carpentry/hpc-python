@@ -7,7 +7,7 @@ questions:
 objectives:
 - "Learn to use lists and Numpy arrays, and explain the difference between each."
 keypoints:
-- "Lists store a sequence of elements." 
+- "Lists store a sequence of elements."
 - "Numpy allows vector math in Python."
 ---
 
@@ -40,9 +40,9 @@ example
 We can get different pieces of a list via indexing.
 We add a set of square brackets after the list in question along with the index of the values
 we want.
-Note that in Python, all indices start from 0 - the first element is actually the 0th element 
+Note that in Python, all indices start from 0 - the first element is actually the 0th element
 (this is different from languages like R or Matlab).
-The best way to think about array indices is that they are the number of offsets from the first position - 
+The best way to think about array indices is that they are the number of offsets from the first position -
 the first element does not require an offset to get to.
 
 ![Arrays start at 0](https://imgs.xkcd.com/comics/donald_knuth.png)
@@ -175,7 +175,7 @@ List 1 is:  [1, 2, 3, 4, 5, 6, 7]
 Modifying `list2` actually modified `list1` as well.
 In Python, lists are objects.
 Objects are not copied when we assign them to a new value (like in R).
-This is an important optimization, 
+This is an important optimization,
 as we won't accidentally fill up all of our computer's memory by renaming a variable a couple of times.
 When we ran `list2 = list1`, it just created a new name for `list1`.
 `list1` still points at the same underlying object.
@@ -195,14 +195,14 @@ id(list2)
 ```
 {: .output}
 
-In order to create `list2` as a unique copy of `list1`. 
+In order to create `list2` as a unique copy of `list1`.
 We have to use the `.copy()` method.
 
 ```python
-list1 = [1, 2, 3, 4]                                                                          
-list2 = list1.copy()                                                                          
-list2 += [5, 6, 7]                                                                            
-print('List 2 is: ', list2)                                                                   
+list1 = [1, 2, 3, 4]
+list2 = list1.copy()
+list2 += [5, 6, 7]
+print('List 2 is: ', list2)
 print('List 1 is: ', list1)
 id(list2)
 id(list1)
@@ -216,7 +216,7 @@ List 1 is:  [1, 2, 3, 4]
 ```
 {: .output}
 
-`.copy()` is a method. 
+`.copy()` is a method.
 Methods are special functions associated with an object and define what it can do.
 They always follow the syntax `object.method(arg1, arg2)` and have predefined number of arguments mostly with default values. We may also specify a subset of agruments, e.g. `object.method(arg1, arg4=some_value)`.
 
@@ -281,14 +281,14 @@ A for loop generally looks like the following:
 
 ```python
 for variable in things_to_iterate_over:
-	do_stuff_with(variable)
+    do_stuff_with(variable)
 ```
 
 An example of an actually functioning for loop is shown below:
 
 ```python
 for i in range(10):
-	print(i)
+    print(i)
 ```
 
 ```
@@ -313,7 +313,7 @@ We can also iterate over a list, or any collection of elements:
 
 ```python
 for element in ['a', True, None]:
-	print(type(element))
+    print(type(element))
 ```
 
 ```
@@ -338,7 +338,7 @@ vals = list(range(1000))
 new_vals = vals.copy()
 print(new_vals[:5])
 for idx in range(1000):
-	new_vals[idx] += 10
+    new_vals[idx] += 10
 
 print(new_vals[:5])
 ```
@@ -372,13 +372,13 @@ array([10, 11, 12, 13, 14])
 One very nice thing about Numpy is that it's much more performant than ordinary Python lists.
 A nice trick we can use with IPython to measure execution times is the `%timeit` magic function.
 Anything following the `%timeit` gets measured for speed.
-Adding `%%` to the `timeit` command instead of `%` means that `timeit` is run on the entire cell, not just a single line. Note that `%%timeit` must be on the first line of an IPython/Jupyter cell for it to work, whereas the `%timeit` command can be used anywhere. 
+Adding `%%` to the `timeit` command instead of `%` means that `timeit` is run on the entire cell, not just a single line. Note that `%%timeit` must be on the first line of an IPython/Jupyter cell for it to work, whereas the `%timeit` command can be used anywhere.
 
 Using Python's lists:
 ```python
 %%timeit
 for idx in range(1000):
-	vals[idx] + 10
+    vals[idx] + 10
 ```
 
 ```

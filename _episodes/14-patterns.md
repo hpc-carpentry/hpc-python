@@ -18,17 +18,17 @@ rule]({{ page.root }}/reference/#pattern-rule) which can be used to build any
 
 ```python
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: '{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
 
 
 `{file}` is another arbitrary [wildcard]({{ page.root }}/reference/#wildcard),
 that we can use as a placeholder for any generic book to analyze.
-Note that we don't have to use `{file}` as the name of our wildcard - 
+Note that we don't have to use `{file}` as the name of our wildcard -
 it can be anything we want!
 
 This rule can be interpreted as:
@@ -39,7 +39,7 @@ and run `wordcount.py [the dependency] [the target]`."
 ```bash
 snakemake clean
 # use the -p option to show that it is running things correctly!
-snakemake -p dats   
+snakemake -p dats
 ```
 
 We should see the same output as before.
@@ -75,8 +75,8 @@ Finished job 0.
 
 > ## Using wildcards
 >
-> Our arbitrary wildcards like `{file}` can only be used in 
-> `input:` and `output:` fields. It cannot be used in actions. 
+> Our arbitrary wildcards like `{file}` can only be used in
+> `input:` and `output:` fields. It cannot be used in actions.
 {: .callout}
 
 Our Snakefile is now much shorter and cleaner:
@@ -98,10 +98,10 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: '{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
 

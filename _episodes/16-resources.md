@@ -13,7 +13,7 @@ keypoints:
 - "The `&&` operator is a useful tool when chaining bash commands."
 ---
 
-After the excercises at the end of our last lesson, 
+After the excercises at the end of our last lesson,
 our Snakefile looks something like this:
 
 ```python
@@ -26,7 +26,7 @@ rule all:
 
 # delete everything so we can re-run things
 rule clean:
-    shell:  
+    shell:
         '''
         rm -rf results dats plots
         rm -f results.txt zipf_analysis.tar.gz
@@ -34,11 +34,11 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: 'dats/{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 
 # create a plot for each book
 rule make_plot:
@@ -50,7 +50,7 @@ rule make_plot:
 
 # generate summary table
 rule zipf_test:
-    input:  
+    input:
         zipf='zipf_test.py',
         books=expand('dats/{book}.dat', book=DATS)
     output: 'results.txt'
@@ -85,7 +85,7 @@ Rules claiming more threads will be scaled down.
 So far, Snakemake has been run with one core.
 Let's scale up our pipeline to run in parallel.
 The only change we need to make is run Snakemake with the `-j` argument.
-`-j` is used to indicate number of CPU cores available, 
+`-j` is used to indicate number of CPU cores available,
 and on a cluster, maximum number of jobs (we'll get to that part later).
 
 ```bash
@@ -101,7 +101,7 @@ Rules claiming more threads will be scaled down.
 {: .output}
 
 Our pipeline ran in parallel and finished roughly 4 times as quickly!
-The takeaway here is that all we need to do to scale from a 
+The takeaway here is that all we need to do to scale from a
 serial pipeline is run `snakemake` with the `-j` option.
 
 > ## How many CPUs does your computer have?
@@ -116,12 +116,12 @@ serial pipeline is run `snakemake` with the `-j` option.
 > **All platforms** - Python's `psutil` module can be used to fetch the number of cores in your computer.
 > Using `logical=False` returns the number of true CPU cores.
 > `logical=True` gives the number of CPU threads on your system.
-> 
+>
 > ```
 > import psutil
 > psutil.cpu_count(logical=False)
 > ```
-> 
+>
 {: .callout}
 
 ## Managing CPUs
@@ -130,7 +130,7 @@ Each rule has a number of optional keywords aside from the usual
 `input`, `output`, and `shell`/`run`.
 The `threads` keyword is used to specify how many CPU cores a rule
 needs while executing.
-Though in reality CPU threads are not quite the same as CPU cores, 
+Though in reality CPU threads are not quite the same as CPU cores,
 the two terms are interchangeable when working with Snakemake.
 
 Let's pretend that our `count_words` rule is actually very CPU-intensive.
@@ -138,13 +138,13 @@ We'll say that it needs a whopping 4 CPUs per run.
 We can specify this with the `threads` keyword in our rule.
 We will also modify the rule to print out the number of threads it thinks it is using.
 Please note that just giving something 4 threads in Snakemake does not make it run in parallel!
-In this case `wordcount.py` is actually still running with 1 core, 
-we are simply using it as a demonstration of how to go about 
+In this case `wordcount.py` is actually still running with 1 core,
+we are simply using it as a demonstration of how to go about
 running something with multiple cores.
 
 ```python
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: 'dats/{file}.dat'
@@ -237,7 +237,7 @@ To execute multiple bash commands, the only modification we need to make
 is use a Python multiline string (begin and end with `'''`)
 
 One important addition we should be aware of is the `&&` operator.
-`&&` is a bash operator that runs commands as part of a chain. 
+`&&` is a bash operator that runs commands as part of a chain.
 If the first command fails, the remaining steps are not run.
 This is more forgiving than bash's default "hit an error and keep going" behavior.
 After all, if the first command failed, it's unlikely the other steps will work.
@@ -245,7 +245,7 @@ After all, if the first command failed, it's unlikely the other steps will work.
 ```python
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: 'dats/{file}.dat'
@@ -261,12 +261,12 @@ rule count_words:
 
 ## Managing other types of resources
 
-Not all compute resources are CPUs. 
-Examples might include limited amounts of RAM, number of GPUs, database locks, 
+Not all compute resources are CPUs.
+Examples might include limited amounts of RAM, number of GPUs, database locks,
 or perhaps we simply don't want multiple processes writing to the same file at once.
 All non-CPU resources are handled using the `resources` keyword.
 
-For our example, let's pretend that creating a plot with `plotcount.py` 
+For our example, let's pretend that creating a plot with `plotcount.py`
 requires dedicated access to a GPU (it doesn't),
 and only one GPU is available.
 How do we indicate this to Snakemake so that it knows to give dedicated access to a GPU
@@ -305,7 +305,7 @@ Snakemake knows nothing about them aside from the fact that they have a name and
 In this case `gpu` indicates simply that there is a resource called `gpu` used by `make_plot`.
 We provided 1 `gpu` to the workflow, and the `gpu` is considered in use as long as the rule is running.
 Once the `make_plot` rule completes, the `gpu` it consumed is added back to the pool of available `gpu`s.
-To be extra clear: `gpu` in this case does not actually represent a GPU, 
+To be extra clear: `gpu` in this case does not actually represent a GPU,
 it is an arbitrary limit used to prevent multiple tasks that use a `gpu` from executing at the same time.
 
 But what happens if we run our pipeline without specifying the number of GPUs?
@@ -322,17 +322,17 @@ Unlimited resources: gpu
 ```
 {: .output}
 
-If you have specified that a rule needs a certain resource, 
-but do not specify how many you have, 
+If you have specified that a rule needs a certain resource,
+but do not specify how many you have,
 Snakemake will assume that the resources in question are unlimited.
 
 > ## Other uses for `resources`
-> 
+>
 > Resources do not have to correspond to actual compute resources.
-> Perhaps one rule is particularly I/O heavy, 
+> Perhaps one rule is particularly I/O heavy,
 > and it's best if only a limited number of these jobs run at a time.
 > Or maybe a type of rule uses a lot of network bandwidth as it downloads data.
-> In all of these cases, `resources` can be used to constrain access 
+> In all of these cases, `resources` can be used to constrain access
 > to arbitrary compute resources so that each rule can run at it's most efficient.
 > Snakemake will run your rules in such a way as to maximize throughput given your
 > resource constraints.

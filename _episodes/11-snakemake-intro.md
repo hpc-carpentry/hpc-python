@@ -225,7 +225,7 @@ Another popular option is to comment out a subset of the lines in
 ```bash
 # USAGE: bash run_pipeline.sh
 # to produce plots for isles and abyss
-# and the summary table 
+# and the summary table
 
 # These lines are commented out because they don't need to be rerun.
 #python wordcount.py books/isles.txt isles.dat
@@ -253,7 +253,7 @@ then perform those tasks for us.
 ## What is Snakemake and why are we using it?
 
 There are many different tools that researchers use to automate this type of work.
-Snakemake is a very popular tool, and the one we have selected for this tutorial. 
+Snakemake is a very popular tool, and the one we have selected for this tutorial.
 There are several reasons this tool was chosen:
 
 * It’s free, open-source, and installs in about 5 seconds flat via `pip`.
@@ -268,7 +268,7 @@ There are several reasons this tool was chosen:
 
 * It’s easy. You can (hopefully!) learn Snakemake in an afternoon!
 
-The rest of these lessons aim to teach you how to use Snakemake by example. 
+The rest of these lessons aim to teach you how to use Snakemake by example.
 Our goal is to automate our example workflow, and have it do everything for us in parallel
 regardless of where and how it is run (and have it be reproducible!).
 

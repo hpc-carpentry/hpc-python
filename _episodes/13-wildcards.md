@@ -32,19 +32,19 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	'books/isles.txt'
+    input:  'books/isles.txt'
     output: 'isles.dat'
-    shell: 	'python wordcount.py books/isles.txt isles.dat'
+    shell:  'python wordcount.py books/isles.txt isles.dat'
 
 rule count_words_abyss:
-    input: 	'books/abyss.txt'
+    input:  'books/abyss.txt'
     output: 'abyss.dat'
-    shell: 	'python wordcount.py books/abyss.txt abyss.dat'
+    shell:  'python wordcount.py books/abyss.txt abyss.dat'
 
 rule count_words_last:
-    input: 	'books/last.txt'
+    input:  'books/last.txt'
     output: 'last.dat'
-    shell: 	'python wordcount.py books/last.txt last.dat'
+    shell:  'python wordcount.py books/last.txt last.dat'
 ```
 
 
@@ -91,7 +91,7 @@ rule zipf_test:
 ```
 
 `{output}` is a Snakemake [wildcard]({{ page.root }}/reference/#automatic-variable)
-which is equivalent to the value we specified for {output}. 
+which is equivalent to the value we specified for {output}.
 
 We can replace the dependencies in the action with `{input}`:
 
@@ -169,7 +169,7 @@ Finished job 0.
 > touch *.dat
 > snakemake results.txt
 > ```
-> 
+>
 >
 > 1. nothing
 > 2. all files recreated
@@ -188,7 +188,7 @@ Finished job 0.
 > > touch books/*.txt
 > > snakemake results.txt
 > > ```
-> > 
+> >
 > >
 > > you will find that the `.dat` files as well as `results.txt` are recreated.
 > {: .solution}
@@ -216,25 +216,25 @@ Snakemake provides several solutions to this.
 Depending on what we want to do, it's possible to both index and name our wildcards.
 
 We need to add `wordcount.py` as a dependency of each of our data files.
-In this case, we can use `{input[0]}` to refer to the first dependency, 
+In this case, we can use `{input[0]}` to refer to the first dependency,
 and `{input[1]}` to refer to the second.
 
 ```python
 rule count_words:
-    input: 	'wordcount.py', 'books/isles.txt'
+    input:  'wordcount.py', 'books/isles.txt'
     output: 'isles.dat'
-    shell: 	'python {input[0]} {input[1]} {output}'
+    shell:  'python {input[0]} {input[1]} {output}'
 ```
 
 Alternatively, we can name our dependencies.
 
 ```python
 rule count_words_abyss:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/abyss.txt'
     output: 'abyss.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
 
 
@@ -349,7 +349,7 @@ downstream steps.
 > touch books/last.txt
 > make results.txt
 > ```
-> 
+>
 >
 > 1. only `last.dat` is recreated
 > 2. all `.dat` files are recreated
