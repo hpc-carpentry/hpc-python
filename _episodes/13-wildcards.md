@@ -8,8 +8,8 @@ objectives:
 - "Use snakemake wildcards to simplify our rules."
 - "Output files are a product not only of input files but of the scripts or code that created the output files."
 keypoints:
-- "Use {output} to refer to the output of the current rule."
-- "Use {input} to refer to the dependencies of the current rule."
+- "Use `{output}` to refer to the output of the current rule."
+- "Use `{input}` to refer to the dependencies of the current rule."
 - "You can use Python indexing to retrieve individual outputs and inputs (example: `{input[0]}`)"
 - "Wildcards can be named (example: `{input.file1}`)."
 ---
