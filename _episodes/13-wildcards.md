@@ -91,7 +91,7 @@ rule zipf_test:
 ```
 
 `{output}` is a Snakemake [wildcard]({{ page.root }}/reference/#automatic-variable)
-which is equivalent to the value we specified for {output}.
+which is equivalent to the value we specified for the `output` section of the rule.
 
 We can replace the dependencies in the action with `{input}`:
 
@@ -103,7 +103,7 @@ rule zipf_test:
 ```
 
 `{input}` is another wildcard which means 'all the dependencies
-of the current rule'. Again, when Make is run it will replace this
+of the current rule'. Again, when Snakemake is run it will replace this
 variable with the dependencies.
 
 Let's update our text files and re-run our rule:
@@ -200,7 +200,7 @@ the same - as the input for the `zipf_test.py` script.
 
 > ## Rewrite `.dat` rules to use wildcards
 >
-> Rewrite each `.dat` rule to use the {input} and {output} wildcards.
+> Rewrite each `.dat` rule to use the `{input}` and `{output}` wildcards.
 {: .challenge}
 
 ## Handling dependencies differently
@@ -215,7 +215,7 @@ one input file to be named when it is invoked.
 Snakemake provides several solutions to this.
 Depending on what we want to do, it's possible to both index and name our wildcards.
 
-We need to add `wordcount.py` as a dependency of each of our data files.
+Suppose we want to add `wordcount.py` as a dependency of each of our data files.
 In this case, we can use `{input[0]}` to refer to the first dependency,
 and `{input[1]}` to refer to the second.
 
@@ -335,9 +335,9 @@ The whole pipeline is triggered, even the creation of the
 `results.txt` file! To understand this, note that according to the
 dependency figure, `results.txt` depends on the `.dat` files. The
 update of `wordcount.py` triggers an update of the `*.dat`
-files. Thus, `make` sees that the dependencies (the `.dat` files) are
+files. Thus, `snakemake` sees that the dependencies (the `.dat` files) are
 newer than the target file (`results.txt`) and thus it recreates
-`results.txt`. This is an example of the power of `make`: updating a
+`results.txt`. This is an example of the power of `snakemake`: updating a
 subset of the files in the pipeline triggers rerunning the appropriate
 downstream steps.
 
@@ -347,7 +347,7 @@ downstream steps.
 >
 > ```bash
 > touch books/last.txt
-> make results.txt
+> snakemake results.txt
 > ```
 >
 >
@@ -359,7 +359,7 @@ downstream steps.
 
 > ## More dependencies...
 >
-> Add zipf_test.py as a dependency of `results.txt`
+> Add `zipf_test.py` as a dependency of `results.txt`
 > Which method do you prefer here, indexing or named input files?
 > Yes, this will be clunky, but we'll fix that part later!
 > Remember that you can do a dry run with `snakemake -n -p`!
