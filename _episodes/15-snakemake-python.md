@@ -28,7 +28,7 @@ rule zipf_test:
 ```
 
 
-First, let's cut down on a little bit of the clunkiness of the "shell" rule.
+First, let's cut down on a little bit of the clunkiness of the `shell` directive.
 One thing you've probably noticed is that all of our rules are using Python strings.
 Other data structures work too - let's try a list:
 
@@ -71,7 +71,7 @@ Try re-creating both the `dats` and `results.txt` targets
 
 The last example illustrated that we can use arbitrary Python code in our Snakefile.
 It's important to understand when this code gets executed.
-Let's add a print statement to the top of our Snakefile.
+Let's add a `print` instruction to the top of our Snakefile.
 
 ```python
 print('Snakefile is being executed!')
@@ -173,7 +173,7 @@ Nothing to be done.
 ```
 {: .output}
 
-In every case, the `print()` statement ran before any of the actual
+In every case, the `print` instruction ran before any of the actual
 pipeline code was run.
 What we can take away from this is that Snakemake excutes the entire Snakefile
 every time we run `snakemake` (regardless of if it's a dry run!).
@@ -213,7 +213,7 @@ It is not necessary however, to import these functions within your Snakefile -
 these functions are always imported for you.
 
 ```python
-from snakemake.io import *
+from snakemake.io import expand, glob_wildcards
 ```
 
 
@@ -259,7 +259,7 @@ Wildcards(example=['isles', 'last', 'abyss', 'sierra'])
 ```
 {: .output}
 
-glob_wildcards() returns a named tuple as output.
+`glob_wildcards()` returns a named tuple as output.
 In this case, there is only one wildcard, `{example}`.
 We can extract the values for name by getting the `example`
 property from the output of `glob_wildcards()`
