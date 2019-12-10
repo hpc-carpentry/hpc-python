@@ -16,40 +16,41 @@ replace these rules with a single [pattern
 rule]({{ page.root }}/reference/#pattern-rule) which can be used to build any
 `.dat` file from a `.txt` file in `books/`:
 
-```python
+```make
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: '{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
-
+{: .language-make}
 
 `{file}` is another arbitrary [wildcard]({{ page.root }}/reference/#wildcard),
-that we can use as a placeholder for any generic book to analyze.
+that we can use as a placeholder for any generic book to analyse.
 Note that we don't have to use `{file}` as the name of our wildcard - 
 it can be anything we want!
 
 This rule can be interpreted as:
-"In order to build a file named `[something].dat` (the target)
-find a file named `books/[that same something].txt` (the dependency)
-and run `wordcount.py [the dependency] [the target]`."
+"In order to build a file named `something.dat` (the output)
+find a file named `books/something.txt` (the input)
+and run `wordcount.py input output`."
 
 ```bash
-snakemake clean
+$ snakemake clean
 # use the -p option to show that it is running things correctly!
-snakemake -p dats   
+$ snakemake -p dats
 ```
+{: .language-bash}
 
 We should see the same output as before.
 Note that we can still use snakemake to build individual `.dat` targets as before,
 and that our new rule will work no matter what stem is being matched.
 
 ```bash
-snakemake -p sierra.dat
+$ snakemake -p sierra.dat
 ```
-
+{: .language-bash}
 
 which gives the output below:
 
@@ -75,13 +76,13 @@ Finished job 0.
 
 > ## Using wildcards
 >
-> Our arbitrary wildcards like `{file}` can only be used in 
-> `input:` and `output:` fields. It cannot be used in actions. 
+> Our arbitrary wildcards like `{file}` can only be used in
+> `input:` and `output:` fields. It cannot be used in actions.
 {: .callout}
 
 Our Snakefile is now much shorter and cleaner:
 
-```python
+```make
 # generate summary table
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'
@@ -98,10 +99,10 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: '{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
-
+{: .language-make}

@@ -8,15 +8,15 @@ objectives:
 - "Use snakemake wildcards to simplify our rules."
 - "Output files are a product not only of input files but of the scripts or code that created the output files."
 keypoints:
-- "Use {output} to refer to the output of the current rule."
-- "Use {input} to refer to the dependencies of the current rule."
+- "Use `{output}` to refer to the output of the current rule."
+- "Use `{input}` to refer to the dependencies of the current rule."
 - "You can use Python indexing to retrieve individual outputs and inputs (example: `{input[0]}`)"
 - "Wildcards can be named (example: `{input.file1}`)."
 ---
 
 After the exercise at the end of the previous episode, our Snakefile looked like this:
 
-```python
+```make
 # generate summary table
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
@@ -32,21 +32,21 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	'books/isles.txt'
+    input:  'books/isles.txt'
     output: 'isles.dat'
-    shell: 	'python wordcount.py books/isles.txt isles.dat'
+    shell:  'python wordcount.py books/isles.txt isles.dat'
 
 rule count_words_abyss:
-    input: 	'books/abyss.txt'
+    input:  'books/abyss.txt'
     output: 'abyss.dat'
-    shell: 	'python wordcount.py books/abyss.txt abyss.dat'
+    shell:  'python wordcount.py books/abyss.txt abyss.dat'
 
 rule count_words_last:
-    input: 	'books/last.txt'
+    input:  'books/last.txt'
     output: 'last.dat'
-    shell: 	'python wordcount.py books/last.txt last.dat'
+    shell:  'python wordcount.py books/last.txt last.dat'
 ```
-
+{: .language-make}
 
 Our Snakefile has a lot of duplication. For example, the names of text
 files and data files are repeated in many places throughout the
@@ -70,7 +70,7 @@ Let us set about removing some of the repetition from our Snakefile.
 In our `zip_test` rule we duplicate the data file names and the
 name of the results file name:
 
-```python
+```make
 rule zipf_test:
     input:
             'abyss.dat',
@@ -79,39 +79,43 @@ rule zipf_test:
     output: 'results.txt'
     shell:  'python zipf_test.py abyss.dat isles.dat last.dat > results.txt'
 ```
+{: .language-make}
 
 Looking at the results file name first, we can replace it in the action
 with `{output}`:
 
-```python
+```make
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
     shell:  'python zipf_test.py abyss.dat isles.dat last.dat > {output}'
 ```
+{: .language-make}
 
 `{output}` is a Snakemake [wildcard]({{ page.root }}/reference/#automatic-variable)
-which is equivalent to the value we specified for {output}. 
+which is equivalent to the value we specified for the `output` section of the rule.
 
 We can replace the dependencies in the action with `{input}`:
 
-```python
+```make
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
     shell:  'python zipf_test.py {input} > {output}'
 ```
+{: .language-make}
 
 `{input}` is another wildcard which means 'all the dependencies
-of the current rule'. Again, when Make is run it will replace this
+of the current rule'. Again, when Snakemake is run it will replace this
 variable with the dependencies.
 
 Let's update our text files and re-run our rule:
 
 ```bash
-touch books/*.txt
-snakemake results.txt
+$ touch books/*.txt
+$ snakemake results.txt
 ```
+{: .language-bash}
 
 We get:
 
@@ -166,10 +170,10 @@ Finished job 0.
 > What will happen if you now execute:
 >
 > ```bash
-> touch *.dat
-> snakemake results.txt
+> $ touch *.dat
+> $ snakemake results.txt
 > ```
-> 
+> {: .language-bash}
 >
 > 1. nothing
 > 2. all files recreated
@@ -185,10 +189,10 @@ Finished job 0.
 > > If you run:
 > >
 > > ```bash
-> > touch books/*.txt
-> > snakemake results.txt
+> > $ touch books/*.txt
+> > $ snakemake results.txt
 > > ```
-> > 
+> > {: .language-bash}
 > >
 > > you will find that the `.dat` files as well as `results.txt` are recreated.
 > {: .solution}
@@ -200,7 +204,7 @@ the same - as the input for the `zipf_test.py` script.
 
 > ## Rewrite `.dat` rules to use wildcards
 >
-> Rewrite each `.dat` rule to use the {input} and {output} wildcards.
+> Rewrite each `.dat` rule to use the `{input}` and `{output}` wildcards.
 {: .challenge}
 
 ## Handling dependencies differently
@@ -215,35 +219,37 @@ one input file to be named when it is invoked.
 Snakemake provides several solutions to this.
 Depending on what we want to do, it's possible to both index and name our wildcards.
 
-We need to add `wordcount.py` as a dependency of each of our data files.
-In this case, we can use `{input[0]}` to refer to the first dependency, 
+Suppose we want to add `wordcount.py` as a dependency of each of our data files.
+In this case, we can use `{input[0]}` to refer to the first dependency,
 and `{input[1]}` to refer to the second.
 
-```python
+```make
 rule count_words:
-    input: 	'wordcount.py', 'books/isles.txt'
+    input:  'wordcount.py', 'books/isles.txt'
     output: 'isles.dat'
-    shell: 	'python {input[0]} {input[1]} {output}'
+    shell:  'python {input[0]} {input[1]} {output}'
 ```
+{: .language-make}
 
 Alternatively, we can name our dependencies.
 
-```python
+```make
 rule count_words_abyss:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/abyss.txt'
     output: 'abyss.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
-
+{: .language-make}
 
 Let's mark `wordcount.py` as updated, and re-run the pipeline.
 
 ```bash
-touch wordcount.py
-snakemake
+$ touch wordcount.py
+$ snakemake
 ```
+{: .language-bash}
 
 ```
 Provided cores: 1
@@ -288,10 +294,10 @@ Intuitively, we should also add `wordcount.py` as dependency for
 happens to `results.txt` when we update `wordcount.py`:
 
 ```bash
-touch wordcount.py
-snakemake results.txt
+$ touch wordcount.py
+$ snakemake results.txt
 ```
-
+{: .language-bash}
 
 then we get:
 
@@ -335,9 +341,9 @@ The whole pipeline is triggered, even the creation of the
 `results.txt` file! To understand this, note that according to the
 dependency figure, `results.txt` depends on the `.dat` files. The
 update of `wordcount.py` triggers an update of the `*.dat`
-files. Thus, `make` sees that the dependencies (the `.dat` files) are
+files. Thus, `snakemake` sees that the dependencies (the `.dat` files) are
 newer than the target file (`results.txt`) and thus it recreates
-`results.txt`. This is an example of the power of `make`: updating a
+`results.txt`. This is an example of the power of `snakemake`: updating a
 subset of the files in the pipeline triggers rerunning the appropriate
 downstream steps.
 
@@ -347,9 +353,9 @@ downstream steps.
 >
 > ```bash
 > touch books/last.txt
-> make results.txt
+> snakemake results.txt
 > ```
-> 
+> {: .language-bash}
 >
 > 1. only `last.dat` is recreated
 > 2. all `.dat` files are recreated
@@ -359,7 +365,7 @@ downstream steps.
 
 > ## More dependencies...
 >
-> Add zipf_test.py as a dependency of `results.txt`
+> Add `zipf_test.py` as a dependency of `results.txt`
 > Which method do you prefer here, indexing or named input files?
 > Yes, this will be clunky, but we'll fix that part later!
 > Remember that you can do a dry run with `snakemake -n -p`!
