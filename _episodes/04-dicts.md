@@ -76,9 +76,9 @@ list(example.values())
 > ## Dictionary order
 > Note that the order of keys and values in a dictionary should not be relied upon.
 > We'll create dictionary another way to demonstrate this:
-> 
+>
 > ```python
-> unordered = {'a': 1, 
+> unordered = {'a': 1,
 >              'b': 2,
 >              'c': 3,
 >              'd': 4}
@@ -88,12 +88,12 @@ list(example.values())
 > {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 > ```
 > {: .output}
-> 
-> Depending on your version of Python, the dictionary will either be in order, or out of order. 
+>
+> Depending on your version of Python, the dictionary will either be in order, or out of order.
 > If you are on Python 3.6+ dictionaries are ordered.
-> This is a new feature [and should not be relied upon](https://mail.python.org/pipermail/python-dev/2016-September/146348.html). 
-> 
+> This is a new feature [and should not be relied upon](https://mail.python.org/pipermail/python-dev/2016-September/146348.html).
+>
 > Iterate through and print the dictionary's keys in both forward and reverse order.
-> 
+>
 > (To iterate through the dict in a specific order, you will need to sort the keys using the `sorted()` function)
 {: .callout}

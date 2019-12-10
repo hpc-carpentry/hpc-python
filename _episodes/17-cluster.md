@@ -14,37 +14,37 @@ keypoints:
 ---
 
 Right now we have a reasonably effective pipeline that scales nicely on our local computer.
-However, for the sake of this course, 
-we'll pretend that our workflow actually takes significant computational resources 
+However, for the sake of this course,
+we'll pretend that our workflow actually takes significant computational resources
 and needs to be run on a cluster.
 
 > ## HPC cluster architecture
-> 
+>
 > Most HPC clusters are run using a scheduler.
 > The scheduler is a piece of software that handles which compute jobs are run on which compute nodes and where.
 > It allows a set of users to share a shared computing system as efficiently as possible.
 > In order to use it, users typically must write their commands to be run into a shell script
 > and then "submit" it to the scheduler.
-> 
+>
 > A good analogy would be a university's room booking system.
 > No one gets to use a room without going through the booking system.
-> The booking system decides which rooms people get based on their requirements 
+> The booking system decides which rooms people get based on their requirements
 > (# of students, time allotted, etc.).
 {: .callout}
 
 Normally, moving a workflow to be run by a cluster scheduler requires a lot of work.
 Batch scripts need to be written, and you'll need to monitor and babysit the status of each of your jobs.
-This is especially difficult if one batch job depends on the output from another. 
-Even moving from one cluster to another (especially ones using a different scheduler) 
+This is especially difficult if one batch job depends on the output from another.
+Even moving from one cluster to another (especially ones using a different scheduler)
 requires a large investment of time and effort - all the batch scripts from before need to be rewritten.
 
-Snakemake does all of this for you. 
-All details of running the pipeline through the cluster scheduler are handled by Snakemake - 
+Snakemake does all of this for you.
+All details of running the pipeline through the cluster scheduler are handled by Snakemake -
 this includes writing batch scripts, submitting, and monitoring jobs.
-In this scenario, the role of the scheduler is limited to ensuring each Snakemake rule 
+In this scenario, the role of the scheduler is limited to ensuring each Snakemake rule
 is executed with the resources it needs.
 
-We'll explore how to port our example Snakemake pipeline by example 
+We'll explore how to port our example Snakemake pipeline by example
 Our current Snakefile is shown below:
 
 ```make
@@ -65,7 +65,7 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: 'dats/{file}.dat'
@@ -113,7 +113,7 @@ and submits new jobs (rules) once their dependencies are created.
 ## Transferring our workflow
 
 Let's port our workflow to Compute Canada's Graham cluster as an example
-(you will probably be using a different cluster, adapt these instructions to your cluster). 
+(you will probably be using a different cluster, adapt these instructions to your cluster).
 The first step will be to transfer our files to the cluster and log on via SSH.
 Snakemake has a powerful archiving utility that we can use to bundle up our workflow and transfer it.
 
@@ -129,17 +129,17 @@ $ ssh -X yourUsername@graham.computecanada.ca
 {: .language-bash}
 
 > ## `snakemake --archive` and Conda deployment
-> 
-> Snakemake has a built-in method to archive all input files 
+>
+> Snakemake has a built-in method to archive all input files
 > and scripts under version control: `snakemake --archive`.
 > What's more, it also installs any required dependencies if they can be installed
 > using Anaconda's `conda` package manager.
 > You can use this feature for this tutorial
 > (I've already added all of the files to version control for you),
 > but if you want to use this feature in your own work, 
-> you should familiarise yourself with a VCS tool like Git.
+> you should familiarise yourself with a version control tool like Git.
 >
-> For more information on how to use this feature, see 
+> For more information on how to use this feature, see
 > [http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html](http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
 {: .callout}
 
@@ -154,7 +154,7 @@ $ tar -xvzf pipeline.tar.gz
 ```
 {: .language-bash}
 
-If Snakemake and Python are not already installed on your cluster, 
+If Snakemake and Python are not already installed on your cluster,
 you can install them using the following commands:
 
 ```bash
@@ -167,7 +167,7 @@ $ pip install --user snakemake
 ```
 {: .language-bash}
 
-Assuming you've transferred your files and everything is set to go, 
+Assuming you've transferred your files and everything is set to go,
 the command `snakemake -n` should work without errors.
 
 ## Cluster configuration with `cluster.json`
@@ -194,22 +194,22 @@ the box at [jsonlint.com](https://jsonlint.com).
 ```
 {: .source}
 
-This file has several components. 
+This file has several components.
 The values under `__default__` represents a set of default configuration values
 that will be used for all rules.
-The defaults won't always be perfect, however - 
+The defaults won't always be perfect, however -
 chances are some rules may need to run with non-default amounts of memory or time limits.
 We are using the `count_words` rule as an example of this.
 In this case, `count_words` has its own custom values for `time` and `mem` (just as an example).
 `{rule}` and `{wildcards}` are special wildcards that you can use here that
-correspond to the rule name and rule's wildcards, respectively 
+correspond to the rule name and rule's wildcards, respectively
 (if you choose to use `{wildcards}`, make sure it has a value!).
 
 ## Local rule execution
 
-Some Snakemake rules perform trivial tasks where job submission might be overkill 
+Some Snakemake rules perform trivial tasks where job submission might be overkill
 (i.e. less than 1 minute worth of compute time).
-It would be a better idea to have these rules execute locally 
+It would be a better idea to have these rules execute locally
 (i.e. where the `snakemake` command is run)
 instead of as a job.
 Let's define `all`, `clean`, and `make_archive` as localrules near the top of our `Snakefile`.
@@ -234,11 +234,11 @@ with `watch squeue -u $(whoami)`.
 
 In the meantime, let's dissect the command we just ran.
 
-**`-j 100`** - `-j` no longer controls the number of cores when running on a cluster. Instead, it controls the maximum number of jobs that snakemake can have submitted at a time. This does not come into play here, but generally a sensible default is slightly above the maximum number of jobs you are allowed to have submitted at a time. 
+**`-j 100`** - `-j` no longer controls the number of cores when running on a cluster. Instead, it controls the maximum number of jobs that snakemake can have submitted at a time. This does not come into play here, but generally a sensible default is slightly above the maximum number of jobs you are allowed to have submitted at a time.
 
 **`--cluster-config`** - This specifies the location of a JSON file to read cluster configuration values from. This should point to the `cluster.json` file we wrote earlier.
 
-**`--cluster`** - This is the submission command that should be used for the scheduler. Note that command flags that normally are put in batch scripts are put here (most schedulers allow you to add submission flags like this when submitting a job). In this case, all of the values come from our `--cluster-config` file. You can access individual values with `{cluster.propertyName}`. Note that we can still use `{threads}` here. 
+**`--cluster`** - This is the submission command that should be used for the scheduler. Note that command flags that normally are put in batch scripts are put here (most schedulers allow you to add submission flags like this when submitting a job). In this case, all of the values come from our `--cluster-config` file. You can access individual values with `{cluster.propertyName}`. Note that we can still use `{threads}` here.
 
 > ## Notes on `$PATH`
 >

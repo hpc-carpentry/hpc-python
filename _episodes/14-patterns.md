@@ -18,11 +18,11 @@ rule]({{ page.root }}/reference/#pattern-rule) which can be used to build any
 
 ```make
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: '{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
 {: .language-make}
 
@@ -76,8 +76,8 @@ Finished job 0.
 
 > ## Using wildcards
 >
-> Our arbitrary wildcards like `{file}` can only be used in 
-> `input:` and `output:` fields. It cannot be used in actions. 
+> Our arbitrary wildcards like `{file}` can only be used in
+> `input:` and `output:` fields. It cannot be used in actions.
 {: .callout}
 
 Our Snakefile is now much shorter and cleaner:
@@ -99,10 +99,10 @@ rule clean:
 
 # count words in one of our "books"
 rule count_words:
-    input: 	
+    input:
         wc='wordcount.py',
         book='books/{file}.txt'
     output: '{file}.dat'
-    shell: 	'python {input.wc} {input.book} {output}'
+    shell:  'python {input.wc} {input.book} {output}'
 ```
 {: .language-make}

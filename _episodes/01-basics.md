@@ -22,7 +22,7 @@ print(5 + 1)
 ```
 {: .output}
 
-Note that we don't always have to use the `print()` statement. 
+Note that we don't always have to use the `print()` statement.
 Notice how leaving out `print()` gives us the same result as above.
 
 ```python
@@ -62,8 +62,8 @@ You can also use it to more complicated operations, like exponentiation (`**`):
 ```
 {: .output}
 
-Along with floor and remainder division. 
-Floor division (`//`) gives the results of division, rounded down. 
+Along with floor and remainder division.
+Floor division (`//`) gives the results of division, rounded down.
 Remainder division (`%`), gives the remainder after division.
 
 ```python
@@ -88,7 +88,7 @@ Python follows the normal order of operations for maths.
 ```
 {: .output}
 
-However, if you want Python to change the order it does things in, 
+However, if you want Python to change the order it does things in,
 you can use parentheses to specify what to do first.
 Note that there is no limit to the number of parentheses you can use.
 
@@ -104,7 +104,7 @@ Note that there is no limit to the number of parentheses you can use.
 ## Variables
 
 Of course, we will probably want to save our answers at some point.
-We can do this by *assigning a variable*. 
+We can do this by *assigning a variable*.
 In Python, a variable is a name for a saved result.
 We can set them with the `=` sign.
 
@@ -113,7 +113,7 @@ weight_kg = 55
 ```
 {: .language-python}
 
-If we want to retrieve the information we've stored, 
+If we want to retrieve the information we've stored,
 we can do it by simply typing the name of the variable again.
 
 ```python
@@ -151,7 +151,7 @@ print(weight_lb)
 ```
 {: .output}
 
-What happens when we change a variable? 
+What happens when we change a variable?
 Let's update `weight_kg` and see what happens to `weight_lb`.
 
 ```python
@@ -169,13 +169,13 @@ weight in lb ending value is 121.00000000000001
 {: .output}
 
 
-Notice how even though we changed the value of `weight_kg`, `weight_lb` did not update. 
+Notice how even though we changed the value of `weight_kg`, `weight_lb` did not update.
 This demonstrates a very important property of programming languages:
 a computer will not do anything unless you specifically tell it to - **nothing ever happens automatically**.
 This is different from the behaviour of a spreadsheets, 
 where a cell will automatically update when the cells it refers to are updated.
 
-If we want to tell Python to update `weight_lb` to reflect the new value of `weight_kg`, 
+If we want to tell Python to update `weight_lb` to reflect the new value of `weight_kg`,
 we will need to perform this operation explicitly.
 
 ```python
@@ -190,7 +190,7 @@ new value for weight_lb is 22000.0
 
 One more thing to note:
 what we just did is the best way to learn Python.
-Don't know how something works? 
+Don't know how something works?
 Try it and find out!
 
 > ## Where are variables stored?
@@ -200,9 +200,9 @@ Try it and find out!
 > Where do variables get stored?
 >
 > Memory is where temporary information on your computer gets placed.
-> It is very fast and easy to access, but has one important drawback: 
+> It is very fast and easy to access, but has one important drawback:
 > data here is erased when your program quits or your computer shuts down.
-> All information you save as variables in Python will be stored in memory! 
+> All information you save as variables in Python will be stored in memory!
 > When programming, we always need to save our data as a file (on our hard disk) if we want to keep it!
 >
 > Your computer's hard disk is used to store information long-term.
@@ -220,7 +220,7 @@ We are going to run into errors.
 For instance, what happens if we accidentally don't finish a command?
 
 ```python
-1 + 
+1 +
 ```
 {: .language-python}
 ```
@@ -232,7 +232,7 @@ SyntaxError: invalid syntax
 ```
 {: .error}
 
-This is an error. Errors are good! 
+This is an error. Errors are good!
 When we do something that Python doesn't like, it will give us an error message.
 These error messages are called tracebacks, and often tell us exactly how to fix our stuff!
 
@@ -243,12 +243,12 @@ SyntaxError: invalid syntax
 ```
 {: .error}
 
-All errors have types. 
-This one is a SyntaxError, indicating, well... an error in our syntax. 
-Syntax is "computer-speak" for how things are supposed to be typed. 
-Python only understands certain commands, and typos will mess it up. 
-If we type a command in such a way that Python can't understand it, we need to fix our syntax 
-(make sure we've typed a valid command). 
+All errors have types.
+This one is a `SyntaxError`, indicating, well... an error in our syntax.
+Syntax is "computer-speak" for how things are supposed to be typed.
+Python only understands certain commands, and typos will mess it up.
+If we type a command in such a way that Python can't understand it, we need to fix our syntax
+(make sure we've typed a valid command).
 **Takeaway message: We made an error when typing things.**
 
 ```
@@ -263,9 +263,9 @@ The first thing it does is tell us which file had the error in it.
 Since we are using the terminal, 
 it gives us the semi-confusing `<ipython-input-15-70475fc083df` instead of a filename.
 
-The `line 1` bit tells us that our error was on line 1 of our last command. 
-Specifically, Python has printed out the offending line for us, 
-and pointed an arrow (`^`) at the bad part. 
+The `line 1` bit tells us that our error was on line 1 of our last command.
+Specifically, Python has printed out the offending line for us,
+and pointed an arrow (`^`) at the bad part.
 **Takeaway message: The error came right after we typed the `+` sign.**
 
 ## Different types of data
@@ -281,11 +281,11 @@ Boolean values (True/False), and a special value used to indicate no data whatso
 
 ### Strings
 
-We've already encountered 3 of these "data types" already. 
+We've already encountered 3 of these "data types" already.
 The first is strings, which are used to store text.
 Strings are indicated with either single (`'`) or double (`"`) quotes.
 
-To see what data type something is, we can use the `type()` command. 
+To see what data type something is, we can use the `type()` command.
 It will print the data type of whatever is inside the parentheses.
 
 ```python
@@ -303,7 +303,7 @@ We can also make multiline strings with 3 of either set of quotes.
 
 ```python
 multiline = '''
-    This string 
+    This string
     spans
     multiple
     lines
@@ -324,7 +324,7 @@ str
 ```
 {: .output}
 
-Python makes it very easy to work with basic text. 
+Python makes it very easy to work with basic text.
 For instance, we can even use the `+` sign to put strings together!
 
 ```python
@@ -359,7 +359,7 @@ This error indicates that Python doesn't know how to convert a string to an inte
 
 ### Numbers
 
-Integers are used to store any whole number, either positive or negative. 
+Integers are used to store any whole number, either positive or negative.
 Any number without a decimal place is an int, or integer.
 
 ```python
@@ -417,7 +417,7 @@ bool
 ```
 {: .output}
 
-Finally, there is a special value called `None` used to indicate no data. 
+Finally, there is a special value called `None` used to indicate no data.
 We will revisit `None` in more detail later, so for now, just be aware it exists.
 
 ```python
@@ -430,15 +430,15 @@ NoneType
 {: .output}
 
 > ## Converting between data types
-> Data often isn't the format you want it to be. 
+> Data often isn't the format you want it to be.
 > For instance, we got an error earlier while attempting to
 > perform addition between a string and a number (`'5' + 5`).
 > What if we really needed to do that?
 > Fortunately, Python makes it rather easy to convert between data types.
 > Each data type has a function used to convert another piece of data.
-> 
+>
 > To convert a string to an integer, for instance, we can use the `int()` command:
-> 
+>
 > ```python
 > print(int('5') + 5)
 > ```
@@ -447,9 +447,9 @@ NoneType
 > 10
 > ```
 > {: .output}
-> 
+>
 > Likewise, we can use the following commands to convert data to other types:
-> 
+>
 > * `str()` - creates a string
 > * `int()` - creates an integer
 > * `float()` - creates a float
@@ -458,7 +458,7 @@ NoneType
 > Using this information, 
 > see if you can fix the left side of these statements to equal the right side of each statement.
 > Use only the commands shown above.
-> 
+>
 > ```python
 > 1 + '1' == '11'
 > '6' - 7 == -1

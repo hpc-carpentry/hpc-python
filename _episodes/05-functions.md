@@ -37,8 +37,8 @@ adder(1, 2)
 ```
 {: .output}
 
-We can also add a default argument 
-(say if we wanted y to be equal to 10 unless we otherwise specified), 
+We can also add a default argument
+(say if we wanted y to be equal to 10 unless we otherwise specified),
 by using an equals sign and a default value in our function definition:
 
 ```python
@@ -120,7 +120,7 @@ These statements can be combined with the `if` statement to produce code that ex
 ```python
 number = 5
 if number <= 10:
-	print('number was less than 10')
+    print('number was less than 10')
 ```
 {: .language-python}
 ```
@@ -134,7 +134,7 @@ the statement does not execute:
 ```python
 number = 11
 if number <= 10:
-	print('number was less than 10')
+    print('number was less than 10')
 ```
 {: .language-python}
 
@@ -143,9 +143,9 @@ However, we can add code to execute when the `if` condition is not met by adding
 ```python
 number = 11
 if number <= 10:
-	print('number was less than 10')
+    print('number was less than 10')
 else:
-	print('number was greater than 10')
+    print('number was greater than 10')
 ```
 {: .language-python}
 ```
@@ -153,17 +153,17 @@ number was greater than 10
 ```
 {: .output}
 
-And if we want to check an additional statement, 
+And if we want to check an additional statement,
 we can use the `elif` keyword (else-if):
 
 ```python
 number = 10
 if number < 10:
-	print('number was less than 10')
+    print('number was less than 10')
 elif number == 10:
-	print('number was equal to 10')
+    print('number was equal to 10')
 else:
-	print('number was greater than 10')
+    print('number was greater than 10')
 ```
 {: .language-python}
 
@@ -197,7 +197,7 @@ False
 
 ## map(), filter(), and anonymous (lambda) functions
 
-Python has good support for functional programming, 
+Python has good support for functional programming,
 and has its own equivalents for map/reduce-style functionality.
 To "map" a function means to apply it to a set of elements.
 To "reduce" means to collapse a set of values to a single value.
@@ -211,8 +211,8 @@ map(function, thing_to_iterate_over, next_thing_to_iterate_over)
 ```
 {: .language-python}
 
-Let's apply this to a few test cases using map. 
-Note that when selecting which function we are going to "map" with, 
+Let's apply this to a few test cases using map.
+Note that when selecting which function we are going to "map" with,
 
 ```python
 import math
@@ -242,12 +242,12 @@ list(map(math.sin, values))
 ```
 {: .output}
 
-`filter()` applies a similar operation, but instead of applying a function to every piece, 
+`filter()` applies a similar operation, but instead of applying a function to every piece,
 it only returns points where a function returns true.
 
 ```python
 def less_than_3(val):
-	return val < 3
+    return val < 3
 
 list(filter(less_than_3, values))
 ```
@@ -269,14 +269,14 @@ lambda x: x + 54
 ``` 
 {: .language-python}
 
-In this case, `lambda x:` indicates we are defining a lambda function with a single argument, `x`. 
+In this case, `lambda x:` indicates we are defining a lambda function with a single argument, `x`.
 Everything following the `:` is our function.
 Whatever value this evaluates to is automatically returned.
 So `lambda x: x + 54` equates to:
 
 ```python
 def some_func(x):
-	return x + 54
+    return x + 54
 ```
 {: .language-python}
 
@@ -331,7 +331,7 @@ array([  1,   8,  27,  64, 125])
 ```
 {: .output}
 
-To perform a similar option to `filter()`, 
+To perform a similar option to `filter()`,
 you can actually specify a conditional statement inside the `[]`
 when indexing a Numpy array.
 
@@ -345,6 +345,6 @@ arr[arr >= 3]
 >
 > Remove all of the `np.nan` values from the following sequence
 > using logical indexing.
-> 
+>
 > `np.array([np.nan, np.nan, 2, 3, 4, np.nan])`
 {: .challenge}
