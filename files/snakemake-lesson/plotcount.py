@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+######################################################################
+# Never do the following in the real world, warnings are important!
+# This silences warnings only to not confuse learners.
+import warnings
+warnings.filterwarnings("ignore")
+######################################################################
+
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
