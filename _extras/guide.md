@@ -19,5 +19,7 @@ The only significant change is the `snakemake clean` rule:
 `rm -f *.dat` should be changed to `del *.dat`. 
 
 If students get lost, there is a hidden `.Snakemake` file in the lesson materials 
-(`snakemake-lesson.tar.gz`)
+([`snakemake-lesson.tar.gz`][snakemake-lesson])
 that students can use as a reference or use for the final "cluster submission" section.
+
+[snakemake-lesson]: {{ page.root }}/files/snakemake-lesson.tar.gz
