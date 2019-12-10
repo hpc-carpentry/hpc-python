@@ -13,10 +13,10 @@ keypoints:
 - "The `&&` operator is a useful tool when chaining bash commands."
 ---
 
-After the excercises at the end of our last lesson,
+After the exercises at the end of our last lesson, 
 our Snakefile looks something like this:
 
-```python
+```make
 # our zipf analysis pipeline
 DATS = glob_wildcards('books/{book}.txt').book
 
@@ -65,7 +65,7 @@ rule make_archive:
     output: 'zipf_analysis.tar.gz'
     shell: 'tar -czvf {output} {input}'
 ```
-
+{: .language-make}
 
 At this point, we have a complete data analysis pipeline.
 Very cool.
@@ -89,10 +89,10 @@ The only change we need to make is run Snakemake with the `-j` argument.
 and on a cluster, maximum number of jobs (we'll get to that part later).
 
 ```bash
-snakemake clean
-snakemake -j 4    # 4 cores is usually a safe assumption when working on a laptop/desktop
+$ snakemake clean
+$ snakemake -j 4    # 4 cores is usually a safe assumption when working on a laptop/desktop
 ```
-
+{: .language-bash}
 ```
 Provided cores: 4
 Rules claiming more threads will be scaled down.
@@ -121,7 +121,7 @@ serial pipeline is run `snakemake` with the `-j` option.
 > import psutil
 > psutil.cpu_count(logical=False)
 > ```
->
+> {: .language-python}
 {: .callout}
 
 ## Managing CPUs
@@ -144,7 +144,7 @@ In this case `wordcount.py` is actually still running with 1 core,
 we are simply using it as a demonstration of how to go about
 running something with multiple cores.
 
-```python
+```make
 rule count_words:
     input:
         wc='wordcount.py',
@@ -157,11 +157,12 @@ rule count_words:
         python {input.wc} {input.book} {output}
         '''
 ```
+{: .language-make}
 
-
-Now, when we run `snakemake -j 4`, the `count_words` rules are run one at a time,
-so as to give each execution the resources it needs.
-All of our other rules will still run in parallel.
+Now when we run `snakemake -j 4`, the jobs from `count_words` are run one at a time so as to give each job the resources it needs.
+Since each job of the `count_words` rule requires 4 threads (as per the newly added thread directive), and because
+all jobs have a maximum of 4 cores available to them as per the `-j 4` option, the count_words jobs are run one at a time.
+All of our other rules will still run in parallel since they default to requesting a single thread.
 Unless otherwise specified with `{threads}`, rules will use 1 core by default.
 
 ```
@@ -189,15 +190,15 @@ Finished job 3.
 
 # other output follows
 ```
-
+{: .output}
 
 What happens when we don't have 4 cores available?
 What if we tell Snakemake to run with 2 cores instead?
 
 ```bash
-snakemake -j 2
+$ snakemake -j 2
 ```
-
+{: .language-bash}
 ```
 Provided cores: 2
 Rules claiming more threads will be scaled down.
@@ -244,7 +245,7 @@ If the first command fails, the remaining steps are not run.
 This is more forgiving than bash's default "hit an error and keep going" behavior.
 After all, if the first command failed, it's unlikely the other steps will work.
 
-```python
+```make
 # count words in one of our "books"
 rule count_words:
     input:
@@ -258,8 +259,7 @@ rule count_words:
             python {input.wc} {input.book} {output}
         '''
 ```
-
-
+{: .language-make}
 
 ## Managing other types of resources
 
@@ -275,7 +275,7 @@ How do we indicate this to Snakemake so that it knows to give dedicated access t
 for rules that need it?
 Let's modify the `make_plot` rule as an example:
 
-```python
+```make
 # create a plot for each book
 rule make_plot:
     input:
@@ -285,15 +285,15 @@ rule make_plot:
     resources: gpu=1
     shell:  'python {input.plotcount} {input.book} {output}'
 ```
-
+{: .language-make}
 
 We can execute our pipeline using the following (using 8 cores and 1 gpu):
 
 ```bash
-snakemake clean
-snakemake -j 8 --resources gpu=1
+$ snakemake clean
+$ snakemake -j 8 --resources gpu=1
 ```
-
+{: .language-bash}
 ```
 Provided cores: 8
 Rules claiming more threads will be scaled down.
@@ -313,10 +313,10 @@ it is an arbitrary limit used to prevent multiple tasks that use a `gpu` from ex
 But what happens if we run our pipeline without specifying the number of GPUs?
 
 ```bash
-snakemake clean
-snakemake -j 8
+$ snakemake clean
+$ snakemake -j 8
 ```
-
+{: .language-bash}
 ```
 Provided cores: 8
 Rules claiming more threads will be scaled down.
@@ -336,7 +336,7 @@ Snakemake will assume that the resources in question are unlimited.
 > Or maybe a type of rule uses a lot of network bandwidth as it downloads data.
 > In all of these cases, `resources` can be used to constrain access
 > to arbitrary compute resources so that each rule can run at it's most efficient.
-> Snakemake will run your rules in such a way as to maximize throughput given your
+> Snakemake will run your rules in such a way as to maximise throughput given your
 > resource constraints.
 {: .callout}
 

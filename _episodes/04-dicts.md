@@ -10,8 +10,8 @@ keypoints:
 - "Dicts provide key-value storage of information."
 ---
 
-Dictionaries (also called dicts) are another key datastructure we'll need to use to write a pipeline.
-In particular, dicts allow efficient key-value storage of any type of data.
+Dictionaries (also called dicts) are another key data structure we'll need to use to write a pipeline.
+In particular, dicts allow efficient key-value storage of any type of data. 
 
 To create a dict, we use syntax like the following.
 
@@ -19,7 +19,7 @@ To create a dict, we use syntax like the following.
 example = {}
 type(example)
 ```
-
+{: .language-python}
 ```
 dict
 ```
@@ -33,7 +33,7 @@ and the stored data is referred to as the "value".
 example['key'] = 'value'
 example['key']
 ```
-
+{: .language-python}
 ```
 'value'
 ```
@@ -48,7 +48,7 @@ example[4] = False
 example['test'] = 5
 example[7] = 'myvalue'
 ```
-
+{: .language-python}
 
 To retrieve all keys in the dictionary, we can use the `.keys()`method.
 Note how we used the `list()` function to turn our resulting output into a list.
@@ -56,7 +56,7 @@ Note how we used the `list()` function to turn our resulting output into a list.
 ```python
 list(example.keys())
 ```
-
+{: .language-python}
 ```
 ['key', 1, 4, 'test', 7]
 ```
@@ -67,7 +67,7 @@ Likewise, we can retrieve all the values at once, using `.values()`
 ```python
 list(example.values())
 ```
-
+{: .language-python}
 ```
 ['value', 2, False, 5, 'myvalue']
 ```
@@ -83,7 +83,7 @@ list(example.values())
 >              'c': 3,
 >              'd': 4}
 > ```
->
+> {: .language-python}
 > ```
 > {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 > ```

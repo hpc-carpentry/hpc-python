@@ -24,7 +24,7 @@ Enter the following text in a text editor and save it under any name you like
 ```python
 print('it works!!!')
 ```
-
+{: .language-python}
 
 We can now run this program in several ways.
 If we were to open up a terminal in the folder where we had saved our program,
@@ -36,6 +36,7 @@ it works!!!
 {: .output}
 
 > ## What's the point of print()?
+>
 > We saw earlier that there was no difference between printing something with `print()`
 > and just entering a command on the command line.
 > But is this really the case?
@@ -47,7 +48,7 @@ it works!!!
 > print('this involves print')
 > 'this does not'
 > ```
->
+> {: .language-python}
 > What gets printed if you execute this as a script?
 > What gets printed if you execute things line by line?
 > Using this information, what's the point of `print()`?
@@ -65,7 +66,7 @@ I've called my script `test.py` as an example.
 ```
 !python3 test.py
 ```
-
+{: .language-python}
 ```
 it works!!!
 ```
@@ -83,7 +84,7 @@ To access a package, we need to `import` it.
 ```python
 import sys
 ```
-
+{: .language-python}
 
 You'll notice that there's no output.
 Only one thing is changed:
@@ -96,20 +97,19 @@ Let's make a new script called `command-args.py` to try this out.
 
 ```python
 import sys
-
 print('we typed: ', sys.argv)
 ```
-
+{: .language-python}
 
 We can then execute this program with:
 ```
 !python3 test.py word1 word2 3
 ```
-
+{: .language-python}
 ```
 we typed: ['test.py', 'word1', 'word2', '3']
 ```
 {: .output}
 
-You'll notice that sys.argv looks different from other data types we've seen so far.
+You'll notice that `sys.argv` looks different from other data types we've seen so far.
 `sys.argv` is a list (more about this in the next session).

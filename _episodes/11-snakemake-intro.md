@@ -14,11 +14,30 @@ keypoints:
 Let's imagine that we're interested in
 seeing the frequency of various words in various books.
 
-We've compiled our raw data i.e. the books we want to analyze
+We've compiled our raw data i.e. the books we want to analyse
 and have prepared several Python scripts that together make up our
 analysis pipeline.
 
 Let's take quick look at one of the books using the command `head books/isles.txt`.
+
+```bash
+head books/isles.txt
+```
+
+By default, `head`  displays the first 10 lines of the specified file.
+
+```
+A JOURNEY TO THE WESTERN ISLANDS OF SCOTLAND
+
+
+INCH KEITH
+
+
+I had desired to visit the Hebrides, or Western Islands of Scotland, so
+long, that I scarcely remember how the wish was originally excited; and
+was in the Autumn of the year 1773 induced to undertake the journey, by
+finding in Mr. Boswell a companion, whose acuteness would help my
+```
 
 Our directory has the Python scripts and data files we
 we will be working with:
@@ -37,20 +56,20 @@ we will be working with:
 {: .output}
 
 The first step is to count the frequency of each word in a book.
-The first argument (`books/isles.txt`) to wordcount.py is the file to analyze,
+The first argument (`books/isles.txt`) to wordcount.py is the file to analyse,
 and the last argument (`isles.dat`) specifies the output file to write.
 
 ```bash
-python wordcount.py books/isles.txt isles.dat
+$ python wordcount.py books/isles.txt isles.dat
 ```
-
+{: .language-bash}
 
 Let's take a quick peek at the result.
 
 ```bash
-head -5 isles.dat
+$ head -5 isles.dat
 ```
-
+{: .language-bash}
 
 This shows us the top 5 lines in the output file:
 
@@ -71,11 +90,10 @@ number of words in the text file.
 We can do the same thing for a different book:
 
 ```bash
-python wordcount.py books/abyss.txt abyss.dat
-head -5 abyss.dat
+$ python wordcount.py books/abyss.txt abyss.dat
+$ head -5 abyss.dat
 ```
-
-
+{: .language-bash}
 ```
 the 4044 6.35449402891
 and 2807 4.41074795726
@@ -85,13 +103,14 @@ to 1515 2.38057825267
 ```
 {: .output}
 
-Let's visualize the results.
+Let's visualise the results.
 The script `plotcount.py` reads in a data file and plots the 10 most
 frequently occurring words as a text-based bar plot:
 
 ```bash
-python plotcount.py isles.dat ascii
+$ python plotcount.py isles.dat ascii
 ```
+{: .language-bash}
 ```
 the   ########################################################################
 of    ##############################################
@@ -109,23 +128,25 @@ it    ###########
 `plotcount.py` can also show the plot graphically:
 
 ```bash
-python plotcount.py isles.dat show
+$ python plotcount.py isles.dat show
 ```
-
+{: .language-bash}
 
 Close the window to exit the plot.
 
 `plotcount.py` can also create the plot as an image file (e.g. a PNG file):
 
 ```bash
-python plotcount.py isles.dat isles.png
+$ python plotcount.py isles.dat isles.png
 ```
+{: .language-bash}
 
 Finally, let's test Zipf's law for these books:
 
 ```bash
-python zipf_test.py abyss.dat isles.dat
+$ python zipf_test.py abyss.dat isles.dat
 ```
+{: .language-bash}
 ```
 Book	First	Second	Ratio
 abyss	4044	2807	1.44
@@ -170,15 +191,15 @@ python plotcount.py abyss.dat abyss.png
 # Generate summary table
 python zipf_test.py abyss.dat isles.dat > results.txt
 ```
-
+{: .language-bash}
 
 Run the script and check that the output is the same as before:
 
 ```bash
-bash run_pipeline.sh
-cat results.txt
+$ bash run_pipeline.sh
+$ cat results.txt
 ```
-
+{: .language-bash}
 
 This shell script solves several problems in computational reproducibility:
 
@@ -210,11 +231,9 @@ Alternatively, we could manually rerun the plotting for each word-count file.
 for-loop.)
 
 ```bash
-for book in abyss isles; do
-    python plotcount.py $book.dat $book.png
-done
+$ for book in abyss isles; do python plotcount.py $book.dat $book.png; done
 ```
-
+{: .language-bash}
 
 With this approach, however,
 we don't get many of the benefits of having a shell script in the first place.
@@ -237,10 +256,11 @@ python plotcount.py abyss.dat abyss.png
 # This line is also commented out because it doesn't need to be rerun.
 # python zipf_test.py abyss.dat isles.dat > results.txt
 ```
+{: .language-bash}
 
 Then, we would run our modified shell script using `bash run_pipeline.sh`.
 
-But commenting out these lines, and subsequently uncommenting them,
+But commenting out these lines, and subsequently un-commenting them,
 can be a hassle and source of errors in complicated pipelines.
 What happens if we have hundreds of input files?
 No one wants to enter the same command a hundred times, and then edit the result.
@@ -271,4 +291,3 @@ There are several reasons this tool was chosen:
 The rest of these lessons aim to teach you how to use Snakemake by example.
 Our goal is to automate our example workflow, and have it do everything for us in parallel
 regardless of where and how it is run (and have it be reproducible!).
-
