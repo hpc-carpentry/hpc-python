@@ -13,7 +13,7 @@ keypoints:
 - "The `&&` operator is a useful tool when chaining bash commands."
 ---
 
-After the excercises at the end of our last lesson, 
+After the exercises at the end of our last lesson, 
 our Snakefile looks something like this:
 
 ```python
@@ -334,7 +334,7 @@ Snakemake will assume that the resources in question are unlimited.
 > Or maybe a type of rule uses a lot of network bandwidth as it downloads data.
 > In all of these cases, `resources` can be used to constrain access 
 > to arbitrary compute resources so that each rule can run at it's most efficient.
-> Snakemake will run your rules in such a way as to maximize throughput given your
+> Snakemake will run your rules in such a way as to maximise throughput given your
 > resource constraints.
 {: .callout}
 

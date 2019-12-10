@@ -33,10 +33,10 @@ or which rule had an issue,
 especially when running in parallel.
 
 The solution to this issue is to redirect the output from each rule/
-set of inputs to a dedicated logfile.
+set of inputs to a dedicated log file.
 We can do this using the `log` keyword.
-Let's modify our `count_words` rule to be slighly more verbose and redirect
-this output to a dedicated logfile.
+Let's modify our `count_words` rule to be slightly more verbose and redirect
+this output to a dedicated log file.
 
 Two things before we start:
 
@@ -73,14 +73,14 @@ Running wordcount.py with 4 cores on books/abyss.txt.
 {: .output}
 
 Notice how the pipeline no longer prints to the pipeline's log, 
-and instead redirects this to a logfile.
+and instead redirects this to a log file.
 
-> ## Choosing a good logfile location
+> ## Choosing a good log file location
 > 
 > Though you can put a log anywhere (and name it anything),
 > it is often a good practice to put the log in the same directory
 > where the rule's output will be created.
-> If you need to investigate the output for a rule and associated logfiles,
+> If you need to investigate the output for a rule and associated log files,
 > this means that you only have to check one location!
 {: .callout}
 
@@ -132,7 +132,7 @@ In fact this was the tool used to create all of the diagrams in this lesson:
 
 ```bash
 snakemake --dag | dot -Tsvg > dag.svg
-eog dag.svg     # eog is an image viewer installed on many linux systems
+eog dag.svg     # eog is an image viewer installed on many Linux systems
 ```
 
 ![Example DAG plot](../fig/05-final-dag.svg)
