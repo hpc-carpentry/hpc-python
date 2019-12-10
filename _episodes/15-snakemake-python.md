@@ -20,19 +20,19 @@ Our `zipf_test` rule, for instance, is extremely clunky.
 What happens if we want to analyse `books/sierra.txt` as well?
 We'd have to update everything!
 
-```python
+```make
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
     shell:  'python {input[0]} {input[1]} {input[2]} {input[3]} > {output}'
 ```
-
+{: .language-make}
 
 First, let's cut down on a little bit of the clunkiness of the "shell" rule.
 One thing you've probably noticed is that all of our rules are using Python strings.
 Other data structures work too - let's try a list:
 
-```python
+```make
 rule zipf_test:
     input:  
         zipf='zipf_test.py',
@@ -40,20 +40,21 @@ rule zipf_test:
     output: 'results.txt'
     shell:  'python {input.zipf} {input.books} > {output}'
 ```
+{: .language-make}
 
 (`snakemake clean` and `snakemake -p` should show that the pipeline still works!)
 
 This illustrates a key feature of Snakemake. 
 Snakefiles are just Python code.
 We can make our list into a variable to demonstrate this. 
-Let's create the variable DATS and use it in our `zipf_test` and `dats` rules.
+Let's create the variable `DATS` and use it in our `zipf_test` and `dats` rules.
 
-```python
+```make
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
 
 # generate summary table
 rule zipf_test:
-    input:  
+    input:
         zipf='zipf_test.py',
         books=DATS
     output: 'results.txt'
@@ -62,7 +63,7 @@ rule zipf_test:
 rule dats:
     input: DATS
 ```
-
+{: .language-make}
 
 Try re-creating both the `dats` and `results.txt` targets
 (run `snakemake clean` in between).
@@ -73,24 +74,24 @@ The last example illustrated that we can use arbitrary Python code in our Snakef
 It's important to understand when this code gets executed.
 Let's add a print statement to the top of our Snakefile.
 
-```python
+```make
 print('Snakefile is being executed!')
 
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
 
 # generate summary table
 rule zipf_test:
-    input:  
+    input:
 # more output below
 ```
-
+{: .language-make}
 
 Now let's clean up our workspace with `snakemake clean`
 
 ```bash
 snakemake clean
 ```
-
+{: .language-bash}
 ```
 Snakefile is being executed!
 Provided cores: 1
@@ -111,9 +112,9 @@ Finished job 0.
 Now let's re-run the pipeline...
 
 ```bash
-snakemake
+$ snakemake
 ```
-
+{: .language-bash}
 ```
 Snakefile is being executed!
 Provided cores: 1
@@ -164,9 +165,9 @@ Finished job 0.
 Let's do a dry-run:
 
 ```bash
-snakemake -n
+$ snakemake -n
 ```
-
+{: .language-bash}
 ```
 Snakefile is being executed!
 Nothing to be done.
@@ -193,9 +194,9 @@ The two most helpful ones are `glob_wildcards()` and `expand()`.
 Let's start an ipython session to see how they work:
 
 ```bash
-ipython3
+$ ipython3
 ```
-
+{: .language-bash}
 ```
 Python 3.6.1 (default, Jun 27 2017, 14:35:15) 
 Type "copyright", "credits" or "license" for more information.
@@ -215,7 +216,7 @@ these functions are always imported for you.
 ```python
 from snakemake.io import *
 ```
-
+{: .language-python}
 
 ### Generating file names with expand()
 
@@ -226,7 +227,7 @@ to expand a snakemake wildcard(s) into a set of filenames.
 ```python
 expand('folder/{wildcard1}_{wildcard2}.txt', wildcard1=['a', 'b', 'c'], wildcard2=[1, 2, 3])
 ```
-
+{: .language-python}
 ```
 ['folder/a_1.txt',
  'folder/a_2.txt',
@@ -253,7 +254,7 @@ Let's try grabbing all of the book titles in our `books` folder.
 ```python
 glob_wildcards('books/{example}.txt')
 ```
-
+{: .language-python}
 ```
 Wildcards(example=['isles', 'last', 'abyss', 'sierra'])
 ```
@@ -267,7 +268,7 @@ property from the output of `glob_wildcards()`
 ```python
 glob_wildcards('books/{example}.txt').example
 ```
-
+{: .language-python}
 ```
 ['isles', 'last', 'abyss', 'sierra']
 ```
@@ -300,15 +301,15 @@ rule print_book_names:
         for book in glob.glob('books/*.txt'):
             print(book)
 ```
-
+{: .language-python}
 
 Upon execution of the corresponding rule, Snakemake dutifully runs our Python code
 in the `run:` block:
 
 ```bash
-snakemake print_book_names
+$ snakemake print_book_names
 ```
-
+{: .language-bash}
 ```
 Provided cores: 1
 Rules claiming more threads will be scaled down.
@@ -369,7 +370,7 @@ Finished job 0.
 > ```bash
 > tar -czvf zipf_analysis.tar.gz file1 directory2 file3 etc
 > ```
-> 
+> {: .language-bash}
 {: .challenge}
 
 After these exercises our final workflow should look something like the following:
@@ -393,4 +394,3 @@ After these exercises our final workflow should look something like the followin
 > * run `snakemake` and check that the correct commands are run
 > * check the results.txt file to see how this book compares to the others
 {: .challenge}
-

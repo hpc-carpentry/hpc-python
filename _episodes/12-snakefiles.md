@@ -22,7 +22,7 @@ rule count_words:
     output: 'isles.dat'
     shell: 'python wordcount.py books/isles.txt isles.dat'
 ```
-
+{: .language-python}
 
 This is a [build file]({{ page.root }}/reference/#build-file), which for
 Snakemake is called a [Snakefile]({{ page.root }}/reference/#makefile) - a file executed
@@ -57,16 +57,17 @@ Let's first ensure we start from scratch and delete the `.dat` and `.png`
 files we created earlier:
 
 ```bash
-rm *.dat *.png
+$ rm *.dat *.png
 ```
-
+{: .language-bash}
 
 By default, Snakemake looks for a file called `Snakefile`, and we can
 run Snakemake as follows:
 
 ```bash
-snakemake
+$ snakemake
 ```
+{: .language-bash}
 
 By default, Snakemake tells us what it's doing as it executes actions:
 
@@ -94,9 +95,9 @@ Snakemake follows Python syntax.
 Let's see if we got what we expected:
 
 ```bash
-head -5 isles.dat
+$ head -5 isles.dat
 ```
-
+{: .language-bash}
 
 The first 5 lines of `isles.dat` should look exactly like before.
 
@@ -107,8 +108,9 @@ The first 5 lines of `isles.dat` should look exactly like before.
 > using `-s` flag. For example, if our Makefile is named `MyOtherSnakefile`:
 >
 > ```bash
-> snakemake -s MyOtherMakefile
+> $ snakemake -s MyOtherMakefile
 > ```
+> {: .language-bash}
 > 
 {: .callout}
 
@@ -126,15 +128,16 @@ editor, we can use the shell `touch` command to update its timestamp
 (which would happen if we did edit the file):
 
 ```bash
-touch books/isles.txt
+$ touch books/isles.txt
 ```
-
+{: .language-bash}
 
 If we compare the timestamps of `books/isles.txt` and `isles.dat`,
 
 ```bash
-ls -l books/isles.txt isles.dat
+$ ls -l books/isles.txt isles.dat
 ```
+{: .language-bash}
 
 then we see that `isles.dat`, the target, is now older
 than`books/isles.txt`, its dependency:
@@ -148,8 +151,9 @@ than`books/isles.txt`, its dependency:
 If we run Make again,
 
 ```bash
-snakemake
+$ snakemake
 ```
+{: .language-bash}
 
 then it recreates `isles.dat`:
 
@@ -190,19 +194,20 @@ Let's add another rule to the end of `Snakefile`.
 Note that rules cannot have the same name, 
 so we'll call this one `count_words_abyss`.
 
-```python
+```make
 rule count_words_abyss:
 	input: 	'books/abyss.txt'
 	output: 'abyss.dat'
 	shell: 	'python wordcount.py books/abyss.txt abyss.dat'
 ```
-
+{: .language-make}
 
 If we run Snakemake,
 
 ```bash
-snakemake
+$ snakemake
 ```
+{: .language-bash}
 
 then we get:
 
@@ -218,8 +223,9 @@ already up-to-date. We need to explicitly tell Make we want to build
 `abyss.dat`:
 
 ```bash
-snakemake abyss.dat
+$ snakemake abyss.dat
 ```
+{: .language-bash}
 
 Now, we get:
 
@@ -255,10 +261,9 @@ Finished job 0.
 > no rule in our Snakefile, then we get message like:
 >
 > ```bash
-> snakemake wordcount.py
+> $ snakemake wordcount.py
 > ```
-> 
->
+> {: .language-bash} 
 > ```
 > MissingRuleException:
 > No rule to produce wordcount.py (if you use input functions make sure that they don't raise unexpected exceptions).
@@ -269,24 +274,24 @@ Finished job 0.
 > Even a small difference in a filename will result in a MissingRuleException.
 {: .callout}
 
-
 We may want to remove all our data files so we can explicitly recreate
 them all. We can introduce a new target, and associated rule, to do
 this. We will call it `clean`, as this is a common name for rules that
 delete auto-generated files, like our `.dat` files:
 
-```python
+```make
 rule clean:
     shell: 'rm -f *.dat'
 ```
+{: .language-make}
 
 This is an example of a rule that has no inputs or outputs!. We just want to remove the data files whether or
 not they exist. If we run Make and specify this target,
 
 ```bash
-snakemake clean
+$ snakemake clean
 ```
-
+{: .language-bash}
 
 then we get:
 
@@ -313,13 +318,13 @@ this at the top of our Snakefile so that it is the [default
 target]({{ page.root }}/reference/#default-target), which is executed by default
 if no target is given to the `snakemake` command:
 
-```python
+```make
 rule dats:
      input:
          'isles.dat',
          'abyss.dat'
 ```
-
+{: .language-make}
 
 This is an example of a rule that has dependencies that are targets of
 other rules. When Make runs, it will check to see if the dependencies
@@ -344,9 +349,9 @@ purely to trigger the build of its dependencies, if needed.
 If we run,
 
 ```bash
-snakemake dats
+$ snakemake dats
 ```
-
+{: .language-bash}
 
 then snakemake creates the data files:
 
@@ -390,18 +395,17 @@ and abyss.dat) are already up to date.
 Given the target `dats` has no actions, there is `nothing to be done`:
 
 ```bash
-snakemake dats
+$ snakemake dats
 ```
-
+{: .language-bash}
 ```
 Nothing to be done
 ```
 {: .output}
 
-
 Our Snakefile now looks like this:
 
-```python
+```make
 rule dats:
      input:
          'isles.dat',
@@ -425,7 +429,7 @@ rule count_words_abyss:
     output: 'abyss.dat'
     shell: 	'python wordcount.py books/abyss.txt abyss.dat'
 ```
-
+{: .language-make}
 
 The following figure shows a graph of the dependencies embodied within
 our Makefile, involved in building the `dats` target:
@@ -440,10 +444,10 @@ A dry run does nothing, and simply prints out commands instead of actually execu
 Very useful for debugging!
 
 ```bash
-snakemake clean
-snakemake -n -p isles.dat
+$ snakemake clean
+$ snakemake -n -p isles.dat
 ```
-
+{: .language-bash}
 ```
 rule count_words:
     input: wordcount.py, books/isles.txt

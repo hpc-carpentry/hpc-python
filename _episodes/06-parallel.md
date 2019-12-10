@@ -47,8 +47,7 @@ The number of concurrent tasks that can be started at the same time, however is 
 Now imagine that all workers have to obtain their paint form a central dispenser located at the middle of the room. 
 If each worker is using a different colour, then they can work asynchronously. 
 However, if they use the same colour, and two of them run out of paint at the same time, 
-then they have to synchronise to use the dispenser - 
-one should wait while the other is being serviced.
+then they have to synchronise to use the dispenser - one should wait while the other is being serviced.
 
 In our analogy, the paint dispenser represents access to the memory in your computer.
 Depending on how a program is written, access to data in memory can be synchronous or asynchronous.
@@ -78,7 +77,7 @@ In this example, each painter would be a process (an individual instance of a pr
 The painters' arms represent a "thread" of a program.
 Threads are separate points of execution within a single program, and can be executed either synchronously or asynchronously.
 
-------------------------------------------------
+---
 
 ## How does parallelization work in practice?
 
@@ -113,13 +112,13 @@ We will cover basic shared-memory programming in Python using the `multiprocess`
 
 ### Distributed memory programming
 
-Shared memory programming, although very useful - has one major limitation:
+Shared memory programming, although very useful, has one major limitation:
 we can only use the number of CPU cores present on a single computer.
 If we want to increase speed a program runs any more, we need a better computer.
 Big computers cost lots and lots of money.
 Wouldn't it be more efficient to just use a lot of smaller, cheap computers instead?
 
-This is the rationale behind distributed memory programming- 
+This is the rationale behind distributed memory programming --
 a task is farmed out to a large number of computers, 
 each of which tackle an individual portion of a problem.
 Results are communicated back and forth between compute nodes.
@@ -170,7 +169,7 @@ import psutil
 # logical=True counts threads, but we are interested in cores
 psutil.cpu_count(logical=False)
 ```
-
+{: .language-python}
 ```
 8
 ```
@@ -182,7 +181,7 @@ Using this number, we can create a pool of worker processes with which to parall
 from multiprocessing import Pool
 pool = Pool(psutil.cpu_count(logical=False))
 ```
-
+{: .language-python}
 
 The `pool` object gives us a set of parallel workers we can
 use to parallelize our calculations.
@@ -200,6 +199,7 @@ def sleeping(arg):
 
 %timeit list(map(sleeping, range(24)))
 ```
+{: .language-python}
 ```
 1 loop, best of 3: 2.4 s per loop
 ```
@@ -210,8 +210,10 @@ Now let's try it in parallel:
 ```python
 %timeit pool.map(sleeping, range(24))
 ```
+{: .language-python}
 
 If you are using a Jupyter notebook, this will fail:
+
 ```
 # more errors omitted
 AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
@@ -220,6 +222,7 @@ AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
 {: .error}
 
 > ## Differences between Jupyter notebooks versus and the Python/IPython interpreters
+>
 > The last command may have succeeded if you are running in a Python or IPython shell.
 > This is due to a difference in the way Jupyter executes user-defined functions):
 >
@@ -236,6 +239,7 @@ AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
 > ```python
 > pool.map(lambda x: time.sleep(0.1), range(24))
 > ```
+> {: .language-python}
 > ```
 > ---------------------------------------------------------------------------
 > PicklingError                             Traceback (most recent call last)
@@ -270,7 +274,7 @@ pool = Pool(8)
 %timeit pool.map(lambda x: time.sleep(0.1), range(24))
 pool.close()
 ```
-
+{: .language-python}
 ```
 1 loop, best of 3: 309 ms per loop
 ```
@@ -291,6 +295,7 @@ result2 = pool.map(another_function, more_stuff_to_iterate_over)
 # turn off your parallel workers at the end of your script
 pool.close()
 ```
+{: .language-python}
 
 Parallel workers (with their own copy of everything) are created, 
 data are sent to these workers, and then results are combined back together again.
@@ -299,5 +304,3 @@ that lets you control how big each chunk of data is before it's sent off to each
 A larger chunk size means that less time is spent shuttling data to and from workers,
 and will be more useful if you have a large number of very fast computations to perform.
 When each iteration takes a very long time to run, you will want to use a smaller chunk size.
-
-
