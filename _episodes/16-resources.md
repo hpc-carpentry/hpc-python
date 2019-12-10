@@ -157,9 +157,10 @@ rule count_words:
 ```
 {: .language-make}
 
-Now, when we run `snakemake -j 4`, the `count_words` rules are run one at a time,
-so as to give each execution the resources it needs.
-All of our other rules will still run in parallel.
+Now when we run `snakemake -j 4`, the jobs from `count_words` are run one at a time so as to give each job the resources it needs.
+Since each job of the `count_words` rule requires 4 threads (as per the newly added thread directive), and because
+all jobs have a maximum of 4 cores available to them as per the `-j 4` option, the count_words jobs are run one at a time.
+All of our other rules will still run in parallel since they default to requesting a single thread.
 Unless otherwise specified with `{threads}`, rules will use 1 core by default.
 
 ```

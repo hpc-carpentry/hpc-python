@@ -20,6 +20,25 @@ analysis pipeline.
 
 Let's take quick look at one of the books using the command `head books/isles.txt`.
 
+```bash
+head books/isles.txt
+```
+
+By default, `head`  displays the first 10 lines of the specified file.
+
+```
+A JOURNEY TO THE WESTERN ISLANDS OF SCOTLAND
+
+
+INCH KEITH
+
+
+I had desired to visit the Hebrides, or Western Islands of Scotland, so
+long, that I scarcely remember how the wish was originally excited; and
+was in the Autumn of the year 1773 induced to undertake the journey, by
+finding in Mr. Boswell a companion, whose acuteness would help my
+```
+
 Our directory has the Python scripts and data files we
 we will be working with:
 

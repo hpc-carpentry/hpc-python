@@ -260,9 +260,10 @@ Wildcards(example=['isles', 'last', 'abyss', 'sierra'])
 ```
 {: .output}
 
-glob_wildcards() returns a named tuple as output.
+glob_wildcards() returns a `Wildcards` object as output. `Wildcards` is a special object defined by Snakemake that 
+provides named lists.
 In this case, there is only one wildcard, `{example}`.
-We can extract the values for name by getting the `example`
+We can extract the values for the file names by getting the `example`
 property from the output of `glob_wildcards()`
 
 ```python
