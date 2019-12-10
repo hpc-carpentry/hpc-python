@@ -11,7 +11,7 @@ keypoints:
 ---
 
 The most basic use of Python is to use it as a fancy calculator.
-It is very easy to do basic math in Python.
+It is very easy to do basic maths in Python.
 
 ```python
 print(5 + 1)
@@ -34,7 +34,7 @@ Notice how leaving out `print()` gives us the same result as above.
 ```
 {: .output}
 
-Python can do all of the normal basic math operations you'd expect.
+Python can do all of the normal basic maths operations you'd expect.
 
 ```python
 5 + 3
@@ -77,7 +77,7 @@ Remainder division (`%`), gives the remainder after division.
 ```
 {: .output}
 
-Python follows the normal order of operations for math.
+Python follows the normal order of operations for maths.
 
 ```python
 4 + 1 * 6
@@ -125,7 +125,7 @@ weight_kg
 ```
 {: .output}
 
-We can perform math on variables the same way we would normally.
+We can perform maths on variables the same way we would normally.
 
 ```python
 print('weight in pounds:', 2.2 * weight_kg)
@@ -172,7 +172,7 @@ weight in lb ending value is 121.00000000000001
 Notice how even though we changed the value of `weight_kg`, `weight_lb` did not update. 
 This demonstrates a very important property of programming languages:
 a computer will not do anything unless you specifically tell it to - **nothing ever happens automatically**.
-This is different from the behavior of a spreadsheets, 
+This is different from the behaviour of a spreadsheets, 
 where a cell will automatically update when the cells it refers to are updated.
 
 If we want to tell Python to update `weight_lb` to reflect the new value of `weight_kg`, 
@@ -258,7 +258,7 @@ File "<ipython-input-15-70475fc083df", line 1
 ```
 {: .error}
 
-Python is trying to be helpful and tell us exactly where our error occured. 
+Python is trying to be helpful and tell us exactly where our error occurred. 
 The first thing it does is tell us which file had the error in it. 
 Since we are using the terminal, 
 it gives us the semi-confusing `<ipython-input-15-70475fc083df` instead of a filename.
@@ -271,13 +271,13 @@ and pointed an arrow (`^`) at the bad part.
 ## Different types of data
 
 Computers are not smart, and have to be explicitly told how to handle different types of data.
-Although a human might know that you can't do math on a word, 
+Although a human might know that you can't do maths on a word, 
 our computer does not. 
 To work around this problem, programming languages store different types of data in different ways. 
 
 For reasons that are likely obvious, we will need to store text differently than numbers.
-What is less obvious is that Python also has special ways of handling integers vs. decmials, 
-boolean values (True/False), and a special value used to indicate no data whatsoever.
+What is less obvious is that Python also has special ways of handling integers vs. decimals, 
+Boolean values (True/False), and a special value used to indicate no data whatsoever.
 
 ### Strings
 
@@ -338,7 +338,7 @@ For instance, we can even use the `+` sign to put strings together!
 ```
 {: .output}
 
-Note that math operations on strings will only work within reason.
+Note that maths operations on strings will only work within reason.
 Attempting to add a string to a number doesn't work!
 
 ```python
@@ -375,7 +375,7 @@ int
 ```
 {: .output}
 
-But what happens when we perform a math operation that would result in a decimal?
+But what happens when we perform a maths operation that would result in a decimal?
 
 ```python
 type(10 / 3)
@@ -403,7 +403,7 @@ float
 
 ### Other data types
 
-Python has two special "boolean" values to indicate whether or not something is true or false.
+Python has two special "Boolean" values to indicate whether or not something is true or false.
 Unsurprisingly, these are defined as `True` and `False`.
 
 ```python
@@ -453,10 +453,10 @@ NoneType
 > * `str()` - creates a string
 > * `int()` - creates an integer
 > * `float()` - creates a float
-> * `bool()` - creates a boolean
+> * `bool()` - creates a Boolean
 > 
 > Using this information, 
-> see if you can fix the left side of these statments to equal the right side of each statement.
+> see if you can fix the left side of these statements to equal the right side of each statement.
 > Use only the commands shown above.
 > 
 > ```python

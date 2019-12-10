@@ -17,7 +17,7 @@ keypoints:
 Despite our efforts, our pipeline still has repeated content, 
 for instance the names of output files/dependencies.
 Our `zipf_test` rule, for instance, is extremely clunky.
-What happens if we want to analyze `books/sierra.txt` as well?
+What happens if we want to analyse `books/sierra.txt` as well?
 We'd have to update everything!
 
 ```make
@@ -176,7 +176,7 @@ Nothing to be done.
 
 In every case, the `print()` statement ran before any of the actual 
 pipeline code was run. 
-What we can take away from this is that Snakemake excutes the entire Snakefile
+What we can take away from this is that Snakemake executes the entire Snakefile
 every time we run `snakemake` (regardless of if it's a dry run!).
 Because of this, we need to be careful, 
 and only put tasks that do "real work" (changing files on disk) inside rules. 
@@ -277,7 +277,7 @@ glob_wildcards('books/{example}.txt').example
 > ## Putting it all together
 >
 > Using the `expand()` and `glob_wildcards()` functions,
-> modify the pipeline so that it automatically detects and analyzes 
+> modify the pipeline so that it automatically detects and analyses 
 > all the files in the `books/` folder.
 {: .challenge}
 
@@ -373,7 +373,7 @@ Finished job 0.
 > {: .language-bash}
 {: .challenge}
 
-After these excercises our final workflow should look something like the following:
+After these exercises our final workflow should look something like the following:
 
 ![Final directed acyclic graph](../fig/05-final-dag.svg)
 
@@ -381,7 +381,7 @@ After these excercises our final workflow should look something like the followi
 >
 > We can now do a better job at testing Zipf's rule by adding more books. 
 > The books we have used come from the [Project Gutenberg](http://www.gutenberg.org/) website.
-> Project Gutenberg offers thousands of free ebooks to download.
+> Project Gutenberg offers thousands of free e-books to download.
 >
 >  **Exercise instructions:**
 >

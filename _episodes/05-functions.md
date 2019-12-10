@@ -55,11 +55,11 @@ adder(5)
 
 > ## Practice defining functions
 >
-> Define a function that converts from temperatures in fahrenheit
-> to temperatures in kelvin, and another function that converts
+> Define a function that converts from temperatures in Fahrenheit
+> to temperatures in Kelvin, and another function that converts
 > back again.
 > 
-> The general formula for the conversion from fahrenheit to kelvin is:
+> The general formula for the conversion from Fahrenheit to Kelvin is:
 > 
 > `kelvin = (fahr - 32) * 5 / 9 + 273.15`
 {: .challenge}
@@ -307,7 +307,7 @@ list(filter(lambda x: x<3, [1,2,3,4,5]))
 >
 > Add `'-cheesecake'` to every word in the following list using `map()`.
 > 
-> `['new york', 'chocalate', 'new york', 'ketchup', 'mayo']`
+> `['new york', 'chocolate', 'new york', 'ketchup', 'mayo']`
 > 
 > Using `filter()`, remove the items which would be absolutely terrible to eat.
 {: .challenge}
@@ -315,7 +315,7 @@ list(filter(lambda x: x<3, [1,2,3,4,5]))
 ## map/filter style functionality with Numpy arrays
 
 Although you *could* use a for-loop to apply a custom function to a numpy array in a single go, 
-there is a handy `np.vectorize()` function you can use to convert your functions to a vectorized numpy equivalent.
+there is a handy `np.vectorize()` function you can use to convert your functions to a vectorised numpy equivalent.
 Note that this is purely for convenience - this uses a `for-loop` internally.
 
 ```python

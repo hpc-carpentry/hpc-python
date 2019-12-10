@@ -47,8 +47,7 @@ The number of concurrent tasks that can be started at the same time, however is 
 Now imagine that all workers have to obtain their paint form a central dispenser located at the middle of the room. 
 If each worker is using a different colour, then they can work asynchronously. 
 However, if they use the same colour, and two of them run out of paint at the same time, 
-then they have to synchronize to use the dispenser --
-one should wait while the other is being serviced.
+then they have to synchronise to use the dispenser - one should wait while the other is being serviced.
 
 In our analogy, the paint dispenser represents access to the memory in your computer.
 Depending on how a program is written, access to data in memory can be synchronous or asynchronous.
@@ -65,7 +64,7 @@ Suppose that worker A, needs a colour that is only available in the dispenser of
 worker A should request the paint to worker B and worker B should respond by sending the required colour.
 
 Think of the memory distributed on each node/computer of a cluster as the different dispensers for your workers.
-A *fine-grained* parallel program needs lots of communication/synchronization between tasks, 
+A *fine-grained* parallel program needs lots of communication/synchronisation between tasks, 
 in contrast with a *course-grained* one that barely communicates at all. 
 An embarrassingly/massively parallel problem is one where all tasks can be executed completely independent from each other (no communications required).
 
@@ -91,7 +90,7 @@ Often times, certain computations involve a lot of waiting.
 Perhaps you sent some information to a webserver on the internet and are waiting back on a response.
 In this case, if you needed to make lots of requests over the internet, 
 your program would spend ages just waiting to hear back.
-In this scenario, it would be very advantagous to fire off a bunch of requests to the internet,
+In this scenario, it would be very advantageous to fire off a bunch of requests to the internet,
 and then instead of waiting on each one, 
 check back periodically to see if the request has completed before processing each request individually.
 
@@ -136,7 +135,7 @@ Maybe we need to run the same set of steps on 10 different samples.
 There doesn't need to be any communication at all, 
 and each task is completely independent of the others.
 
-In this scenario, why bother with all of these fancy parallel programming techiniques,
+In this scenario, why bother with all of these fancy parallel programming techniques,
 let's just start the same program 10 times on 10 different datasets on 10 different computers. 
 The work is still happening in parallel, and we didn't need to change anything about our program to achieve this.
 As an extra benefit, this works the same for every program, regardless of what it does or what language it was written in. 
@@ -176,7 +175,7 @@ psutil.cpu_count(logical=False)
 ```
 {: .output}
 
-Using this number, we can create a pool of worker processes withh which to parallelize our jobs:
+Using this number, we can create a pool of worker processes with which to parallelize our jobs:
 
 ```python
 from multiprocessing import Pool
@@ -255,13 +254,13 @@ AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
 The `multiprocessing` module has a major limitation:
 it only accepts certain functions, and in certain situations.
 For instance any class methods, lambdas, or functions defined in `__main__` wont' work.
-This is due to the way Python "pickles" (read: serializes) data
+This is due to the way Python "pickles" (read: serialises) data
 and sends it to the worker processes.
 "Pickling" simply can't handle a lot of different types of Python objects.
 
 Fortunately, there is a fork of the `multiprocessing` module called `multiprocess` 
 that works just fine (`pip install --user multiprocess`). 
-`multiprocess` uses `dill` instead of `pickle` to serialize Python objects
+`multiprocess` uses `dill` instead of `pickle` to serialise Python objects
 (read: send your data and functions to the Python workers),
 and does not suffer the same issues.
 Usage is identical:
@@ -302,6 +301,6 @@ Parallel workers (with their own copy of everything) are created,
 data are sent to these workers, and then results are combined back together again.
 There is also an optional `chunksize` argument (for `pool.map()`) 
 that lets you control how big each chunk of data is before it's sent off to each worker.
-A larger chunksize means that less time is spent shuttling data to and from workers,
+A larger chunk size means that less time is spent shuttling data to and from workers,
 and will be more useful if you have a large number of very fast computations to perform.
 When each iteration takes a very long time to run, you will want to use a smaller chunk size.

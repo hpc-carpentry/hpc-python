@@ -10,7 +10,7 @@ keypoints:
 - "Dicts provide key-value storage of information."
 ---
 
-Dictionaries (also called dicts) are another key datastructure we'll need to use to write a pipeline.
+Dictionaries (also called dicts) are another key data structure we'll need to use to write a pipeline.
 In particular, dicts allow efficient key-value storage of any type of data. 
 
 To create a dict, we use syntax like the following.

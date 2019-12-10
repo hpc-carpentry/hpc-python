@@ -8,7 +8,7 @@ objectives:
 - "Understand the Snakemake cluster job submission workflow."
 keypoints:
 - "Snakemake generates and submits its own batch scripts for your scheduler."
-- "`localrules` defines rules that are executed on the Snakemake headnode."
+- "`localrules` defines rules that are executed on the Snakemake head node."
 - "`$PATH` must be passed to Snakemake rules."
 - "`nohup <command> &` prevents `<command>` from exiting when you log off."
 ---
@@ -105,7 +105,7 @@ rule make_archive:
 
 To run Snakemake on a cluster, we need to tell it how it to submit jobs.
 This is done using the `--cluster` argument.
-In this configuration, Snakemake runs on the cluster headnode and submits jobs.
+In this configuration, Snakemake runs on the cluster head node and submits jobs.
 Each cluster job executes a single rule and then exits. 
 Snakemake detects the creation of output files, 
 and submits new jobs (rules) once their dependencies are created.
@@ -137,7 +137,7 @@ $ ssh -X yourUsername@graham.computecanada.ca
 > You can use this feature for this tutorial
 > (I've already added all of the files to version control for you),
 > but if you want to use this feature in your own work, 
-> you should familiarize yourself with a VCS tool like Git.
+> you should familiarise yourself with a VCS tool like Git.
 >
 > For more information on how to use this feature, see 
 > [http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html](http://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html)
@@ -221,7 +221,7 @@ localrules: all, clean, make_archive
 
 ## Running our workflow on the cluster
 
-Ok, time for the moment we've all been waiting for - let's run our workflow on the cluster.
+OK, time for the moment we've all been waiting for - let's run our workflow on the cluster.
 To run our Snakefile, we'll run the following command:
 
 ```bash

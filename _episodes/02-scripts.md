@@ -111,5 +111,5 @@ we typed: ['test.py', 'word1', 'word2', '3']
 ```
 {: .output}
 
-You'll notice that sys.argv looks different from other data types we've seen so far.
+You'll notice that `sys.argv` looks different from other data types we've seen so far.
 `sys.argv` is a list (more about this in the next session).
