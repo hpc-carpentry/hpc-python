@@ -160,7 +160,7 @@ isles	3822	2460	1.55
 >
 > Zipf's law was originally formulated in terms of [quantitative linguistics](https://en.wikipedia.org/wiki/Quantitative_linguistics), stating that given some [corpus](https://en.wikipedia.org/wiki/Text_corpus) of [natural language](https://en.wikipedia.org/wiki/Natural_language) utterances, the frequency of any word is [inversely proportional](https://en.wikipedia.org/wiki/Inversely_proportional) to its rank in the [frequency table](https://en.wikipedia.org/wiki/Frequency_table). For example, in the [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus) of American English text, the word the is the most frequently occurring word, and by itself accounts for nearly 7% of all word occurrences (69,971 out of slightly over 1 million). True to Zipf's Law, the second-place word of accounts for slightly over 3.5% of words (36,411 occurrences), followed by and (28,852). Only 135 vocabulary items are needed to account for half the [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).
 > 
-> Source [Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law):
+> Source: [Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law):
 {: .callout}
 
 Together these scripts implement a common workflow:
