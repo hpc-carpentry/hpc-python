@@ -302,13 +302,19 @@ There are several reasons this tool was chosen:
 
 * It’s free, open-source, and installs in about 5 seconds flat via `pip`.
 
-* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC schedulers. More importantly, the same workflow will work and scale appropriately regardless of whether it’s on a laptop or cluster without modification.
+* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC 
+schedulers. More importantly, the same workflow will work and scale appropriately 
+regardless of whether it’s on a laptop or cluster without modification.
 
-* Snakemake uses pure Python syntax. There is no tool specific-language to learn like in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you’ve still taught them how to program in Python at the end of the day.
+* Snakemake uses pure Python syntax. There is no tool specific-language to learn like 
+in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you’ve 
+still taught them how to program in Python at the end of the day.
 
-* Anything that you can do in Python, you can do with Snakemake (since you can pretty much execute arbitrary Python code anywhere).
+* Anything that you can do in Python, you can do with Snakemake (since you can pretty 
+much execute arbitrary Python code anywhere).
 
-* Snakemake was written to be as similar to GNU Make as possible. Users already familiar with Make will find Snakemake quite easy to use.
+* Snakemake was written to be as similar to GNU Make as possible. Users already familiar 
+with Make will find Snakemake quite easy to use.
 
 * It’s easy. You can (hopefully!) learn Snakemake in an afternoon!
 
