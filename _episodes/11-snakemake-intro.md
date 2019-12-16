@@ -134,7 +134,7 @@ $ python plotcount.py isles.dat show
 
 Close the window to exit the plot.
 
-`plotcount.py` can also create the plot as an image file (e.g. a PNG file):
+`plotcount.py` can also create the plot as an image file (e.g. a PNG file): 
 
 ```bash
 $ python plotcount.py isles.dat isles.png
@@ -153,6 +153,30 @@ abyss	4044	2807	1.44
 isles	3822	2460	1.55
 ```
 {: .output}
+
+> ## Zipf's Law
+>
+> Zipf's Law is an [empirical law](https://en.wikipedia.org/wiki/Empirical_law) formulated 
+> using [mathematical statistics](https://en.wikipedia.org/wiki/Mathematical_statistics) 
+> that refers to the fact that many types of data studied in the physical and 
+> social sciences can be approximated with a Zipfian distribution, one of a family 
+> of related discrete [power law](https://en.wikipedia.org/wiki/Power_law) [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution).
+>
+> Zipf's law was originally formulated in terms of [quantitative linguistics](https://en.wikipedia.org/wiki/Quantitative_linguistics), 
+> stating that given some [corpus](https://en.wikipedia.org/wiki/Text_corpus) 
+> of [natural language](https://en.wikipedia.org/wiki/Natural_language) utterances, 
+> the frequency of any word is [inversely proportional](https://en.wikipedia.org/wiki/Inversely_proportional) 
+> to its rank in the [frequency table](https://en.wikipedia.org/wiki/Frequency_table). 
+> For example, in the [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus) 
+> of American English text, the word the is the most frequently occurring word, 
+> and by itself accounts for nearly 7% of all word occurrences (69,971 out of 
+> slightly over 1 million). True to Zipf's Law, the second-place word of 
+> accounts for slightly over 3.5% of words (36,411 occurrences), followed by 
+> and (28,852). Only 135 vocabulary items are needed to account for half 
+> the [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).
+> 
+> Source: [Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law):
+{: .callout}
 
 Together these scripts implement a common workflow:
 
@@ -278,13 +302,19 @@ There are several reasons this tool was chosen:
 
 * It’s free, open-source, and installs in about 5 seconds flat via `pip`.
 
-* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC schedulers. More importantly, the same workflow will work and scale appropriately regardless of whether it’s on a laptop or cluster without modification.
+* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC 
+schedulers. More importantly, the same workflow will work and scale appropriately 
+regardless of whether it’s on a laptop or cluster without modification.
 
-* Snakemake uses pure Python syntax. There is no tool specific-language to learn like in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you’ve still taught them how to program in Python at the end of the day.
+* Snakemake uses pure Python syntax. There is no tool specific-language to learn like 
+in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you’ve 
+still taught them how to program in Python at the end of the day.
 
-* Anything that you can do in Python, you can do with Snakemake (since you can pretty much execute arbitrary Python code anywhere).
+* Anything that you can do in Python, you can do with Snakemake (since you can pretty 
+much execute arbitrary Python code anywhere).
 
-* Snakemake was written to be as similar to GNU Make as possible. Users already familiar with Make will find Snakemake quite easy to use.
+* Snakemake was written to be as similar to GNU Make as possible. Users already familiar 
+with Make will find Snakemake quite easy to use.
 
 * It’s easy. You can (hopefully!) learn Snakemake in an afternoon!
 
