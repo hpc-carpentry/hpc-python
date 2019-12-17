@@ -1,0 +1,13 @@
+{
+    "__default__":
+    {
+        "account": "aSLURMSubmissionAccount",
+        "mem": "1G",
+        "time": "0:5:0"
+	},
+    "count_words":
+    {
+        "time": "0:10:0",
+        "mem": "2G"
+    }
+}
