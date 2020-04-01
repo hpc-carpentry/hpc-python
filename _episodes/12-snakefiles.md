@@ -13,7 +13,7 @@ keypoints:
 - "Rules can have an input and/or outputs, and a command to be run."
 ---
 
-Create a file, called `Snakefile`, with the following content:
+Create a file, called `Snakefile`, with no file extension and containing the following content:
 
 ```python
 # Count words.
@@ -89,7 +89,18 @@ Finished job 0.
 ```
 {: .output}
 
-If we see an error, check your syntax.
+Depending on your setup, you may receive an error 
+`Error: you need to specify the maximum number of CPU cores to be used at the same time with --cores.` 
+This can be fixed using an argument to the sankemake command. Try running the following:
+
+```bash
+$ snakemake --cores 1
+```
+{: .language-bash}
+
+If you see a different error, check your syntax and the filepaths of the files in your Snakefile.
+You can check your present working directory using the command `pwd`.
+
 Remember, aside from stuff like `rule` and `input`,
 Snakemake follows Python syntax.
 Let's see if we got what we expected:
