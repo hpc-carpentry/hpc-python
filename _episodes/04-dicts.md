@@ -91,7 +91,6 @@ list(example.values())
 >
 > Depending on your version of Python, the dictionary will either be in order, or out of order.
 > If you are on Python 3.6+ dictionaries are ordered.
-> This is a new feature [and should not be relied upon](https://mail.python.org/pipermail/python-dev/2016-September/146348.html).
 >
 > Iterate through and print the dictionary's keys in both forward and reverse order.
 >
