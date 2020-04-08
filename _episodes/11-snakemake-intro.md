@@ -156,7 +156,7 @@ isles	3822	2460	1.55
 
 > ## Zipf's Law
 >
-> Zipf's Law is an [empirical law](https://en.wikipedia.org/wiki/Empirical_law) formulated 
+> [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is an [empirical law](https://en.wikipedia.org/wiki/Empirical_law) formulated 
 > using [mathematical statistics](https://en.wikipedia.org/wiki/Mathematical_statistics) 
 > that refers to the fact that many types of data studied in the physical and 
 > social sciences can be approximated with a Zipfian distribution, one of a family 
