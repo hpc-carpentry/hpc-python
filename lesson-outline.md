@@ -1,3 +1,8 @@
+---
+layout: page
+title: Chapel for HPC Lesson Outline
+---
+
 # Lesson outline and todo list
 
 This is the tentative list of tasks and topics for each lesson.
