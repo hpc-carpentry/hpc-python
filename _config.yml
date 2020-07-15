@@ -72,3 +72,5 @@ exclude:
 # Force syntax highlighting.
 highlighter: rouge
 
+# Invoke the Carpentries theme rather than copying into our repository.
+remote_theme: carpentries/carpentries-theme

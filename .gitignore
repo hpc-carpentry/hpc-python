@@ -2,6 +2,14 @@
 *~
 .DS_Store
 .ipynb_checkpoints
+.jekyll-cache
 .sass-cache
 __pycache__
 _site
+files/*.gtf
+files/*.fb
+files/*.fastq
+files/*.tsv
+Gemfile.lock
+scratch/
+.vendor
