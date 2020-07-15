@@ -19,7 +19,7 @@ The general syntax for defining a function is as follows:
 ```python
 def function(arg1):
     # do stuff with arg1
-    return ans
+    return answer
 ```
 {: .language-python}
 

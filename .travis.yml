@@ -21,7 +21,7 @@ jobs:
       install:
         pip install codespell
       script:
-        codespell --skip="assets,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
+        codespell --skip="files/snakemake-lesson/books,*.svg,bin" --quiet-level=2  -L "rouge,dropse,namd,hist"
     - stage: "Build the site"
       before_install: 
         - sudo apt-get update -y
