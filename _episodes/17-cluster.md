@@ -103,8 +103,8 @@ rule make_archive:
 ```
 {: .language-make}
 
-To run Snakemake on a cluster, we need to tell it how it to submit jobs.
-This is done using the `--cluster` argument.
+To run Snakemake on a cluster, we need to create a profile to tell snakemake how to submit jobs to our cluster.
+We can then submit jobs with this profile using the `--profile` argument followed by the name of our profile.
 In this configuration, Snakemake runs on the cluster head node and submits jobs.
 Each cluster job executes a single rule and then exits. 
 Snakemake detects the creation of output files, 
@@ -170,40 +170,47 @@ $ pip install --user snakemake
 Assuming you've transferred your files and everything is set to go,
 the command `snakemake -n` should work without errors.
 
-## Cluster configuration with `cluster.json`
+## Creating a cluster profile
 
-Snakemake uses a JSON-formatted configuration file to retrieve cluster submission parameters.
-An example (using SLURM) is shown below.
-You can check to see if your `cluster.json` is valid JSON syntax by pasting its contents into
-the box at [jsonlint.com](https://jsonlint.com).
+Snakemake uses a YAML-formatted configuration file to retrieve cluster submission parameters; we will use the SLURM scheduler for an example. When we use the '--profile slurm' argument, snakemake looks for a directory with the name of our profile (slurm) containing a 'config.yaml' file such as the one below.
 
-```json
-{
-    "__default__":
-    {
-        "account": "a_slurm_submission_account",
-        "mem": "1G",
-        "time": "0:5:0"
-    },
-    "count_words":
-    {
-        "time": "0:10:0",
-        "mem": "2G"
-    }
-}
+```yaml
+cluster: "sbatch --time={resources.time_min} --mem={resources.mem_mb} -c {resources.cpus} -o slurm/logs/{rule}_{wildcards} -e slurm/logs/{rule}_{wildcards}"
+jobs: 25
+default-resources: [cpus=1, mem_mb=1000, time_min=5]
+resources: [cpus=100, mem_mb=1000000]
 ```
-{: .source}
 
 This file has several components.
-The values under `__default__` represents a set of default configuration values
-that will be used for all rules.
+`cluster` and the arguments that follow tell snakemake how to submit jobs to the cluster.
+Here we've used SLURM's `sbatch` command and arguments for setting time limits and resources with snakemake wildcards defining the requested values.
+We've also specified where to save SLURM logs and what to call them; note that this folder must already exist.
+Values for any command line argument to snakemake can be defined in our profile, although a value is required (e.g. the `--use-conda` argument could be included in our profile with `use-conda: true`).
+`jobs` specifies the maximum number of jobs that will be submitted at one time.
+We also specified the `default-resources` that will be requested for each job, while `resources` defines the resource limits. 
+With these parameters, snakemake will use no more than 100 cpus and 100000mb (100 GB) at a time between all currently submitted jobs. 
+While it does not come into play here, a generally sensible default is slightly above the maximum number of jobs you are allowed to have submitted at a time.
+
 The defaults won't always be perfect, however -
 chances are some rules may need to run with non-default amounts of memory or time limits.
 We are using the `count_words` rule as an example of this.
-In this case, `count_words` has its own custom values for `time` and `mem` (just as an example).
-`{rule}` and `{wildcards}` are special wildcards that you can use here that
-correspond to the rule name and rule's wildcards, respectively
-(if you choose to use `{wildcards}`, make sure it has a value!).
+To request non-default resources for a job, we can modify the rule in our snakefile to include a `resources` section like this:
+
+```make
+# count words in one of our "books"
+rule count_words:
+    input:
+        wc='wordcount.py',
+        book='books/{file}.txt'
+    output: 'dats/{file}.dat'
+    threads: 4
+    resources: cpus=4, mem_mb=8000, time_min=20
+    shell:
+        '''
+        python {input.wc} {input.book} {output}
+        '''
+```
+{: .language-make}
 
 ## Local rule execution
 
@@ -221,24 +228,16 @@ localrules: all, clean, make_archive
 
 ## Running our workflow on the cluster
 
-OK, time for the moment we've all been waiting for - let's run our workflow on the cluster.
-To run our Snakefile, we'll run the following command:
+OK, time for the moment we've all been waiting for - let's run our workflow on the cluster with the profile we've created. Use this command:
 
 ```bash
-$ snakemake -j 100 --cluster-config cluster.json --cluster "sbatch -A {cluster.account} --mem={cluster.mem} -t {cluster.time} -c {threads}"
+$ snakemake --profile slurm"
 ```
 {: .language-bash}
 
 While things execute, you may wish to SSH to the cluster in another window so you can watch the pipeline's progress
 with `watch squeue -u $(whoami)`.
 
-In the meantime, let's dissect the command we just ran.
-
-**`-j 100`** - `-j` no longer controls the number of cores when running on a cluster. Instead, it controls the maximum number of jobs that snakemake can have submitted at a time. This does not come into play here, but generally a sensible default is slightly above the maximum number of jobs you are allowed to have submitted at a time.
-
-**`--cluster-config`** - This specifies the location of a JSON file to read cluster configuration values from. This should point to the `cluster.json` file we wrote earlier.
-
-**`--cluster`** - This is the submission command that should be used for the scheduler. Note that command flags that normally are put in batch scripts are put here (most schedulers allow you to add submission flags like this when submitting a job). In this case, all of the values come from our `--cluster-config` file. You can access individual values with `{cluster.propertyName}`. Note that we can still use `{threads}` here.
 
 > ## Notes on `$PATH`
 >
@@ -259,7 +258,7 @@ In the meantime, let's dissect the command we just ran.
 > Try running the pipeline in cluster mode using `nohup` (run `snakemake clean` beforehand).
 > Where does the Snakemake log go to?
 > Why might this technique be useful?
-> Can we also submit the `snakemake --cluster` pipeline as a job?
+> Can we also submit the `snakemake --profile slurm` pipeline as a job?
 > Where does the Snakemake command run in each scenario?
 >
 > You can kill the running Snakemake process with `killall snakemake`.
