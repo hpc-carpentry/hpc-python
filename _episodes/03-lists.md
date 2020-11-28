@@ -11,7 +11,7 @@ keypoints:
 - "Numpy allows vector maths in Python."
 ---
 
-At the end of the last lesson, we saw noticed that `sys.argv` gave us a new data structure:
+At the end of the last lesson, we noticed that `sys.argv` gave us a new data structure:
 a list.
 A list is a set of objects enclosed by a set of square brackets (`[]`).
 
