@@ -47,7 +47,7 @@ is executed with the resources it needs.
 We'll explore how to port our example Snakemake pipeline by example
 Our current Snakefile is shown below:
 
-```make
+```
 # our zipf analysis pipeline
 DATS = glob_wildcards('books/{book}.txt').book
 
@@ -118,7 +118,7 @@ The first step will be to transfer our files to the cluster and log on via SSH.
 Snakemake has a powerful archiving utility that we can use to bundle up our workflow and transfer it.
 
 
-```bash
+```
 $ snakemake clean
 $ tar -czvf pipeline.tar.gz .
 # transfer the pipeline via scp
@@ -146,7 +146,7 @@ $ ssh -X yourUsername@graham.computecanada.ca
 At this point we've archived our entire pipeline, sent it to the cluster, and logged on.
 Let's create a folder for our pipeline and unpack it there.
 
-```bash
+```
 $ mkdir pipeline
 $ mv pipeline.tar.gz pipeline
 $ cd pipeline
@@ -157,7 +157,7 @@ $ tar -xvzf pipeline.tar.gz
 If Snakemake and Python are not already installed on your cluster,
 you can install them using the following commands:
 
-```bash
+```
 $ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 $ bash Miniconda3-latest-Linux-x86_64.sh -b
 $ echo 'export PATH=~/miniconda3/bin:~/.local/bin:$PATH' >> ~/.bashrc
@@ -174,7 +174,7 @@ the command `snakemake -n` should work without errors.
 
 Snakemake uses a YAML-formatted configuration file to retrieve cluster submission parameters; we will use the SLURM scheduler for an example. When we use the '--profile slurm' argument, snakemake looks for a directory with the name of our profile (slurm) containing a 'config.yaml' file such as the one below.
 
-```yaml
+```
 cluster: "sbatch --time={resources.time_min} --mem={resources.mem_mb} -c {resources.cpus} -o slurm/logs/{rule}_{wildcards} -e slurm/logs/{rule}_{wildcards}"
 jobs: 25
 default-resources: [cpus=1, mem_mb=1000, time_min=5]
@@ -197,7 +197,7 @@ chances are some rules may need to run with non-default amounts of memory or tim
 We are using the `count_words` rule as an example of this.
 To request non-default resources for a job, we can modify the rule in our snakefile to include a `resources` section like this:
 
-```make
+```
 # count words in one of our "books"
 rule count_words:
     input:
@@ -222,7 +222,7 @@ It would be a better idea to have these rules execute locally
 instead of as a job.
 Let's define `all`, `clean`, and `make_archive` as localrules near the top of our `Snakefile`.
 
-```make
+```
 localrules: all, clean, make_archive
 ```
 {: .language-make}
@@ -231,7 +231,7 @@ localrules: all, clean, make_archive
 
 OK, time for the moment we've all been waiting for - let's run our workflow on the cluster with the profile we've created. Use this command:
 
-```bash
+```
 $ snakemake --profile slurm"
 ```
 {: .language-bash}

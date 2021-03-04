@@ -164,7 +164,7 @@ Long story short, cores are the actual computation units,
 threads allow additional multitasking using the cores you have.
 For heavy compute jobs, you are generally interested in cores.
 
-```python
+```
 import psutil
 # logical=True counts threads, but we are interested in cores
 psutil.cpu_count(logical=False)
@@ -177,7 +177,7 @@ psutil.cpu_count(logical=False)
 
 Using this number, we can create a pool of worker processes with which to parallelize our jobs:
 
-```python
+```
 from multiprocessing import Pool
 pool = Pool(psutil.cpu_count(logical=False))
 ```
@@ -191,7 +191,7 @@ that runs a workflow in parallel.
 
 Let's try `map()` out with a test function that just runs sleep.
 
-```python
+```
 import time
 
 def sleeping(arg):
@@ -207,7 +207,7 @@ def sleeping(arg):
 
 Now let's try it in parallel:
 
-```python
+```
 %timeit pool.map(sleeping, range(24))
 ```
 {: .language-python}
@@ -236,7 +236,7 @@ AttributeError: Can't get attribute 'sleeping' on <module '__main__'>
 > However these issues are not limited to Jupyter notebooks -
 > a similar error will occur if you use a lambda function instead:
 >
-> ```python
+> ```
 > pool.map(lambda x: time.sleep(0.1), range(24))
 > ```
 > {: .language-python}
@@ -265,7 +265,7 @@ that works just fine (`pip install --user multiprocess`).
 and does not suffer the same issues.
 Usage is identical:
 
-```python
+```
 # shut down the old workers
 pool.close()
 
@@ -282,7 +282,7 @@ pool.close()
 
 This is a general purpose parallelization recipe that you can use for your Python projects.
 
-```python
+```
 # make sure to always use multiprocess
 from multiprocess import Pool
 # start your parallel workers at the beginning of your script

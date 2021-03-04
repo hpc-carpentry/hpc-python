@@ -21,7 +21,7 @@ To demonstrate this, let's write our first program!
 Enter the following text in a text editor and save it under any name you like
 (Python files are typically given the extension `.py`).
 
-```python
+```
 print('it works!!!')
 ```
 {: .language-python}
@@ -44,7 +44,7 @@ it works!!!
 >
 > Try executing the following code:
 >
-> ```python
+> ```
 > print('this involves print')
 > 'this does not'
 > ```
@@ -81,7 +81,7 @@ Python includes a lot of extra features in the form of packages,
 but not all of them get loaded by default.
 To access a package, we need to `import` it.
 
-```python
+```
 import sys
 ```
 {: .language-python}
@@ -95,7 +95,7 @@ that stores any additional arguments we provide on the command-line
 after `python3 our-script-name.py`.
 Let's make a new script called `command-args.py` to try this out.
 
-```python
+```
 import sys
 print('we typed: ', sys.argv)
 ```

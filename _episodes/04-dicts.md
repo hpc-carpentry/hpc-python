@@ -15,7 +15,7 @@ In particular, dicts allow efficient key-value storage of any type of data.
 
 To create a dict, we use syntax like the following.
 
-```python
+```
 example = {}
 type(example)
 ```
@@ -29,7 +29,7 @@ We can then store values in our dict using indexing.
 The index is referred to as the "key",
 and the stored data is referred to as the "value".
 
-```python
+```
 example['key'] = 'value'
 example['key']
 ```
@@ -42,7 +42,7 @@ example['key']
 In addition, keys can be stored using any type of value.
 Let's add several more values to demonstrate this.
 
-```python
+```
 example[1] = 2
 example[4] = False
 example['test'] = 5
@@ -53,7 +53,7 @@ example[7] = 'myvalue'
 To retrieve all keys in the dictionary, we can use the `.keys()`method.
 Note how we used the `list()` function to turn our resulting output into a list.
 
-```python
+```
 list(example.keys())
 ```
 {: .language-python}
@@ -64,7 +64,7 @@ list(example.keys())
 
 Likewise, we can retrieve all the values at once, using `.values()`
 
-```python
+```
 list(example.values())
 ```
 {: .language-python}
@@ -77,7 +77,7 @@ list(example.values())
 > Note that the order of keys and values in a dictionary should not be relied upon.
 > We'll create dictionary another way to demonstrate this:
 >
-> ```python
+> ```
 > unordered = {'a': 1,
 >              'b': 2,
 >              'c': 3,

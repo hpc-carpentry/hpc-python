@@ -20,7 +20,7 @@ Our `zipf_test` rule, for instance, is extremely clunky.
 What happens if we want to analyse `books/sierra.txt` as well?
 We'd have to update everything!
 
-```make
+```
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -32,7 +32,7 @@ First, let's cut down on a little bit of the clunkiness of the `shell` directive
 One thing you've probably noticed is that all of our rules are using Python strings.
 Other data structures work too - let's try a list:
 
-```make
+```
 rule zipf_test:
     input:
         zipf='zipf_test.py',
@@ -49,7 +49,7 @@ Snakefiles are just Python code.
 We can make our list into a variable to demonstrate this. 
 Let's create the variable `DATS` and use it in our `zipf_test` and `dats` rules.
 
-```make
+```
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
 
 # generate summary table
@@ -74,7 +74,7 @@ The last example illustrated that we can use arbitrary Python code in our Snakef
 It's important to understand when this code gets executed.
 Let's add a `print` instruction to the top of our Snakefile.
 
-```make
+```
 print('Snakefile is being executed!')
 
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
@@ -88,7 +88,7 @@ rule zipf_test:
 
 Now let's clean up our workspace with `snakemake clean`
 
-```bash
+```
 snakemake clean
 ```
 {: .language-bash}
@@ -111,7 +111,7 @@ Finished job 0.
 
 Now let's re-run the pipeline...
 
-```bash
+```
 $ snakemake
 ```
 {: .language-bash}
@@ -164,7 +164,7 @@ Finished job 0.
 
 Let's do a dry-run:
 
-```bash
+```
 $ snakemake -n
 ```
 {: .language-bash}
@@ -193,7 +193,7 @@ large numbers of files much easier.
 The two most helpful ones are `glob_wildcards()` and `expand()`.
 Let's start an ipython session to see how they work:
 
-```bash
+```
 $ ipython3
 ```
 {: .language-bash}
@@ -213,7 +213,7 @@ In this example, we will import these Snakemake functions directly in our ipytho
 It is not necessary however, to import these functions within your Snakefile -
 these functions are always imported for you.
 
-```python
+```
 from snakemake.io import expand, glob_wildcards
 ```
 {: .language-python}
@@ -224,7 +224,7 @@ The first function we'll use is `expand()`.
 `expand()` is used quite literally,
 to expand a snakemake wildcard(s) into a set of filenames.
 
-```python
+```
 expand('folder/{wildcard1}_{wildcard2}.txt', wildcard1=['a', 'b', 'c'], wildcard2=[1, 2, 3])
 ```
 {: .language-python}
@@ -251,7 +251,7 @@ To get a set of wildcards from a list of files, we can use the
 `glob_wildcards()` function.
 Let's try grabbing all of the book titles in our `books` folder.
 
-```python
+```
 glob_wildcards('books/{example}.txt')
 ```
 {: .language-python}
@@ -267,7 +267,7 @@ In this case, there is only one wildcard, `{example}`.
 We can extract the values for the file names by getting the `example`
 property from the output of `glob_wildcards()`
 
-```python
+```
 glob_wildcards('books/{example}.txt').example
 ```
 {: .language-python}
@@ -291,7 +291,7 @@ Instead of `shell:` as an action, we can use `run:` instead.
 
 Add the following to our snakefile:
 
-```python
+```
 # at the top of the file
 import os
 import glob
@@ -308,7 +308,7 @@ rule print_book_names:
 Upon execution of the corresponding rule, Snakemake dutifully runs our Python code
 in the `run:` block:
 
-```bash
+```
 $ snakemake print_book_names
 ```
 {: .language-bash}
@@ -369,7 +369,7 @@ Finished job 0.
 > * Remove `zipf_analysis.tar.gz` when `snakemake clean` is called.
 >
 > The syntax to create an archive is shown below:
-> ```bash
+> ```
 > tar -czvf zipf_analysis.tar.gz file1 directory2 file3 etc
 > ```
 > {: .language-bash}

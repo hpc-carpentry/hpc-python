@@ -20,9 +20,10 @@ analysis pipeline.
 
 Let's take quick look at one of the books using the command `head books/isles.txt`.
 
-```bash
+```
 head books/isles.txt
 ```
+{: .output}
 
 By default, `head`  displays the first 10 lines of the specified file.
 
@@ -38,6 +39,7 @@ long, that I scarcely remember how the wish was originally excited; and
 was in the Autumn of the year 1773 induced to undertake the journey, by
 finding in Mr. Boswell a companion, whose acuteness would help my
 ```
+{: .output}
 
 Our directory has the Python scripts and data files we
 we will be working with:
@@ -59,14 +61,14 @@ The first step is to count the frequency of each word in a book.
 The first argument (`books/isles.txt`) to wordcount.py is the file to analyse,
 and the last argument (`isles.dat`) specifies the output file to write.
 
-```bash
+```
 $ python wordcount.py books/isles.txt isles.dat
 ```
 {: .language-bash}
 
 Let's take a quick peek at the result.
 
-```bash
+```
 $ head -5 isles.dat
 ```
 {: .language-bash}
@@ -89,7 +91,7 @@ number of words in the text file.
 
 We can do the same thing for a different book:
 
-```bash
+```
 $ python wordcount.py books/abyss.txt abyss.dat
 $ head -5 abyss.dat
 ```
@@ -107,7 +109,7 @@ Let's visualise the results.
 The script `plotcount.py` reads in a data file and plots the 10 most
 frequently occurring words as a text-based bar plot:
 
-```bash
+```
 $ python plotcount.py isles.dat ascii
 ```
 {: .language-bash}
@@ -127,7 +129,7 @@ it    ###########
 
 `plotcount.py` can also show the plot graphically:
 
-```bash
+```
 $ python plotcount.py isles.dat show
 ```
 {: .language-bash}
@@ -136,14 +138,14 @@ Close the window to exit the plot.
 
 `plotcount.py` can also create the plot as an image file (e.g. a PNG file): 
 
-```bash
+```
 $ python plotcount.py isles.dat isles.png
 ```
 {: .language-bash}
 
 Finally, let's test Zipf's law for these books:
 
-```bash
+```
 $ python zipf_test.py abyss.dat isles.dat
 ```
 {: .language-bash}
@@ -201,7 +203,7 @@ a shell script that runs the whole pipeline from start to finish.
 Using your text editor of choice (e.g. nano), add the following to a new file named
 `run_pipeline.sh`.
 
-```bash
+```
 # USAGE: bash run_pipeline.sh
 # to produce plots for isles and abyss
 # and the summary table for the Zipf's law tests
@@ -219,7 +221,7 @@ python zipf_test.py abyss.dat isles.dat > results.txt
 
 Run the script and check that the output is the same as before:
 
-```bash
+```
 $ bash run_pipeline.sh
 $ cat results.txt
 ```
@@ -254,7 +256,7 @@ Alternatively, we could manually rerun the plotting for each word-count file.
 (Experienced shell scripters can make this easier on themselves using a
 for-loop.)
 
-```bash
+```
 $ for book in abyss isles; do python plotcount.py $book.dat $book.png; done
 ```
 {: .language-bash}
@@ -265,7 +267,7 @@ we don't get many of the benefits of having a shell script in the first place.
 Another popular option is to comment out a subset of the lines in
 `run_pipeline.sh`:
 
-```bash
+```
 # USAGE: bash run_pipeline.sh
 # to produce plots for isles and abyss
 # and the summary table

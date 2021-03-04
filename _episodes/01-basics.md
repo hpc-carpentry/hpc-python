@@ -13,7 +13,7 @@ keypoints:
 The most basic use of Python is to use it as a fancy calculator.
 It is very easy to do basic maths in Python.
 
-```python
+```
 print(5 + 1)
 ```
 {: .language-python}
@@ -25,7 +25,7 @@ print(5 + 1)
 Note that we don't always have to use the `print()` statement.
 Notice how leaving out `print()` gives us the same result as above.
 
-```python
+```
 5 + 1
 ```
 {: .language-python}
@@ -36,7 +36,7 @@ Notice how leaving out `print()` gives us the same result as above.
 
 Python can do all of the normal basic maths operations you'd expect.
 
-```python
+```
 5 + 3
 2 - 9
 4 * 6
@@ -53,7 +53,7 @@ Python can do all of the normal basic maths operations you'd expect.
 
 You can also use it to more complicated operations, like exponentiation (`**`):
 
-```python
+```
 5 ** 2
 ```
 {: .language-python}
@@ -66,7 +66,7 @@ Along with floor and remainder division.
 Floor division (`//`) gives the results of division, rounded down.
 Remainder division (`%`), gives the remainder after division.
 
-```python
+```
 5 // 2  # floor division
 5 % 2   # remainder division
 ```
@@ -79,7 +79,7 @@ Remainder division (`%`), gives the remainder after division.
 
 Python follows the normal order of operations for maths.
 
-```python
+```
 4 + 1 * 6
 ```
 {: .language-python}
@@ -92,7 +92,7 @@ However, if you want Python to change the order it does things in,
 you can use parentheses to specify what to do first.
 Note that there is no limit to the number of parentheses you can use.
 
-```python
+```
 (4 + 1) * 6
 ```
 {: .language-python}
@@ -108,7 +108,7 @@ We can do this by *assigning a variable*.
 In Python, a variable is a name for a saved result.
 We can set them with the `=` sign.
 
-```python
+```
 weight_kg = 55
 ```
 {: .language-python}
@@ -116,7 +116,7 @@ weight_kg = 55
 If we want to retrieve the information we've stored,
 we can do it by simply typing the name of the variable again.
 
-```python
+```
 weight_kg
 ```
 {: .language-python}
@@ -127,7 +127,7 @@ weight_kg
 
 We can perform maths on variables the same way we would normally.
 
-```python
+```
 print('weight in pounds:', 2.2 * weight_kg)
 ```
 {: .language-python}
@@ -141,7 +141,7 @@ Note that in this case, the number might appear as 121.00000000000001 due to the
 
 We can also change a variable’s value by assigning it a new one:
 
-```python
+```
 weight_lb = 2.2 * weight_kg
 print(weight_lb)
 ```
@@ -154,7 +154,7 @@ print(weight_lb)
 What happens when we change a variable?
 Let's update `weight_kg` and see what happens to `weight_lb`.
 
-```python
+```
 print('weight_kg starting value is', weight_kg)
 weight_kg = 10000
 print('after updating, weight_kg ending value is', weight_kg)
@@ -178,7 +178,7 @@ where a cell will automatically update when the cells it refers to are updated.
 If we want to tell Python to update `weight_lb` to reflect the new value of `weight_kg`,
 we will need to perform this operation explicitly.
 
-```python
+```
 weight_lb = weight_kg * 2.2
 print('new value for weight_lb is', weight_lb)
 ```
@@ -219,7 +219,7 @@ Of course, not everything will always work perfectly.
 We are going to run into errors.
 For instance, what happens if we accidentally don't finish a command?
 
-```python
+```
 1 +
 ```
 {: .language-python}
@@ -288,7 +288,7 @@ Strings are indicated with either single (`'`) or double (`"`) quotes.
 To see what data type something is, we can use the `type()` command.
 It will print the data type of whatever is inside the parentheses.
 
-```python
+```
 type('this is a string')
 type("this is also a string")
 ```
@@ -301,7 +301,7 @@ str
 
 We can also make multiline strings with 3 of either set of quotes.
 
-```python
+```
 multiline = '''
     This string
     spans
@@ -327,7 +327,7 @@ str
 Python makes it very easy to work with basic text.
 For instance, we can even use the `+` sign to put strings together!
 
-```python
+```
 'some text' + 'MORE TEXT'
 'repetition' * 3
 ```
@@ -341,7 +341,7 @@ For instance, we can even use the `+` sign to put strings together!
 Note that maths operations on strings will only work within reason.
 Attempting to add a string to a number doesn't work!
 
-```python
+```
 '5' + 5
 ```
 {: .language-python}
@@ -362,7 +362,7 @@ This error indicates that Python doesn't know how to convert a string to an inte
 Integers are used to store any whole number, either positive or negative.
 Any number without a decimal place is an int, or integer.
 
-```python
+```
 type(5)
 type(-1000)
 type(6 + -33)
@@ -377,7 +377,7 @@ int
 
 But what happens when we perform a maths operation that would result in a decimal?
 
-```python
+```
 type(10 / 3)
 ```
 {: .language-python}
@@ -390,7 +390,7 @@ Any operation that would result in a decimal being created converts the number t
 Floats are used to represent decimals in Python.
 To explicitly set a number as a float, just add a decimal point.
 
-```python
+```
 type(1.3)
 type(22.)
 ```
@@ -406,7 +406,7 @@ float
 Python has two special "Boolean" values to indicate whether or not something is true or false.
 Unsurprisingly, these are defined as `True` and `False`.
 
-```python
+```
 type(True)
 type(False)
 ```
@@ -420,7 +420,7 @@ bool
 Finally, there is a special value called `None` used to indicate no data.
 We will revisit `None` in more detail later, so for now, just be aware it exists.
 
-```python
+```
 type(None)
 ```
 {: .language-python}
@@ -439,7 +439,7 @@ NoneType
 >
 > To convert a string to an integer, for instance, we can use the `int()` command:
 >
-> ```python
+> ```
 > print(int('5') + 5)
 > ```
 > {: .language-python}
@@ -459,7 +459,7 @@ NoneType
 > see if you can fix the left side of these statements to equal the right side of each statement.
 > Use only the commands shown above.
 >
-> ```python
+> ```
 > 1 + '1' == '11'
 > '6' - 7 == -1
 > 7.23 == 7

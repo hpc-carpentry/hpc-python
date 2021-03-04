@@ -16,7 +16,7 @@ keypoints:
 After the exercises at the end of our last lesson, 
 our Snakefile looks something like this:
 
-```make
+```
 # our zipf analysis pipeline
 DATS = glob_wildcards('books/{book}.txt').book
 
@@ -88,7 +88,7 @@ The only change we need to make is run Snakemake with the `-j` argument.
 `-j` is used to indicate number of CPU cores available,
 and on a cluster, maximum number of jobs (we'll get to that part later).
 
-```bash
+```
 $ snakemake clean
 $ snakemake -j 4    # 4 cores is usually a safe assumption when working on a laptop/desktop
 ```
@@ -117,7 +117,7 @@ serial pipeline is run `snakemake` with the `-j` option.
 > Using `logical=False` returns the number of true CPU cores.
 > `logical=True` gives the number of CPU threads on your system.
 >
-> ```python
+> ```
 > import psutil
 > psutil.cpu_count(logical=False)
 > ```
@@ -144,7 +144,7 @@ In this case `wordcount.py` is actually still running with 1 core,
 we are simply using it as a demonstration of how to go about
 running something with multiple cores.
 
-```make
+```
 rule count_words:
     input:
         wc='wordcount.py',
@@ -195,7 +195,7 @@ Finished job 3.
 What happens when we don't have 4 cores available?
 What if we tell Snakemake to run with 2 cores instead?
 
-```bash
+```
 $ snakemake -j 2
 ```
 {: .language-bash}
@@ -245,7 +245,7 @@ If the first command fails, the remaining steps are not run.
 This is more forgiving than bash's default "hit an error and keep going" behavior.
 After all, if the first command failed, it's unlikely the other steps will work.
 
-```make
+```
 # count words in one of our "books"
 rule count_words:
     input:
@@ -275,7 +275,7 @@ How do we indicate this to Snakemake so that it knows to give dedicated access t
 for rules that need it?
 Let's modify the `make_plot` rule as an example:
 
-```make
+```
 # create a plot for each book
 rule make_plot:
     input:
@@ -289,7 +289,7 @@ rule make_plot:
 
 We can execute our pipeline using the following (using 8 cores and 1 gpu):
 
-```bash
+```
 $ snakemake clean
 $ snakemake -j 8 --resources gpu=1
 ```
@@ -312,7 +312,7 @@ it is an arbitrary limit used to prevent multiple tasks that use a `gpu` from ex
 
 But what happens if we run our pipeline without specifying the number of GPUs?
 
-```bash
+```
 $ snakemake clean
 $ snakemake -j 8
 ```

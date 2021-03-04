@@ -16,7 +16,7 @@ replace these rules with a single [pattern
 rule]({{ page.root }}/reference/#pattern-rule) which can be used to build any
 `.dat` file from a `.txt` file in `books/`:
 
-```make
+```
 rule count_words:
     input:
         wc='wordcount.py',
@@ -36,7 +36,7 @@ This rule can be interpreted as:
 find a file named `books/something.txt` (the input)
 and run `wordcount.py input output`."
 
-```bash
+```
 $ snakemake clean
 # use the -p option to show that it is running things correctly!
 $ snakemake -p dats
@@ -47,7 +47,7 @@ We should see the same output as before.
 Note that we can still use snakemake to build individual `.dat` targets as before,
 and that our new rule will work no matter what stem is being matched.
 
-```bash
+```
 $ snakemake -p sierra.dat
 ```
 {: .language-bash}
@@ -82,7 +82,7 @@ Finished job 0.
 
 Our Snakefile is now much shorter and cleaner:
 
-```make
+```
 # generate summary table
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'

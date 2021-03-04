@@ -6,8 +6,8 @@
 # "swc": Software Carpentry
 # "dc":  Data Carpentry
 # "lc":  Library Carpentry
-# "cp":  Carpentries (e.g., instructor traning)
-carpentry: "swc"
+# "cp":  Carpentries (e.g., instructor training)
+carpentry: "incubator"
 
 # Overall title for pages.
 title: "Introduction to High-Performance Computing"
@@ -17,6 +17,22 @@ email: "team@carpentries.org"
 
 # Life cycle stage of the lesson ("pre-alpha", "alpha", "beta", "stable")?
 life_cycle: "alpha"
+
+episode_order:
+  - 01-basics
+  - 02-scripts
+  - 03-lists
+  - 04-dicts
+  - 05-functions
+  - 06-parallel
+  - 11-snakemake-intro
+  - 12-snakefiles
+  - 13-wildcards
+  - 14-patterns
+  - 15-snakemake-python
+  - 16-resources
+  - 17-cluster
+  - 18-final-notes
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -30,6 +46,9 @@ start_time: 0
 
 # Magic to make URLs resolve both locally and on GitHub. Please don't change.
 repository: <USERNAME>/<PROJECT>
+
+# Invoke the Carpentries theme rather than copying into our repository.
+remote_theme: carpentries/carpentries-theme
 
 # Sites.
 amy_site: "https://amy.carpentries.org/"
@@ -87,5 +106,6 @@ exclude:
 # Turn on built-in syntax highlighting.
 highlighter: rouge
 
-# Invoke the Carpentries theme rather than copying into our repository.
-remote_theme: carpentries/carpentries-theme
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate

@@ -16,7 +16,7 @@ keypoints:
 
 After the exercise at the end of the previous episode, our Snakefile looked like this:
 
-```make
+```
 # generate summary table
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
@@ -70,7 +70,7 @@ Let us set about removing some of the repetition from our Snakefile.
 In our `zip_test` rule we duplicate the data file names and the
 name of the results file name:
 
-```make
+```
 rule zipf_test:
     input:
             'abyss.dat',
@@ -84,7 +84,7 @@ rule zipf_test:
 Looking at the results file name first, we can replace it in the action
 with `{output}`:
 
-```make
+```
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -97,7 +97,7 @@ which is equivalent to the value we specified for the `output` section of the ru
 
 We can replace the dependencies in the action with `{input}`:
 
-```make
+```
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -111,7 +111,7 @@ variable with the dependencies.
 
 Let's update our text files and re-run our rule:
 
-```bash
+```
 $ touch books/*.txt
 $ snakemake results.txt
 ```
@@ -169,7 +169,7 @@ Finished job 0.
 >
 > What will happen if you now execute:
 >
-> ```bash
+> ```
 > $ touch *.dat
 > $ snakemake results.txt
 > ```
@@ -188,7 +188,7 @@ Finished job 0.
 > >
 > > If you run:
 > >
-> > ```bash
+> > ```
 > > $ touch books/*.txt
 > > $ snakemake results.txt
 > > ```
@@ -223,7 +223,7 @@ Suppose we want to add `wordcount.py` as a dependency of each of our data files.
 In this case, we can use `{input[0]}` to refer to the first dependency,
 and `{input[1]}` to refer to the second.
 
-```make
+```
 rule count_words:
     input:  'wordcount.py', 'books/isles.txt'
     output: 'isles.dat'
@@ -233,7 +233,7 @@ rule count_words:
 
 Alternatively, we can name our dependencies.
 
-```make
+```
 rule count_words_abyss:
     input:
         wc='wordcount.py',
@@ -245,7 +245,7 @@ rule count_words_abyss:
 
 Let's mark `wordcount.py` as updated, and re-run the pipeline.
 
-```bash
+```
 $ touch wordcount.py
 $ snakemake
 ```
@@ -293,7 +293,7 @@ Intuitively, we should also add `wordcount.py` as dependency for
 `.dat` files. However, it turns out we don't have to! Let's see what
 happens to `results.txt` when we update `wordcount.py`:
 
-```bash
+```
 $ touch wordcount.py
 $ snakemake results.txt
 ```
@@ -351,7 +351,7 @@ downstream steps.
 >
 > What will happen if you now execute:
 >
-> ```bash
+> ```
 > touch books/last.txt
 > snakemake results.txt
 > ```

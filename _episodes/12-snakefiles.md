@@ -15,7 +15,7 @@ keypoints:
 
 Create a file, called `Snakefile`, with no file extension and containing the following content:
 
-```python
+```
 # Count words.
 rule count_words:
     input:    'books/isles.txt'
@@ -56,7 +56,7 @@ requires `books/isles.txt` - is now made explicit by Snakemake's syntax.
 Let's first ensure we start from scratch and delete the `.dat` and `.png`
 files we created earlier:
 
-```bash
+```
 $ rm *.dat *.png
 ```
 {: .language-bash}
@@ -64,7 +64,7 @@ $ rm *.dat *.png
 By default, Snakemake looks for a file called `Snakefile`, and we can
 run Snakemake as follows:
 
-```bash
+```
 $ snakemake
 ```
 {: .language-bash}
@@ -93,7 +93,7 @@ Depending on your setup, you may receive an error
 `Error: you need to specify the maximum number of CPU cores to be used at the same time with --cores.` 
 This can be fixed using an argument to the sankemake command. Try running the following:
 
-```bash
+```
 $ snakemake --cores 1
 ```
 {: .language-bash}
@@ -105,7 +105,7 @@ Remember, aside from stuff like `rule` and `input`,
 Snakemake follows Python syntax.
 Let's see if we got what we expected:
 
-```bash
+```
 $ head -5 isles.dat
 ```
 {: .language-bash}
@@ -118,10 +118,10 @@ The first 5 lines of `isles.dat` should look exactly like before.
 > something else we need to tell Snakemake where to find it. This we can do
 > using `-s` flag. For example, if our Snakefile is named `MyOtherSnakefile`:
 >
-> ```bash
-> snakemake -s MyOtherSnakefile
 > ```
->
+> $ snakemake -s MyOtherSnakefile
+> ```
+> {: .language-bash}
 {: .callout}
 
 When we re-run our Snakefile, Snakemake now informs us that:
@@ -137,14 +137,14 @@ update one of the text files. Rather than opening the file in an
 editor, we can use the shell `touch` command to update its timestamp
 (which would happen if we did edit the file):
 
-```bash
+```
 $ touch books/isles.txt
 ```
 {: .language-bash}
 
 If we compare the timestamps of `books/isles.txt` and `isles.dat`,
 
-```bash
+```
 $ ls -l books/isles.txt isles.dat
 ```
 {: .language-bash}
@@ -160,7 +160,7 @@ than`books/isles.txt`, its dependency:
 
 If we run Snakemake again,
 
-```bash
+```
 $ snakemake
 ```
 {: .language-bash}
@@ -204,7 +204,7 @@ Let's add another rule to the end of `Snakefile`.
 Note that rules cannot have the same name,
 so we'll call this one `count_words_abyss`.
 
-```make
+```
 rule count_words_abyss:
     input:    'books/abyss.txt'
     output:   'abyss.dat'
@@ -214,7 +214,7 @@ rule count_words_abyss:
 
 If we run Snakemake,
 
-```bash
+```
 $ snakemake
 ```
 {: .language-bash}
@@ -232,7 +232,7 @@ target]({{ page.root }}/reference/#default-target), which is `isles.dat` which i
 already up-to-date. We need to explicitly tell Snakemake we want to build
 `abyss.dat`:
 
-```bash
+```
 $ snakemake abyss.dat
 ```
 {: .language-bash}
@@ -270,7 +270,7 @@ Finished job 0.
 > If we ask Snakemake to build a file that exists but for which there is
 > no rule in our Snakefile, then we get a message like:
 >
-> ```bash
+> ```
 > $ snakemake wordcount.py
 > ```
 > {: .language-bash} 
@@ -289,7 +289,7 @@ them all. We can introduce a new target, and associated rule, to do
 this. We will call it `clean`, as this is a common name for rules that
 delete auto-generated files, like our `.dat` files:
 
-```make
+```
 rule clean:
     shell: 'rm -f *.dat'
 ```
@@ -298,7 +298,7 @@ rule clean:
 This is an example of a rule that has no inputs or outputs!. We just want to remove the data files whether or
 not they exist. If we run Snakemake and specify this target,
 
-```bash
+```
 $ snakemake clean
 ```
 {: .language-bash}
@@ -328,7 +328,7 @@ this at the top of our Snakefile so that it is the [default
 target]({{ page.root }}/reference/#default-target), which is executed by default
 if no target is given to the `snakemake` command:
 
-```make
+```
 rule dats:
     input:
         'isles.dat',
@@ -358,7 +358,7 @@ purely to trigger the build of its dependencies, if needed.
 
 If we run,
 
-```bash
+```
 $ snakemake dats
 ```
 {: .language-bash}
@@ -404,7 +404,7 @@ If we run `dats` again, then snakemake will see that the dependencies (`isles.da
 and `abyss.dat`) are already up to date.
 Given the target `dats` has no actions, there is `nothing to be done`:
 
-```bash
+```
 $ snakemake dats
 ```
 {: .language-bash}
@@ -415,7 +415,7 @@ Nothing to be done
 
 Our Snakefile now looks like this:
 
-```make
+```
 rule dats:
      input:
          'isles.dat',
@@ -453,7 +453,7 @@ Additionally, we can also perform a dry run with `-n`.
 A dry run does nothing, and simply prints out commands instead of actually executing them.
 Very useful for debugging!
 
-```bash
+```
 $ snakemake clean
 $ snakemake -n -p isles.dat
 ```
