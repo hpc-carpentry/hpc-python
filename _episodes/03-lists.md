@@ -47,9 +47,12 @@ The best way to think about array indices is that they are the number of
 offsets from the first position &mdash; the first element does not require an
 offset to get to.
 
-![Arrays start at 0](https://imgs.xkcd.com/comics/donald_knuth.png)
+{% include figure.html url="" max-width="50%"
+   file="https://imgs.xkcd.com/comics/donald_knuth.png"
+   alt="Arrays start at 0"
+   caption="<i>Source:</i> <a href='https://xkcd.com/163/'>xkcd #163</a>" %}
 
-And a few examples of this in action:
+A few examples of this in action:
 
 ```
 # first element
