@@ -116,7 +116,7 @@ The first 5 lines of `isles.dat` should look exactly like before.
 >
 > We don't have to call our Snakefile `Snakefile`. However, if we call it
 > something else we need to tell Snakemake where to find it. This we can do
-> using `-s` flag. For example, if our Makefile is named `MyOtherSnakefile`:
+> using `-s` flag. For example, if our Snakefile is named `MyOtherSnakefile`:
 >
 > ```bash
 > snakemake -s MyOtherSnakefile
