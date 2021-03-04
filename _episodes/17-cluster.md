@@ -252,6 +252,7 @@ In the meantime, let's dissect the command we just ran.
 > * You can edit your `.bashrc` file to modify `$PATH` for all jobs and sessions you start on a cluster.
 > * Inserting `shell.prefix('some command')` in a Snakefile means that all rules run will be prefixed by `some_command`. You can use this to modify `$PATH`, eg. `shell.prefix('PATH=/extra/directory:$PATH ')`.
 > * You can modify rules directly to run the appropriate `module load` commands beforehand. This is not recommended, only if because it is more work than the other options available.
+{: .callout}
 
 > ## Submitting a workflow with nohup
 >
