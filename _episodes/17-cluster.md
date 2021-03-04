@@ -180,6 +180,7 @@ jobs: 25
 default-resources: [cpus=1, mem_mb=1000, time_min=5]
 resources: [cpus=100, mem_mb=1000000]
 ```
+{: .source}
 
 This file has several components.
 `cluster` and the arguments that follow tell snakemake how to submit jobs to the cluster.
@@ -188,7 +189,7 @@ We've also specified where to save SLURM logs and what to call them; note that t
 Values for any command line argument to snakemake can be defined in our profile, although a value is required (e.g. the `--use-conda` argument could be included in our profile with `use-conda: true`).
 `jobs` specifies the maximum number of jobs that will be submitted at one time.
 We also specified the `default-resources` that will be requested for each job, while `resources` defines the resource limits. 
-With these parameters, snakemake will use no more than 100 cpus and 100000mb (100 GB) at a time between all currently submitted jobs. 
+With these parameters, snakemake will use no more than 100 cpus and 100000 MB (100 GB) at a time between all currently submitted jobs. 
 While it does not come into play here, a generally sensible default is slightly above the maximum number of jobs you are allowed to have submitted at a time.
 
 The defaults won't always be perfect, however -
@@ -251,6 +252,7 @@ with `watch squeue -u $(whoami)`.
 > * You can edit your `.bashrc` file to modify `$PATH` for all jobs and sessions you start on a cluster.
 > * Inserting `shell.prefix('some command')` in a Snakefile means that all rules run will be prefixed by `some_command`. You can use this to modify `$PATH`, eg. `shell.prefix('PATH=/extra/directory:$PATH ')`.
 > * You can modify rules directly to run the appropriate `module load` commands beforehand. This is not recommended, only if because it is more work than the other options available.
+{: .callout}
 
 > ## Submitting a workflow with nohup
 >
