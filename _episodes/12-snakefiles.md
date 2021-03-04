@@ -5,7 +5,8 @@ exercises: 15
 questions:
 - "How do I write a simple workflow?"
 objectives:
-- "Understand the components of a Snakefile: rules, inputs, outputs, and actions."
+- "Understand the components of a Snakefile: rules, inputs, outputs,
+  and actions."
 - "Write a simple Snakefile."
 - "Run Snakemake from the shell."
 keypoints:
@@ -13,7 +14,8 @@ keypoints:
 - "Rules can have an input and/or outputs, and a command to be run."
 ---
 
-Create a file, called `Snakefile`, with no file extension and containing the following content:
+Create a file, called `Snakefile`, with no file extension and containing the
+following content:
 
 ```
 # Count words.
@@ -25,26 +27,28 @@ rule count_words:
 {: .language-python}
 
 This is a [build file]({{ page.root }}/reference/#build-file), which for
-Snakemake is called a [Snakefile]({{ page.root }}/reference/#makefile) - a file executed
-by Snakemake. Note that aside from a few keyword additions like `rule`,
-it follows standard Python 3 syntax.
+Snakemake is called a [Snakefile]({{ page.root }}/reference/#makefile) &mdash;
+a file executed by Snakemake. Note that aside from a few keyword additions like
+`rule`, it follows standard Python 3 syntax.
 
 Let us go through each line in turn:
 
 * `#` denotes a *comment*. Any text from `#` to the end of the line is
   ignored by Snakemake.
 * `isles.dat` is a [target]({{ page.root }}/reference/#target), a file to be
-  created, or built. In Snakemake, these are called "outputs", for simplicity's sake.
+  created, or built. In Snakemake, these are called "outputs", for simplicity's
+  sake.
 * `books/isles.txt` is a [dependency]({{ page.root }}/reference/#dependency), a
-  file that is needed to build or update the target. Targets can have
-  zero or more dependencies. Dependencies in Snakemake are called "inputs".
-* `python wordcount.py books/isles.txt isles.dat` is an
-  [action]({{ page.root }}/reference/#action), a command to run to build or update
-  the target using the dependencies. In this case the action is a set of
-  shell commands (we can also use Python code... more on that later).
-* Like Python, you can use either tabs or spaces for indentation (don't use both!).
-* Together, the target, dependencies, and actions form a
-  [rule]({{ page.root }}/reference/#rule). A rule is a recipe for how to make things.
+  file that is needed to build or update the target. Targets can have zero or
+  more dependencies. Dependencies in Snakemake are called "inputs".
+* `python wordcount.py books/isles.txt isles.dat` is an [action]({{ page.root
+  }}/reference/#action), a command to run to build or update the target using
+  the dependencies. In this case the action is a set of shell commands (we can
+  also use Python code... more on that later).
+* Like Python, you can use either tabs or spaces for indentation &mdash;
+  don't use both!
+* Together, the target, dependencies, and actions form a [rule](
+  {{ page.root }}/reference/#rule). A rule is a recipe for how to make things.
 
 Our rule above describes how to build the target `isles.dat` using the
 action `python wordcount.py` and the dependency `books/isles.txt`.
@@ -90,15 +94,18 @@ Finished job 0.
 {: .output}
 
 Depending on your setup, you may receive an error 
-`Error: you need to specify the maximum number of CPU cores to be used at the same time with --cores.` 
-This can be fixed using an argument to the sankemake command. Try running the following:
+`Error: you need to specify the maximum number of CPU cores to be used at the 
+same time with --cores.` 
+This can be fixed using an argument to the sankemake command.
+Try running the following:
 
 ```
 $ snakemake --cores 1
 ```
 {: .language-bash}
 
-If you see a different error, check your syntax and the filepaths of the files in your Snakefile.
+If you see a different error, check your syntax and the filepaths of the files
+in your Snakefile.
 You can check your present working directory using the command `pwd`.
 
 Remember, aside from stuff like `rule` and `input`,
@@ -185,13 +192,14 @@ Finished job 0.
 ```
 {: .output}
 
-When it is asked to build a target, Snakemake checks the 'last modification
-time' of both the target and its dependencies. If any dependency has
+When it is asked to build a target, Snakemake checks the "last modification
+time" of both the target and its dependencies. If any dependency has
 been updated since the target, then the actions are re-run to update
 the target. Using this approach, Snakemake knows to only rebuild the files
 that, either directly or indirectly, depend on the file that
-changed. This is called an [incremental
-build]({{ page.root }}/reference/#incremental-build).
+changed. 
+This is called an [incremental build](
+{{ page.root }}/reference/#incremental-build).
 
 > ## Snakefiles as Documentation
 >
@@ -227,10 +235,10 @@ Nothing to be done.
 {: .output}
 
 Nothing happens because Snakemake attempts to build the first target it
-finds in the Snakefile, the [default
-target]({{ page.root }}/reference/#default-target), which is `isles.dat` which is
-already up-to-date. We need to explicitly tell Snakemake we want to build
-`abyss.dat`:
+finds in the Snakefile, the [default target](
+{{ page.root }}/reference/#default-target), 
+which is `isles.dat` which is already up-to-date.
+We need to explicitly tell Snakemake we want to build `abyss.dat`:
 
 ```
 $ snakemake abyss.dat
@@ -276,12 +284,15 @@ Finished job 0.
 > {: .language-bash} 
 > ```
 > MissingRuleException:
-> No rule to produce wordcount.py (if you use input functions make sure that they don't raise unexpected exceptions).
+> No rule to produce wordcount.py (if you use input functions make sure
+> that they don't raise unexpected exceptions).
 > ```
 > {: .output}
 >
-> When we see this error, double-check that you have a rule to produce that file, and also that the filename has been specified correctly.
-> Even a small difference in a filename will result in a `MissingRuleException`.
+> When we see this error, double-check that you have a rule to produce that
+> file, and also that the filename has been specified correctly.
+> Even a small difference in a filename will result in a 
+> `MissingRuleException`.
 {: .callout}
 
 We may want to remove all our data files so we can explicitly recreate
@@ -295,8 +306,9 @@ rule clean:
 ```
 {: .language-make}
 
-This is an example of a rule that has no inputs or outputs!. We just want to remove the data files whether or
-not they exist. If we run Snakemake and specify this target,
+This is an example of a rule that has no inputs or outputs!
+We just want to remove the data files whether or not they exist.
+If we run Snakemake and specify this target,
 
 ```
 $ snakemake clean
@@ -321,11 +333,12 @@ Finished job 0.
 ```
 {: .output}
 
-An `ls` of our current directory reveals that all of our troublesome output files are now gone (as planned)!
+An `ls` of our current directory reveals that all of our troublesome output
+files are now gone (as planned)!
 
 We can add a similar command to create all the data files. We can put
-this at the top of our Snakefile so that it is the [default
-target]({{ page.root }}/reference/#default-target), which is executed by default
+this at the top of our Snakefile so that it is the [default target](
+{{ page.root }}/reference/#default-target), which is executed by default
 if no target is given to the `snakemake` command:
 
 ```
@@ -400,8 +413,8 @@ Finished job 0.
 ```
 {: .output}
 
-If we run `dats` again, then snakemake will see that the dependencies (`isles.dat`
-and `abyss.dat`) are already up to date.
+If we run `dats` again, then snakemake will see that the dependencies
+(`isles.dat` and `abyss.dat`) are already up to date.
 Given the target `dats` has no actions, there is `nothing to be done`:
 
 ```
@@ -444,13 +457,18 @@ rule count_words_abyss:
 The following figure shows a graph of the dependencies embodied within
 our Snakefile, involved in building the `dats` target:
 
-![Dependencies represented within the Snakefile](../fig/02-dats-dag.svg "Dependencies represented within the Snakefile")
+{% include figure.html url="" caption="" max-width="40%"
+   file="/fig/02-dats-dag.svg"
+   alt="Dependencies represented within the Snakefile" %}
 
-At this point, it becomes important to see what Snakemake is doing behind the scenes.
+At this point, it becomes important to see what Snakemake is doing behind the
+scenes.
 What commands is Snakemake actually running?
-Snakemake has a special option (`-p`), that prints every command it is about to run.
+Snakemake has a special option (`-p`), 
+that prints every command it is about to run.
 Additionally, we can also perform a dry run with `-n`.
-A dry run does nothing, and simply prints out commands instead of actually executing them.
+A dry run does nothing, and simply prints out commands instead of actually
+executing them.
 Very useful for debugging!
 
 ```
@@ -480,12 +498,16 @@ Job counts:
 > 3. Write a new rule for `results.txt`, which creates the summary
 >    table. The rule needs to:
 >    * Depend upon each of the three `.dat` files.
->    * Invoke the action `python zipf_test.py abyss.dat isles.dat last.dat > results.txt`.
-> 4. Put this rule at the top of the Snakefile so that it is the default target.
+>    * Invoke the action 
+>      `python zipf_test.py abyss.dat isles.dat last.dat > results.txt`.
+> 4. Put this rule at the top of the Snakefile so that it is the default
+>    target.
 > 5. Update `clean` so that it removes `results.txt`.
 {: .challenge}
 
 The following figure shows the dependencies embodied within our
 Snakefile, involved in building the `results.txt` target:
 
-![results.txt dependencies represented within the Snakefile](../fig/02-challenge-dag.svg "results.txt dependencies represented within the Snakefile")
+{% include figure.html url="" caption="" max-width="40%"
+   file="/fig/02-challenge-dag.svg"
+   alt="results.txt dependencies represented within the Snakefile" %}

@@ -5,7 +5,8 @@ exercises: 15
 questions:
 - "How do I write functions?"
 objectives:
-- "Be able to write our own functions and use basic functional programming constructs like `map()` and `filter()`."
+- "Be able to write our own functions and use basic functional programming
+  constructs like `map()` and `filter()`."
 keypoints:
 - "`map()` applies a function to every object in a data structure."
 - "`filter()` returns only the data objects for which some condition is true."
@@ -23,7 +24,8 @@ def function(arg1):
 ```
 {: .language-python}
 
-So, an example function that adds two numbers together might look a little like this:
+So, an example function that adds two numbers together might look a little like
+this:
 
 ```
 def adder(x, y):
@@ -66,7 +68,8 @@ adder(5)
 
 ## Conditional statements
 
-We may also need to have our functions do specific things in some conditions, but not in others.
+We may also need to have our functions do specific things in some conditions,
+but not in others.
 This relies upon comparisons between items:
 
 In python, comparison is done using the `==` operator:
@@ -97,8 +100,10 @@ True
 ```
 {: .output}
 
-As with other programming languages, we can make the usual comparisons with the `>` and `<` operators.
-Adding an equals sign (`>=`, `<=`) indicates less than or equal to or greater than or equal to.
+As with other programming languages, we can make the usual comparisons with the
+`>` and `<` operators.
+Adding an equals sign (`>=`, `<=`) indicates less than or equal to or greater
+than or equal to.
 
 ```
 5 < 10
@@ -115,7 +120,8 @@ True
 ```
 {: .output}
 
-These statements can be combined with the `if` statement to produce code that executes at various times.
+These statements can be combined with the `if` statement to produce code that
+executes at various times.
 
 ```
 number = 5
@@ -138,7 +144,8 @@ if number <= 10:
 ```
 {: .language-python}
 
-However, we can add code to execute when the `if` condition is not met by adding an `else` statement.
+However, we can add code to execute when the `if` condition is not met by
+adding an `else` statement.
 
 ```
 number = 11
@@ -182,7 +189,8 @@ True
 ```
 {: .output}
 
-Additionally, we can check if one value is in another set of values with the `in` operator:
+Additionally, we can check if one value is in another set of values with the
+`in` operator:
 
 ```
 5 in [4, 5, 6]
@@ -201,7 +209,8 @@ Python has good support for functional programming,
 and has its own equivalents for map/reduce-style functionality.
 To "map" a function means to apply it to a set of elements.
 To "reduce" means to collapse a set of values to a single value.
-Finally, "filtering" means returning only a set of elements where a certain value is true.
+Finally, "filtering" means returning only a set of elements where a certain
+value is true.
 
 Let's explore what that means with our own functions.
 The syntax of map/reduce/filter is identical:
@@ -225,7 +234,8 @@ map(math.sin, values)
 ```
 {: .output}
 
-To retrieve the actual values, we typically need to make the resulting output a list.
+To retrieve the actual values,
+we typically need to make the resulting output a list.
 
 ```
 list(map(math.sin, values))
@@ -242,7 +252,8 @@ list(map(math.sin, values))
 ```
 {: .output}
 
-`filter()` applies a similar operation, but instead of applying a function to every piece,
+`filter()` applies a similar operation,
+but instead of applying a function to every piece,
 it only returns points where a function returns true.
 
 ```
@@ -260,7 +271,8 @@ list(filter(less_than_3, values))
 That was very inconvenient.
 We had to define an entire function just to only use it once.
 The solution for this is to write a one-time use function that has no name.
-Such functions are called either anonymous functions or lamdba functions (both mean the same thing).
+Such functions are called either anonymous functions or lamdba functions
+(both mean the same thing).
 
 To define a lambda function in python, the general syntax is as follows:
 
@@ -269,7 +281,8 @@ lambda x: x + 54
 ``` 
 {: .language-python}
 
-In this case, `lambda x:` indicates we are defining a lambda function with a single argument, `x`.
+In this case, `lambda x:` indicates we are defining a lambda function with a
+single argument, `x`.
 Everything following the `:` is our function.
 Whatever value this evaluates to is automatically returned.
 So `lambda x: x + 54` equates to:
@@ -291,7 +304,9 @@ list(filter(lambda x: x < 3, values))
 ```
 {: .output}
 
-And a side-by-side example that demonstrates the difference between `map()` and `filter()`.
+And a side-by-side example that demonstrates the difference between `map()` and
+`filter()`.
+
 ```
 list(map(lambda x: x+100, [1,2,3,4,5]))
 list(filter(lambda x: x<3, [1,2,3,4,5]))
@@ -314,9 +329,11 @@ list(filter(lambda x: x<3, [1,2,3,4,5]))
 
 ## map/filter style functionality with Numpy arrays
 
-Although you *could* use a for-loop to apply a custom function to a numpy array in a single go, 
-there is a handy `np.vectorize()` function you can use to convert your functions to a vectorised numpy equivalent.
-Note that this is purely for convenience - this uses a `for-loop` internally.
+Although you *could* use a for-loop to apply a custom function to a numpy array
+in a single go, there is a handy `np.vectorize()` function you can use to
+convert your functions to a vectorised numpy equivalent. 
+Note that this is purely for convenience &mdash; this uses a `for-loop`
+internally.
 
 ```
 import numpy as np

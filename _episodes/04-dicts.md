@@ -10,8 +10,9 @@ keypoints:
 - "Dicts provide key-value storage of information."
 ---
 
-Dictionaries (also called dicts) are another key data structure we'll need to use to write a pipeline.
-In particular, dicts allow efficient key-value storage of any type of data. 
+Dictionaries (also called dicts) are another key data structure we'll need to
+use to write a pipeline. In particular, dicts allow efficient key-value storage
+of any type of data.
 
 To create a dict, we use syntax like the following.
 
@@ -51,7 +52,8 @@ example[7] = 'myvalue'
 {: .language-python}
 
 To retrieve all keys in the dictionary, we can use the `.keys()`method.
-Note how we used the `list()` function to turn our resulting output into a list.
+Note how we used the `list()` function to turn our resulting output into a
+list.
 
 ```
 list(example.keys())
@@ -74,8 +76,9 @@ list(example.values())
 {: .output}
 
 > ## Dictionary order
-> Note that the order of keys and values in a dictionary should not be relied upon.
-> We'll create dictionary another way to demonstrate this:
+>
+> Note that the order of keys and values in a dictionary should not be relied
+> upon. We'll create dictionary another way to demonstrate this:
 >
 > ```
 > unordered = {'a': 1,
@@ -89,10 +92,12 @@ list(example.values())
 > ```
 > {: .output}
 >
-> Depending on your version of Python, the dictionary will either be in order, or out of order.
-> If you are on Python 3.6+ dictionaries are ordered.
+> Depending on your version of Python, the dictionary will either be in order,
+> or out of order. If you are on Python 3.6+ dictionaries are ordered.
 >
-> Iterate through and print the dictionary's keys in both forward and reverse order.
+> Iterate through and print the dictionary's keys in both forward and reverse
+> order.
 >
-> (To iterate through the dict in a specific order, you will need to sort the keys using the `sorted()` function)
+> (To iterate through the dict in a specific order, you will need to sort the
+> keys using the `sorted()` function.)
 {: .callout}

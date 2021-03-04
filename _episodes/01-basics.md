@@ -136,8 +136,10 @@ weight in pounds: 121.00000000000001
 ```
 {: .output}
 
-As the example above shows, we can print several things at once by separating them with commas.
-Note that in this case, the number might appear as 121.00000000000001 due to the way numbers are internally represented in Python.
+As the example above shows, we can print several things at once by separating
+them with commas.
+Note that in this case, the number might appear as 121.00000000000001 due to
+the way numbers are internally represented in Python.
 
 We can also change a variable’s value by assigning it a new one:
 
@@ -169,14 +171,16 @@ weight in lb ending value is 121.00000000000001
 {: .output}
 
 
-Notice how even though we changed the value of `weight_kg`, `weight_lb` did not update.
+Notice how even though we changed the value of `weight_kg`, `weight_lb` did not
+update.
 This demonstrates a very important property of programming languages:
-a computer will not do anything unless you specifically tell it to - **nothing ever happens automatically**.
-This is different from the behaviour of a spreadsheets, 
+a computer will not do anything unless you specifically tell it to &mdash;
+**nothing ever happens automatically**.
+This is different from the behaviour of a spreadsheets,
 where a cell will automatically update when the cells it refers to are updated.
 
-If we want to tell Python to update `weight_lb` to reflect the new value of `weight_kg`,
-we will need to perform this operation explicitly.
+If we want to tell Python to update `weight_lb` to reflect the new value of
+`weight_kg`, we will need to perform this operation explicitly.
 
 ```
 weight_lb = weight_kg * 2.2
@@ -195,7 +199,8 @@ Try it and find out!
 
 > ## Where are variables stored?
 >
-> Your computer has two places where it stores information: hard disk and memory.
+> Your computer has two places where it stores information:
+> hard disk and memory.
 > What are they and what are they used for?
 > Where do variables get stored?
 >
@@ -203,14 +208,21 @@ Try it and find out!
 > It is very fast and easy to access, but has one important drawback:
 > data here is erased when your program quits or your computer shuts down.
 > All information you save as variables in Python will be stored in memory!
-> When programming, we always need to save our data as a file (on our hard disk) if we want to keep it!
+> When programming, we always need to save our data as a file (on our hard
+> disk) if we want to keep it!
 >
 > Your computer's hard disk is used to store information long-term.
-> This is where files get stored, and the information on your hard drive is more or less permanent.
-> Hard drives can also store lots of data very cheaply - a terabyte of hard drive space is very cheap, whereas the same amount of memory costs a lot more.
-> So if hard drive space is permanent and super-cheap, why don't we use it to store all of our data?
-> The biggest reason is speed - memory is typically hundreds, if not thousands of times faster to access.
-> If we stored our variables to our hard disk, our programs would be incredibly slow!
+> This is where files get stored, and the information on your hard drive is
+> more or less permanent.
+> Hard drives can also store lots of data very cheaply &mdash; a terabyte of
+> hard drive space is very cheap, whereas the same amount of memory costs a lot
+> more.
+> So if hard drive space is permanent and super-cheap, why don't we use it to
+> store all of our data?
+> The biggest reason is speed &mdash; memory is typically hundreds, if not
+> thousands of times faster to access.
+> If we stored our variables to our hard disk, our programs would be incredibly
+> slow!
 {: .callout}
 
 ## Errors
@@ -233,8 +245,10 @@ SyntaxError: invalid syntax
 {: .error}
 
 This is an error. Errors are good!
-When we do something that Python doesn't like, it will give us an error message.
-These error messages are called tracebacks, and often tell us exactly how to fix our stuff!
+When we do something that Python doesn't like, it will give us an error
+message.
+These error messages are called tracebacks, and often tell us exactly how to
+fix our stuff!
 
 ### Let's walk through this error:
 
@@ -247,8 +261,8 @@ All errors have types.
 This one is a `SyntaxError`, indicating, well... an error in our syntax.
 Syntax is "computer-speak" for how things are supposed to be typed.
 Python only understands certain commands, and typos will mess it up.
-If we type a command in such a way that Python can't understand it, we need to fix our syntax
-(make sure we've typed a valid command).
+If we type a command in such a way that Python can't understand it, we need to
+fix our syntax (make sure we've typed a valid command).
 **Takeaway message: We made an error when typing things.**
 
 ```
@@ -258,10 +272,10 @@ File "<ipython-input-15-70475fc083df", line 1
 ```
 {: .error}
 
-Python is trying to be helpful and tell us exactly where our error occurred. 
-The first thing it does is tell us which file had the error in it. 
-Since we are using the terminal, 
-it gives us the semi-confusing `<ipython-input-15-70475fc083df` instead of a filename.
+Python is trying to be helpful and tell us exactly where our error occurred.
+The first thing it does is tell us which file had the error in it.
+Since we are using the terminal, it gives us the semi-confusing
+`<ipython-input-15-70475fc083df` instead of a filename.
 
 The `line 1` bit tells us that our error was on line 1 of our last command.
 Specifically, Python has printed out the offending line for us,
@@ -270,14 +284,19 @@ and pointed an arrow (`^`) at the bad part.
 
 ## Different types of data
 
-Computers are not smart, and have to be explicitly told how to handle different types of data.
-Although a human might know that you can't do maths on a word, 
-our computer does not. 
-To work around this problem, programming languages store different types of data in different ways. 
+Computers are not smart, and have to be explicitly told how to handle different
+types of data.
+Although a human might know that you can't do maths on a word,
+our computer does not.
+To work around this problem, programming languages store different types of
+data in different ways.
 
-For reasons that are likely obvious, we will need to store text differently than numbers.
-What is less obvious is that Python also has special ways of handling integers vs. decimals, 
-Boolean values (True/False), and a special value used to indicate no data whatsoever.
+For reasons that are likely obvious, we will need to store text differently
+than numbers.
+What is less obvious is that Python also has special ways of handling integers
+vs. decimals,
+Boolean values (True/False), and a special value used to indicate no data
+whatsoever.
 
 ### Strings
 
@@ -355,7 +374,8 @@ TypeError: Can't convert 'int' object to str implicitly
 ```
 {: .error}
 
-This error indicates that Python doesn't know how to convert a string to an integer (without our help)!
+This error indicates that Python doesn't know how to convert a string to an
+integer (without our help)!
 
 ### Numbers
 
@@ -375,7 +395,8 @@ int
 ```
 {: .output}
 
-But what happens when we perform a maths operation that would result in a decimal?
+But what happens when we perform a maths operation that would result in a
+decimal?
 
 ```
 type(10 / 3)
@@ -386,7 +407,8 @@ float
 ```
 {: .output}
 
-Any operation that would result in a decimal being created converts the number to a "float".
+Any operation that would result in a decimal being created converts the number
+to a "float".
 Floats are used to represent decimals in Python.
 To explicitly set a number as a float, just add a decimal point.
 
@@ -403,7 +425,8 @@ float
 
 ### Other data types
 
-Python has two special "Boolean" values to indicate whether or not something is true or false.
+Python has two special "Boolean" values to indicate whether or not something is
+true or false.
 Unsurprisingly, these are defined as `True` and `False`.
 
 ```
@@ -418,7 +441,8 @@ bool
 {: .output}
 
 Finally, there is a special value called `None` used to indicate no data.
-We will revisit `None` in more detail later, so for now, just be aware it exists.
+We will revisit `None` in more detail later, so for now, just be aware it
+exists.
 
 ```
 type(None)
@@ -437,7 +461,8 @@ NoneType
 > Fortunately, Python makes it rather easy to convert between data types.
 > Each data type has a function used to convert another piece of data.
 >
-> To convert a string to an integer, for instance, we can use the `int()` command:
+> To convert a string to an integer, for instance, we can use the `int()`
+> command:
 >
 > ```
 > print(int('5') + 5)
@@ -454,9 +479,10 @@ NoneType
 > * `int()` - creates an integer
 > * `float()` - creates a float
 > * `bool()` - creates a Boolean
-> 
-> Using this information, 
-> see if you can fix the left side of these statements to equal the right side of each statement.
+>
+> Using this information,
+> see if you can fix the left side of these statements to equal the right side
+> of each statement.
 > Use only the commands shown above.
 >
 > ```
@@ -470,6 +496,9 @@ NoneType
 {: .challenge}
 
 > ## Data type conversion pitfalls
-> You may have noticed something weird when converting a float to an int in the last example.
-> Is Python simply rounding floats to the nearest integer, or is it doing something else?
+>
+> You may have noticed something weird when converting a float to an int in the
+> last example.
+> Is Python simply rounding floats to the nearest integer, or is it doing
+> something else?
 {: .challenge}
