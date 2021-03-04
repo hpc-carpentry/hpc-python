@@ -18,9 +18,11 @@ includes several significant performance improvements over "vanilla" Python.
 ## Snakemake
 
 Once you have a Miniconda environment configured, please install Snakemake with
+
 ```
 conda install snakemake
 ```
+{: .source}
 
 ## Shell and SSH
 
