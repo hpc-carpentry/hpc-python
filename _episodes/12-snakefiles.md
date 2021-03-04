@@ -481,11 +481,11 @@ Job counts:
 >    table. The rule needs to:
 >    * Depend upon each of the three `.dat` files.
 >    * Invoke the action `python zipf_test.py abyss.dat isles.dat last.dat > results.txt`.
-> 4. Put this rule at the top of the Makefile so that it is the default target.
+> 4. Put this rule at the top of the Snakefile so that it is the default target.
 > 5. Update `clean` so that it removes `results.txt`.
 {: .challenge}
 
 The following figure shows the dependencies embodied within our
-Makefile, involved in building the `results.txt` target:
+Snakefile, involved in building the `results.txt` target:
 
-![results.txt dependencies represented within the Makefile](../fig/02-challenge-dag.svg "results.txt dependencies represented within the Makefile")
+![results.txt dependencies represented within the Snakefile](../fig/02-challenge-dag.svg "results.txt dependencies represented within the Snakefile")
