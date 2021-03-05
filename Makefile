@@ -97,7 +97,7 @@ workshop-check :
 ## III. Commands specific to lesson websites
 ## =================================================
 
-.PHONY : lesson-check lesson-md lesson-files lesson-fixme
+.PHONY : lesson-check lesson-md lesson-files lesson-fixme spellcheck
 
 # RMarkdown files
 RMD_SRC = $(wildcard _episodes_rmd/??-*.Rmd)
@@ -136,6 +136,9 @@ lesson-check : lesson-fixme
 ## * lesson-check-all : validate lesson Markdown, checking line lengths and trailing whitespace
 lesson-check-all :
 	@${PYTHON} bin/lesson_check.py -s . -p ${PARSER} -r _includes/links.md -l -w --permissive
+
+spellcheck:
+	codespell --skip="assets,.bundle,_site,*.svg,*.txt,.vendor" --quiet-level=2  -L "dropse,hart,hist,namd,rouge"
 
 ## * unittest         : run unit tests on checking tools
 unittest :

@@ -220,7 +220,7 @@ opportunities to fix the problem.
 1.F.4.  Except for the limited right of replacement or refund set forth
 in paragraph 1.F.3, this work is provided to you 'AS-IS' WITH NO OTHER
 WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-WARRANTIES OF MERCHANTIBILITY OR FITNESS FOR ANY PURPOSE.
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PURPOSE.
 
 1.F.5.  Some states do not allow disclaimers of certain implied
 warranties or the exclusion or limitation of certain types of damages.
