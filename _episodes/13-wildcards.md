@@ -6,17 +6,20 @@ questions:
 - "How can I abbreviate the rules in my pipeline?"
 objectives:
 - "Use snakemake wildcards to simplify our rules."
-- "Output files are a product not only of input files but of the scripts or code that created the output files."
+- "Output files are a product not only of input files but of the scripts or
+  code that created the output files."
 keypoints:
 - "Use `{output}` to refer to the output of the current rule."
 - "Use `{input}` to refer to the dependencies of the current rule."
-- "You can use Python indexing to retrieve individual outputs and inputs (example: `{input[0]}`)"
+- "You can use Python indexing to retrieve individual outputs and inputs
+  (example: `{input[0]}`)"
 - "Wildcards can be named (example: `{input.file1}`)."
 ---
 
-After the exercise at the end of the previous episode, our Snakefile looked like this:
+After the exercise at the end of the previous episode,
+our Snakefile looked like this:
 
-```make
+```
 # generate summary table
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
@@ -70,7 +73,7 @@ Let us set about removing some of the repetition from our Snakefile.
 In our `zip_test` rule we duplicate the data file names and the
 name of the results file name:
 
-```make
+```
 rule zipf_test:
     input:
             'abyss.dat',
@@ -84,7 +87,7 @@ rule zipf_test:
 Looking at the results file name first, we can replace it in the action
 with `{output}`:
 
-```make
+```
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -92,12 +95,13 @@ rule zipf_test:
 ```
 {: .language-make}
 
-`{output}` is a Snakemake [wildcard]({{ page.root }}/reference/#automatic-variable)
-which is equivalent to the value we specified for the `output` section of the rule.
+`{output}` is a Snakemake [wildcard](
+{{ page.root }}/reference/#automatic-variable) which is equivalent to the value
+we specified for the `output` section of the rule.
 
 We can replace the dependencies in the action with `{input}`:
 
-```make
+```
 rule zipf_test:
     input:  'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -105,13 +109,13 @@ rule zipf_test:
 ```
 {: .language-make}
 
-`{input}` is another wildcard which means 'all the dependencies
-of the current rule'. Again, when Snakemake is run it will replace this
-variable with the dependencies.
+`{input}` is another wildcard which means 'all the dependencies of the current
+rule'. Again, when Snakemake is run it will replace this variable with the
+dependencies.
 
 Let's update our text files and re-run our rule:
 
-```bash
+```
 $ touch books/*.txt
 $ snakemake results.txt
 ```
@@ -123,12 +127,12 @@ We get:
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
-	count	jobs
-	1	count_words
-	1	count_words_abyss
-	1	count_words_last
-	1	zipf_test
-	4
+    count	jobs
+    1	count_words
+    1	count_words_abyss
+    1	count_words_last
+    1	zipf_test
+    4
 
 rule count_words_last:
     input: books/last.txt
@@ -169,7 +173,7 @@ Finished job 0.
 >
 > What will happen if you now execute:
 >
-> ```bash
+> ```
 > $ touch *.dat
 > $ snakemake results.txt
 > ```
@@ -183,12 +187,12 @@ Finished job 0.
 > > ## Solution
 > > `4.` Only `results.txt` recreated.
 > >
-> > The rules for `*.dat` are not executed because their corresponding `.txt` files
-> > haven't been modified.
+> > The rules for `*.dat` are not executed because their corresponding
+> > `.txt` files haven't been modified.
 > >
 > > If you run:
 > >
-> > ```bash
+> > ```
 > > $ touch books/*.txt
 > > $ snakemake results.txt
 > > ```
@@ -198,9 +202,9 @@ Finished job 0.
 > {: .solution}
 {: .challenge}
 
-As we saw, `{input}` means 'all the dependencies of the current rule'. This
-works well for `results.txt` as its action treats all the dependencies
-the same - as the input for the `zipf_test.py` script.
+As we saw, `{input}` means 'all the dependencies of the current rule'.
+This works well for `results.txt` as its action treats all the dependencies the
+same &mdash; as the input for the `zipf_test.py` script.
 
 > ## Rewrite `.dat` rules to use wildcards
 >
@@ -217,13 +221,14 @@ these being passed as input files to `wordcount.py` as it expects only
 one input file to be named when it is invoked.
 
 Snakemake provides several solutions to this.
-Depending on what we want to do, it's possible to both index and name our wildcards.
+Depending on what we want to do,
+it's possible to both index and name our wildcards.
 
-Suppose we want to add `wordcount.py` as a dependency of each of our data files.
+Suppose we want to add `wordcount.py` as a dependency of each data file.
 In this case, we can use `{input[0]}` to refer to the first dependency,
 and `{input[1]}` to refer to the second.
 
-```make
+```
 rule count_words:
     input:  'wordcount.py', 'books/isles.txt'
     output: 'isles.dat'
@@ -233,7 +238,7 @@ rule count_words:
 
 Alternatively, we can name our dependencies.
 
-```make
+```
 rule count_words_abyss:
     input:
         wc='wordcount.py',
@@ -245,7 +250,7 @@ rule count_words_abyss:
 
 Let's mark `wordcount.py` as updated, and re-run the pipeline.
 
-```bash
+```
 $ touch wordcount.py
 $ snakemake
 ```
@@ -255,11 +260,11 @@ $ snakemake
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
-	count	jobs
-	1	count_words
-	1	count_words_abyss
-	1	zipf_test
-	3
+    count	jobs
+    1	count_words
+    1	count_words_abyss
+    1	zipf_test
+    3
 
 rule count_words_abyss:
     input: wordcount.py, books/abyss.txt
@@ -293,7 +298,7 @@ Intuitively, we should also add `wordcount.py` as dependency for
 `.dat` files. However, it turns out we don't have to! Let's see what
 happens to `results.txt` when we update `wordcount.py`:
 
-```bash
+```
 $ touch wordcount.py
 $ snakemake results.txt
 ```
@@ -305,11 +310,11 @@ then we get:
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
-	count	jobs
-	1	count_words
-	1	count_words_abyss
-	1	zipf_test
-	3
+    count	jobs
+    1	count_words
+    1	count_words_abyss
+    1	zipf_test
+    3
 
 rule count_words_abyss:
     input: wordcount.py, books/abyss.txt
@@ -351,7 +356,7 @@ downstream steps.
 >
 > What will happen if you now execute:
 >
-> ```bash
+> ```
 > touch books/last.txt
 > snakemake results.txt
 > ```

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Check lesson files and their contents.
 """
@@ -16,6 +18,9 @@ __version__ = '0.3'
 # Where to look for source Markdown files.
 SOURCE_DIRS = ['', '_episodes', '_extras']
 
+# Where to look for snippet files (which should be Markdown syntax)
+SNIPPET_DIR = os.path.join('_includes', 'snippets_library')
+
 # Where to look for source Rmd files.
 SOURCE_RMD_DIRS = ['_episodes_rmd']
 
@@ -27,19 +32,19 @@ SOURCE_RMD_DIRS = ['_episodes_rmd']
 # specially. This list must include all the Markdown files listed in the
 # 'bin/initialize' script.
 REQUIRED_FILES = {
-    'CODE_OF_CONDUCT.md': True,
-    'CONTRIBUTING.md': False,
-    'LICENSE.md': True,
-    'README.md': False,
-    os.path.join('_extras', 'discuss.md'): True,
-    os.path.join('_extras', 'guide.md'): True,
-    'index.md': True,
-    'reference.md': True,
-    'setup.md': True,
+    '%/CODE_OF_CONDUCT.md': True,
+    '%/CONTRIBUTING.md': False,
+    '%/LICENSE.md': True,
+    '%/README.md': False,
+    '%/_extras/discuss.md': True,
+    '%/_extras/guide.md': True,
+    '%/index.md': True,
+    '%/reference.md': True,
+    '%/setup.md': True,
 }
 
 # Episode filename pattern.
-P_EPISODE_FILENAME = re.compile(r'(\d\d)-[-\w]+.md$')
+P_EPISODE_FILENAME = re.compile(r'/_episodes/(\d\d)-[-\w]+.md$')
 
 # Pattern to match lines ending with whitespace.
 P_TRAILING_WHITESPACE = re.compile(r'\s+$')
@@ -59,6 +64,7 @@ P_INTERNAL_INCLUDE_LINK = re.compile(r'^{% include ([^ ]*) %}$')
 # What kinds of blockquotes are allowed?
 KNOWN_BLOCKQUOTES = {
     'callout',
+    'caution',
     'challenge',
     'checklist',
     'discussion',
@@ -67,7 +73,8 @@ KNOWN_BLOCKQUOTES = {
     'prereq',
     'quotation',
     'solution',
-    'testimonial'
+    'testimonial',
+    'warning'
 }
 
 # What kinds of code fragments are allowed?
@@ -76,7 +83,7 @@ KNOWN_CODEBLOCKS = {
     'output',
     'source',
     'language-bash',
-    'html',
+    'language-html',
     'language-make',
     'language-matlab',
     'language-python',
@@ -104,7 +111,7 @@ BREAK_METADATA_FIELDS = {
 
 # How long are lines allowed to be?
 # Please keep this in sync with .editorconfig!
-MAX_LINE_LEN = 100
+MAX_LINE_LEN = 79
 
 
 def main():
@@ -158,7 +165,7 @@ def parse_args():
                         default=False,
                         action="store_true",
                         dest='permissive',
-                        help='Do not raise an error even if issues are detected')
+                        help='Do not raise an error even if there are issues')
 
     args, extras = parser.parse_known_args()
     require(args.parser is not None,
@@ -177,7 +184,7 @@ def check_config(reporter, source_dir):
     reporter.check_field(config_file, 'configuration',
                          config, 'kind', 'lesson')
     reporter.check_field(config_file, 'configuration',
-                         config, 'carpentry', ('swc', 'dc', 'lc', 'cp'))
+                         config, 'carpentry', ('swc', 'dc', 'lc', 'cp', 'incubator'))
     reporter.check_field(config_file, 'configuration', config, 'title')
     reporter.check_field(config_file, 'configuration', config, 'email')
 
@@ -263,6 +270,13 @@ def read_all_markdown(source_dir, parser):
             data = read_markdown(parser, filename)
             if data:
                 result[filename] = data
+
+    # Also read our snippets
+    snippet_pattern = os.path.join(SNIPPET_DIR, '**/*.snip')
+    for filename in glob.glob(snippet_pattern, recursive=True):
+        data = read_markdown(parser, filename)
+        if data:
+            result[filename] = data
     return result
 
 
@@ -270,7 +284,7 @@ def check_fileset(source_dir, reporter, filenames_present):
     """Are all required files present? Are extraneous files present?"""
 
     # Check files with predictable names.
-    required = [os.path.join(source_dir, p) for p in REQUIRED_FILES]
+    required = [p.replace('%', source_dir) for p in REQUIRED_FILES]
     missing = set(required) - set(filenames_present)
     for m in missing:
         reporter.add(None, 'Missing required file {0}', m)
@@ -280,10 +294,7 @@ def check_fileset(source_dir, reporter, filenames_present):
     for filename in filenames_present:
         if '_episodes' not in filename:
             continue
-
-        # split path to check episode name
-        base_name = os.path.basename(filename)
-        m = P_EPISODE_FILENAME.search(base_name)
+        m = P_EPISODE_FILENAME.search(filename)
         if m and m.group(1):
             seen.append(m.group(1))
         else:
@@ -357,8 +368,13 @@ class CheckBase:
         """Check the raw text of the lesson body."""
 
         if self.args.line_lengths:
-            over = [i for (i, l, n) in self.lines if (
-                n > MAX_LINE_LEN) and (not l.startswith('!'))]
+            code = '^[> ]*{{' # regular expression for [> > > ]{{ site... }}
+            link = '^[[].+[]]:' # regex for [link-abbrv]: address
+            over = [i for (i, l, n) in self.lines if (n > MAX_LINE_LEN) and
+                                                  (not l.startswith('!')) and
+                                                  (not re.search(code, l)) and
+                                                  (not re.search(link, l)) and
+                                                  (not l.startswith('http'))]
             self.reporter.check(not over,
                                 self.filename,
                                 'Line(s) too long: {0}',
@@ -462,6 +478,8 @@ class CheckBase:
 
 class CheckNonJekyll(CheckBase):
     """Check a file that isn't translated by Jekyll."""
+    def __init__(self, args, filename, metadata, metadata_len, text, lines, doc):
+        super().__init__(args, filename, metadata, metadata_len, text, lines, doc)
 
     def check_metadata(self):
         self.reporter.check(self.metadata is None,
@@ -530,11 +548,6 @@ class CheckEpisode(CheckBase):
         require(last_line,
                 'No non-empty lines in {0}'.format(self.filename))
 
-        include_filename = os.path.split(self.args.reference_path)[-1]
-        if include_filename not in last_line:
-            self.reporter.add(self.filename,
-                              'episode does not include "{0}"',
-                              include_filename)
 
 
 class CheckReference(CheckBase):
@@ -557,8 +570,9 @@ CHECKERS = [
     (re.compile(r'README\.md'), CheckNonJekyll),
     (re.compile(r'index\.md'), CheckIndex),
     (re.compile(r'reference\.md'), CheckReference),
-    (re.compile(os.path.join('_episodes', '*\.md')), CheckEpisode),
-    (re.compile(r'.*\.md'), CheckGeneric)
+    (re.compile(r'_episodes/.*\.md'), CheckEpisode),
+    (re.compile(r'.*\.md'), CheckGeneric),
+    (re.compile(r'.*\.snip'), CheckNonJekyll)
 ]
 
 

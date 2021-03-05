@@ -21,7 +21,7 @@ To demonstrate this, let's write our first program!
 Enter the following text in a text editor and save it under any name you like
 (Python files are typically given the extension `.py`).
 
-```python
+```
 print('it works!!!')
 ```
 {: .language-python}
@@ -37,14 +37,14 @@ it works!!!
 
 > ## What's the point of print()?
 >
-> We saw earlier that there was no difference between printing something with `print()`
-> and just entering a command on the command line.
+> We saw earlier that there was no difference between printing something with
+> `print()` and just entering a command on the command line.
 > But is this really the case?
 > Is there a difference after all?
 >
 > Try executing the following code:
 >
-> ```python
+> ```
 > print('this involves print')
 > 'this does not'
 > ```
@@ -57,8 +57,8 @@ it works!!!
 ## `import`-ing things
 
 IPython has a neat trick to run command line commands without exiting IPython.
-Any command that begins with `!` gets run on your computer's command line,
-and not the IPython terminal.
+Any command that begins with `!` gets run on your computer's command line, and
+not the IPython terminal.
 
 We can use this fact to run the command `python3 our-script-name.py`.
 I've called my script `test.py` as an example.
@@ -81,7 +81,7 @@ Python includes a lot of extra features in the form of packages,
 but not all of them get loaded by default.
 To access a package, we need to `import` it.
 
-```python
+```
 import sys
 ```
 {: .language-python}
@@ -95,7 +95,7 @@ that stores any additional arguments we provide on the command-line
 after `python3 our-script-name.py`.
 Let's make a new script called `command-args.py` to try this out.
 
-```python
+```
 import sys
 print('we typed: ', sys.argv)
 ```
@@ -111,5 +111,5 @@ we typed: ['test.py', 'word1', 'word2', '3']
 ```
 {: .output}
 
-You'll notice that `sys.argv` looks different from other data types we've seen so far.
-`sys.argv` is a list (more about this in the next session).
+You'll notice that `sys.argv` looks different from other data types we've seen
+so far. `sys.argv` is a list (more about this in the next session).

@@ -20,7 +20,7 @@ Our `zipf_test` rule, for instance, is extremely clunky.
 What happens if we want to analyse `books/sierra.txt` as well?
 We'd have to update everything!
 
-```make
+```
 rule zipf_test:
     input:  'zipf_test.py', 'abyss.dat', 'last.dat', 'isles.dat'
     output: 'results.txt'
@@ -28,11 +28,13 @@ rule zipf_test:
 ```
 {: .language-make}
 
-First, let's cut down on a little bit of the clunkiness of the `shell` directive.
-One thing you've probably noticed is that all of our rules are using Python strings.
-Other data structures work too - let's try a list:
+First, let's cut down on a little bit of the clunkiness of the `shell`
+directive.
+One thing you've probably noticed is that all of our rules are using Python
+strings.
+Other data structures work too &mdash; let's try a list:
 
-```make
+```
 rule zipf_test:
     input:
         zipf='zipf_test.py',
@@ -42,14 +44,16 @@ rule zipf_test:
 ```
 {: .language-make}
 
-(`snakemake clean` and `snakemake -p` should show that the pipeline still works!)
+(`snakemake clean` and `snakemake -p` should show that the pipeline still
+works!)
 
 This illustrates a key feature of Snakemake.
 Snakefiles are just Python code.
-We can make our list into a variable to demonstrate this. 
-Let's create the variable `DATS` and use it in our `zipf_test` and `dats` rules.
+We can make our list into a variable to demonstrate this.
+Let's create the variable `DATS` and use it in our `zipf_test` and `dats`
+rules.
 
-```make
+```
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
 
 # generate summary table
@@ -70,11 +74,12 @@ Try re-creating both the `dats` and `results.txt` targets
 
 ## When are Snakefiles executed?
 
-The last example illustrated that we can use arbitrary Python code in our Snakefile.
+The last example illustrated that we can use arbitrary Python code in our
+Snakefile.
 It's important to understand when this code gets executed.
 Let's add a `print` instruction to the top of our Snakefile.
 
-```make
+```
 print('Snakefile is being executed!')
 
 DATS=['abyss.dat', 'last.dat', 'isles.dat']
@@ -88,7 +93,7 @@ rule zipf_test:
 
 Now let's clean up our workspace with `snakemake clean`
 
-```bash
+```
 snakemake clean
 ```
 {: .language-bash}
@@ -97,9 +102,9 @@ Snakefile is being executed!
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
-	count	jobs
-	1	clean
-	1
+    count	jobs
+    1	clean
+    1
 
 rule clean:
     jobid: 0
@@ -111,7 +116,7 @@ Finished job 0.
 
 Now let's re-run the pipeline...
 
-```bash
+```
 $ snakemake
 ```
 {: .language-bash}
@@ -120,10 +125,10 @@ Snakefile is being executed!
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
-	count	jobs
-	3	count_words
-	1	zipf_test
-	4
+    count	jobs
+    3	count_words
+    1	zipf_test
+    4
 
 rule count_words:
     input: wordcount.py, books/last.txt
@@ -164,7 +169,7 @@ Finished job 0.
 
 Let's do a dry-run:
 
-```bash
+```
 $ snakemake -n
 ```
 {: .language-bash}
@@ -174,8 +179,8 @@ Nothing to be done.
 ```
 {: .output}
 
-In every case, the `print()` statement ran before any of the actual 
-pipeline code was run. 
+In every case, the `print()` statement ran before any of the actual
+pipeline code was run.
 What we can take away from this is that Snakemake executes the entire Snakefile
 every time we run `snakemake` (regardless of if it's a dry run!).
 Because of this, we need to be careful,
@@ -191,29 +196,24 @@ add the name of every single book's corresponding `.dat` filename.
 Fortunately, Snakemake ships with several functions that make working with
 large numbers of files much easier.
 The two most helpful ones are `glob_wildcards()` and `expand()`.
-Let's start an ipython session to see how they work:
+Let's start an interactive Python session to see how they work:
 
-```bash
-$ ipython3
+```
+$ python3
 ```
 {: .language-bash}
 ```
 Python 3.6.1 (default, Jun 27 2017, 14:35:15)
 Type "copyright", "credits" or "license" for more information.
-
-IPython 5.3.0 -- An enhanced Interactive Python.
-?         -> Introduction and overview of IPython's features.
-%quickref -> Quick reference.
-help      -> Python's own help system.
-object?   -> Details about 'object', use 'object??' for extra details.
 ```
 {: .output}
 
-In this example, we will import these Snakemake functions directly in our ipython session.
-It is not necessary however, to import these functions within your Snakefile -
-these functions are always imported for you.
+In this example, we will import these Snakemake functions directly in our
+interactive Python session.
+It is not necessary to import these functions within your
+Snakefile &mdash; these functions are always imported for you.
 
-```python
+```
 from snakemake.io import expand, glob_wildcards
 ```
 {: .language-python}
@@ -224,8 +224,10 @@ The first function we'll use is `expand()`.
 `expand()` is used quite literally,
 to expand a snakemake wildcard(s) into a set of filenames.
 
-```python
-expand('folder/{wildcard1}_{wildcard2}.txt', wildcard1=['a', 'b', 'c'], wildcard2=[1, 2, 3])
+```
+>>> expand('folder/{wildcard1}_{wildcard2}.txt',
+...        wildcard1=['a', 'b', 'c'],
+...        wildcard2=[1, 2, 3])
 ```
 {: .language-python}
 ```
@@ -241,9 +243,10 @@ expand('folder/{wildcard1}_{wildcard2}.txt', wildcard1=['a', 'b', 'c'], wildcard
 ```
 {: .output}
 
-In this case, `expand()` created every possible combination of filenames from the two wildcards.
-Useful! Of course, this still leaves us needing somehow get the values for
-`wildcard1` and `wildcard2` in the first place.
+In this case, `expand()` created every possible combination of filenames from
+the two wildcards. Useful!
+Of course, this still leaves us needing somehow get the values for `wildcard1`
+and `wildcard2` in the first place.
 
 ### Get wildcard values with glob_wildcards()
 
@@ -251,8 +254,8 @@ To get a set of wildcards from a list of files, we can use the
 `glob_wildcards()` function.
 Let's try grabbing all of the book titles in our `books` folder.
 
-```python
-glob_wildcards('books/{example}.txt')
+```
+>>> glob_wildcards('books/{example}.txt')
 ```
 {: .language-python}
 ```
@@ -260,15 +263,16 @@ Wildcards(example=['isles', 'last', 'abyss', 'sierra'])
 ```
 {: .output}
 
-`glob_wildcards()` returns a `Wildcards` object as output. `Wildcards` is a special object defined by Snakemake that 
+`glob_wildcards()` returns a `Wildcards` object as output.
+`Wildcards` is a special object defined by Snakemake that
 provides named lists.
 
 In this case, there is only one wildcard, `{example}`.
 We can extract the values for the file names by getting the `example`
 property from the output of `glob_wildcards()`
 
-```python
-glob_wildcards('books/{example}.txt').example
+```
+>>> glob_wildcards('books/{example}.txt').example
 ```
 {: .language-python}
 ```
@@ -279,7 +283,7 @@ glob_wildcards('books/{example}.txt').example
 > ## Putting it all together
 >
 > Using the `expand()` and `glob_wildcards()` functions,
-> modify the pipeline so that it automatically detects and analyses 
+> modify the pipeline so that it automatically detects and analyses
 > all the files in the `books/` folder.
 {: .challenge}
 
@@ -291,7 +295,7 @@ Instead of `shell:` as an action, we can use `run:` instead.
 
 Add the following to our snakefile:
 
-```python
+```
 # at the top of the file
 import os
 import glob
@@ -305,10 +309,10 @@ rule print_book_names:
 ```
 {: .language-python}
 
-Upon execution of the corresponding rule, Snakemake dutifully runs our Python code
-in the `run:` block:
+Upon execution of the corresponding rule, Snakemake dutifully runs our Python
+code in the `run:` block:
 
-```bash
+```
 $ snakemake print_book_names
 ```
 {: .language-bash}
@@ -316,9 +320,9 @@ $ snakemake print_book_names
 Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
-	count	jobs
-	1	print_book_names
-	1
+    count	jobs
+    1	print_book_names
+    1
 
 rule print_book_names:
     jobid: 0
@@ -349,14 +353,13 @@ Finished job 0.
 > * Remove all auto-generated files (`.dat`, `.png`,
 >   `results.txt`).
 >
-> Finally, many Snakefiles define a default target called `all` as first target,
-> that will build what the Snakefile has been written to build (e.g. in
+> Finally, many Snakefiles define a default target called `all` as first
+> target, that will build what the Snakefile has been written to build (e.g. in
 > our case, the `.png` files and the `results.txt` file).
-> Add an `all` target to your Snakefile (Hint: this rule
-> has the `results.txt` file and the `.png` files as dependencies, but
-> no actions).  With that in place, instead of running `snakemake
-> results.txt`, you should now run `snakemake all`, or just simply
-> `snakemake`.
+> Add an `all` target to your Snakefile (Hint: this rule has the `results.txt`
+> file and the `.png` files as dependencies, but no actions).
+> With that in place, instead of running `snakemake results.txt`,
+> you should now run `snakemake all`, or just simply `snakemake`.
 {: .challenge}
 
 > ## Creating an Archive
@@ -369,30 +372,34 @@ Finished job 0.
 > * Remove `zipf_analysis.tar.gz` when `snakemake clean` is called.
 >
 > The syntax to create an archive is shown below:
-> ```bash
+> ```
 > tar -czvf zipf_analysis.tar.gz file1 directory2 file3 etc
 > ```
 > {: .language-bash}
 {: .challenge}
 
-After these exercises our final workflow should look something like the following:
+After these exercises our final workflow should look something like the
+following:
 
 ![Final directed acyclic graph](../fig/05-final-dag.svg)
 
 > ## Adding more books
 >
 > We can now do a better job at testing Zipf's rule by adding more books.
-> The books we have used come from the [Project Gutenberg](http://www.gutenberg.org/) website.
+> The books we have used come from the [Project Gutenberg](
+> http://www.gutenberg.org/) website.
 > Project Gutenberg offers thousands of free e-books to download.
 >
->  **Exercise instructions:**
+> ### Exercise instructions
 >
-> * go to [Project Gutenberg](http://www.gutenberg.org/) and use the search box to find another book,
-> for example ['The Picture of Dorian Gray'](https://www.gutenberg.org/ebooks/174) from Oscar Wilde.
-> * download the 'Plain Text UTF-8' version and save it to the `books` folder;
-> choose a short name for the file
-> * optionally, open the file in a text editor and remove extraneous text at the beginning and end
-> (look for the phrase `End of Project Gutenberg's [title], by [author]`)
-> * run `snakemake` and check that the correct commands are run
-> * check the `results.txt` file to see how this book compares to the others
+> * Go to [Project Gutenberg](http://www.gutenberg.org/) and use the search box
+>   to find another book, for example ['The Picture of Dorian Gray'](
+>   https://www.gutenberg.org/ebooks/174) by Oscar Wilde.
+> * Download the 'Plain Text UTF-8' version and save it to the `books` folder;
+>   choose a short name for the file
+> * Optionally, open the file in a text editor and remove extraneous text at
+>   the beginning and end (look for the phrase `End of Project Gutenberg's
+>   [title], by [author]`)
+> * Run `snakemake` and check that the correct commands are run
+> * Check the `results.txt` file to see how this book compares to the others
 {: .challenge}

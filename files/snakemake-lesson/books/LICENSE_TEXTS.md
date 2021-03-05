@@ -3,16 +3,19 @@ A Note on the Texts' Licensing
 
 Each text is from [Project Gutenberg](http://www.gutenberg.org/).
 
-Headers and footers have been removed for the purposes of this
-exercise. All the texts are governed by The Full Project Gutenberg
-License reproduced below.
+Headers and footers have been removed for the purposes of this exercise. All
+the texts are governed by The Full Project Gutenberg License reproduced below.
 
 The texts and originating URLs are:
 
-* [A Journey to the Western Islands of Scotland by Samuel Johnson](http://www.gutenberg.org/cache/epub/2064/pg2064.txt)
-* [The People of the Abyss by Jack London](http://www.gutenberg.org/ebooks/1688)
-* [My First Summer in the Sierra by John Muir](http://www.gutenberg.org/cache/epub/32540/pg32540.txt)
-* [Scott's Last Expedition Volume I by Robert Falcon Scott](http://www.gutenberg.org/ebooks/11579)
+* [A Journey to the Western Islands of Scotland by Samuel Johnson](
+  http://www.gutenberg.org/cache/epub/2064/pg2064.txt)
+* [The People of the Abyss by Jack London](
+  http://www.gutenberg.org/ebooks/1688)
+* [My First Summer in the Sierra by John Muir](
+  http://www.gutenberg.org/cache/epub/32540/pg32540.txt)
+* [Scott's Last Expedition Volume I by Robert Falcon Scott](
+  http://www.gutenberg.org/ebooks/11579)
 
 *** START: FULL LICENSE ***
 

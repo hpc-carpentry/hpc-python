@@ -18,11 +18,12 @@ We've compiled our raw data i.e. the books we want to analyse
 and have prepared several Python scripts that together make up our
 analysis pipeline.
 
-Let's take quick look at one of the books using the command `head books/isles.txt`.
+Let's take quick look at one of the books using the command
 
-```bash
-head books/isles.txt
 ```
+$ head books/isles.txt
+```
+{: .language-bash}
 
 By default, `head`  displays the first 10 lines of the specified file.
 
@@ -38,6 +39,7 @@ long, that I scarcely remember how the wish was originally excited; and
 was in the Autumn of the year 1773 induced to undertake the journey, by
 finding in Mr. Boswell a companion, whose acuteness would help my
 ```
+{: .output}
 
 Our directory has the Python scripts and data files we
 we will be working with:
@@ -59,14 +61,14 @@ The first step is to count the frequency of each word in a book.
 The first argument (`books/isles.txt`) to wordcount.py is the file to analyse,
 and the last argument (`isles.dat`) specifies the output file to write.
 
-```bash
+```
 $ python wordcount.py books/isles.txt isles.dat
 ```
 {: .language-bash}
 
 Let's take a quick peek at the result.
 
-```bash
+```
 $ head -5 isles.dat
 ```
 {: .language-bash}
@@ -89,7 +91,7 @@ number of words in the text file.
 
 We can do the same thing for a different book:
 
-```bash
+```
 $ python wordcount.py books/abyss.txt abyss.dat
 $ head -5 abyss.dat
 ```
@@ -107,7 +109,7 @@ Let's visualise the results.
 The script `plotcount.py` reads in a data file and plots the 10 most
 frequently occurring words as a text-based bar plot:
 
-```bash
+```
 $ python plotcount.py isles.dat ascii
 ```
 {: .language-bash}
@@ -127,7 +129,7 @@ it    ###########
 
 `plotcount.py` can also show the plot graphically:
 
-```bash
+```
 $ python plotcount.py isles.dat show
 ```
 {: .language-bash}
@@ -136,14 +138,14 @@ Close the window to exit the plot.
 
 `plotcount.py` can also create the plot as an image file (e.g. a PNG file): 
 
-```bash
+```
 $ python plotcount.py isles.dat isles.png
 ```
 {: .language-bash}
 
 Finally, let's test Zipf's law for these books:
 
-```bash
+```
 $ python zipf_test.py abyss.dat isles.dat
 ```
 {: .language-bash}
@@ -156,26 +158,32 @@ isles	3822	2460	1.55
 
 > ## Zipf's Law
 >
-> [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is an [empirical law](https://en.wikipedia.org/wiki/Empirical_law) formulated 
-> using [mathematical statistics](https://en.wikipedia.org/wiki/Mathematical_statistics) 
-> that refers to the fact that many types of data studied in the physical and 
-> social sciences can be approximated with a Zipfian distribution, one of a family 
-> of related discrete [power law](https://en.wikipedia.org/wiki/Power_law) [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution).
+> [Zipf's Law](https://en.wikipedia.org/wiki/Zipf%27s_law) is an [empirical
+> law](https://en.wikipedia.org/wiki/Empirical_law) formulated using
+> [mathematical statistics](
+> https://en.wikipedia.org/wiki/Mathematical_statistics) that refers to the
+> fact that many types of data studied in the physical and social sciences can
+> be approximated with a Zipfian distribution, one of a family of related
+> discrete [power law](https://en.wikipedia.org/wiki/Power_law)
+> [probability distributions](
+> https://en.wikipedia.org/wiki/Probability_distribution).
 >
-> Zipf's law was originally formulated in terms of [quantitative linguistics](https://en.wikipedia.org/wiki/Quantitative_linguistics), 
-> stating that given some [corpus](https://en.wikipedia.org/wiki/Text_corpus) 
-> of [natural language](https://en.wikipedia.org/wiki/Natural_language) utterances, 
-> the frequency of any word is [inversely proportional](https://en.wikipedia.org/wiki/Inversely_proportional) 
-> to its rank in the [frequency table](https://en.wikipedia.org/wiki/Frequency_table). 
-> For example, in the [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus) 
-> of American English text, the word the is the most frequently occurring word, 
-> and by itself accounts for nearly 7% of all word occurrences (69,971 out of 
-> slightly over 1 million). True to Zipf's Law, the second-place word of 
-> accounts for slightly over 3.5% of words (36,411 occurrences), followed by 
-> and (28,852). Only 135 vocabulary items are needed to account for half 
-> the [Brown Corpus](https://en.wikipedia.org/wiki/Brown_Corpus).
+> Zipf's law was originally formulated in terms of [quantitative
+> linguistics](https://en.wikipedia.org/wiki/Quantitative_linguistics), stating
+> that given some [corpus](https://en.wikipedia.org/wiki/Text_corpus) of
+> [natural language](https://en.wikipedia.org/wiki/Natural_language)
+> utterances, the frequency of any word is [inversely proportional](
+> https://en.wikipedia.org/wiki/Inversely_proportional) to its
+> rank in the [frequency table](https://en.wikipedia.org/wiki/Frequency_table).
+> For example, in the [Brown Corpus](
+> https://en.wikipedia.org/wiki/Brown_Corpus) of American English text,
+> the word the is the most frequently occurring word, and by itself accounts
+> for nearly 7% of all word occurrences (69,971 out of slightly over 1
+> million). True to Zipf's Law, the second-place word of accounts for slightly
+> over 3.5% of words (36,411 occurrences), followed by and (28,852). Only 135
+> vocabulary items are needed to account for half the Corpus.
 > 
-> Source: [Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law):
+> *Source:* [Wikipedia](https://en.wikipedia.org/wiki/Zipf%27s_law)
 {: .callout}
 
 Together these scripts implement a common workflow:
@@ -198,10 +206,10 @@ seconds.
 The most common solution to the tedium of data processing is to write
 a shell script that runs the whole pipeline from start to finish.
 
-Using your text editor of choice (e.g. nano), add the following to a new file named
-`run_pipeline.sh`.
+Using your text editor of choice (e.g. nano), add the following to a new file
+named `run_pipeline.sh`.
 
-```bash
+```
 # USAGE: bash run_pipeline.sh
 # to produce plots for isles and abyss
 # and the summary table for the Zipf's law tests
@@ -219,7 +227,7 @@ python zipf_test.py abyss.dat isles.dat > results.txt
 
 Run the script and check that the output is the same as before:
 
-```bash
+```
 $ bash run_pipeline.sh
 $ cat results.txt
 ```
@@ -227,8 +235,8 @@ $ cat results.txt
 
 This shell script solves several problems in computational reproducibility:
 
-1.  It explicitly documents our pipeline,
-    making communication with colleagues (and our future selves) more efficient.
+1.  It explicitly documents our pipeline, making communication with colleagues
+    (and our future selves) more efficient.
 2.  It allows us to type a single command, `bash run_pipeline.sh`, to
     reproduce the full analysis.
 3.  It prevents us from _repeating_ typos or mistakes.
@@ -254,7 +262,7 @@ Alternatively, we could manually rerun the plotting for each word-count file.
 (Experienced shell scripters can make this easier on themselves using a
 for-loop.)
 
-```bash
+```
 $ for book in abyss isles; do python plotcount.py $book.dat $book.png; done
 ```
 {: .language-bash}
@@ -265,7 +273,7 @@ we don't get many of the benefits of having a shell script in the first place.
 Another popular option is to comment out a subset of the lines in
 `run_pipeline.sh`:
 
-```bash
+```
 # USAGE: bash run_pipeline.sh
 # to produce plots for isles and abyss
 # and the summary table
@@ -287,7 +295,8 @@ Then, we would run our modified shell script using `bash run_pipeline.sh`.
 But commenting out these lines, and subsequently un-commenting them,
 can be a hassle and source of errors in complicated pipelines.
 What happens if we have hundreds of input files?
-No one wants to enter the same command a hundred times, and then edit the result.
+No one wants to enter the same command a hundred times,
+and then edit the result.
 
 What we really want is an executable _description_ of our pipeline that
 allows software to do the tricky part for us:
@@ -296,28 +305,33 @@ then perform those tasks for us.
 
 ## What is Snakemake and why are we using it?
 
-There are many different tools that researchers use to automate this type of work.
-Snakemake is a very popular tool, and the one we have selected for this tutorial.
+There are many different tools that researchers use to automate this type of
+work.
+Snakemake is a very popular tool, and the one we have selected for this
+tutorial.
 There are several reasons this tool was chosen:
 
 * It’s free, open-source, and installs in about 5 seconds flat via `pip`.
 
-* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with all HPC 
-schedulers. More importantly, the same workflow will work and scale appropriately 
-regardless of whether it’s on a laptop or cluster without modification.
+* Snakemake works cross-platform (Windows, MacOS, Linux) and is compatible with
+  all HPC schedulers. More importantly, the same workflow will work and scale
+  appropriately regardless of whether it’s on a laptop or cluster without
+  modification.
 
-* Snakemake uses pure Python syntax. There is no tool specific-language to learn like 
-in GNU Make, NextFlow, WDL, etc.. Even if students end up not liking Snakemake, you’ve 
-still taught them how to program in Python at the end of the day.
+* Snakemake uses pure Python syntax. There is no tool specific-language to
+  learn like in GNU Make, NextFlow, WDL, etc.. Even if students end up not
+  liking Snakemake, you’ve still taught them how to program in Python at the
+  end of the day.
 
-* Anything that you can do in Python, you can do with Snakemake (since you can pretty 
-much execute arbitrary Python code anywhere).
+* Anything that you can do in Python, you can do with Snakemake (since you can
+  pretty much execute arbitrary Python code anywhere).
 
-* Snakemake was written to be as similar to GNU Make as possible. Users already familiar 
-with Make will find Snakemake quite easy to use.
+* Snakemake was written to be as similar to GNU Make as possible. Users already
+  familiar with Make will find Snakemake quite easy to use.
 
 * It’s easy. You can (hopefully!) learn Snakemake in an afternoon!
 
 The rest of these lessons aim to teach you how to use Snakemake by example.
-Our goal is to automate our example workflow, and have it do everything for us in parallel
-regardless of where and how it is run (and have it be reproducible!).
+Our goal is to automate our example workflow, and have it do everything for us
+in parallel regardless of where and how it is run (and have it be
+reproducible!).

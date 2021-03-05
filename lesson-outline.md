@@ -22,7 +22,8 @@ Feel free to edit the topics for your section.
 
 ## 2. Submitting / running jobs - JS
 
-* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands natively)
+* Scheduler - lesson will cover SLURM (which can also run PBS scripts/commands
+  natively)
 
 	* Submitting jobs
 	* Checking status of jobs
@@ -58,9 +59,9 @@ Feel free to edit the topics for your section.
 	* For-loops
 	* Reading/writing data
 
-Some side notes: 
-perhaps a quick refresh of key concepts right before use in parallel section,
-certain concepts could get mixed in right before they're needed by the parallel lesson.
+Some side notes: perhaps a quick refresh of key concepts right before use in
+parallel section, certain concepts could get mixed in right before they're
+needed by the parallel lesson.
 
 ## 4. Intro to parallel programming (Python - JB, Chapel - JZ+AR)
 
@@ -75,8 +76,10 @@ certain concepts could get mixed in right before they're needed by the parallel 
 * Typical problems and bottlenecks
 
 	* running in parallel (parallel scaling)
-	* parallel I/O (don't write a 1GB file from one processor if data is already distributed, etc.)
-	* Storage limitations (millions of files, compression, text vs. binary storage)
+	* parallel I/O (don't write a 1GB file from one processor if data is
+      already distributed, etc.)
+	* Storage limitations (millions of files, compression, text vs. binary
+      storage)
 	* Filesystem choice (home, scratch, tmp, etc.)
 
 
