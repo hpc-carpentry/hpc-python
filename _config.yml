@@ -25,14 +25,14 @@ episode_order:
   - 04-dicts
   - 05-functions
   - 06-parallel
-  - 11-snakemake-intro
-  - 12-snakefiles
-  - 13-wildcards
-  - 14-patterns
-  - 15-snakemake-python
-  - 16-resources
-  - 17-cluster
-  - 18-final-notes
+  - 07-snakemake-intro
+  - 08-snakefiles
+  - 09-wildcards
+  - 10-patterns
+  - 11-snakemake-python
+  - 12-resources
+  - 13-cluster
+  - 14-final-notes
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
