@@ -17,12 +17,13 @@ includes several significant performance improvements over "vanilla" Python.
 
 ## Snakemake
 
-Once you have a Miniconda environment configured, please install Snakemake with
+Once you have a Miniconda environment configured, please install Snakemake from
+the [bioconda channel](https://anaconda.org/bioconda) with
 
 ```
-conda install snakemake
+$ conda install -c bioconda snakemake
 ```
-{: .source}
+{: .language-bash}
 
 ## Shell and SSH
 
