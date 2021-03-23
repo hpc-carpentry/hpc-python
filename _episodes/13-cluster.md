@@ -180,10 +180,11 @@ This is an interactive installation through the command line. Review and accept
 the license agreement, then work through the prompts. The defaults are probably
 fine. Accept its offer to initialize your environment (`conda init`), then run
 the suggested command to load the `conda` base environment so you can use it
-straightaway. Finally, install Snakemake:
+straightaway. Finally, install Snakemake from the [bioconda channel](
+https://anaconda.org/bioconda):
 
 ```
-$ conda install -y -c biodonda graphviz matplotlib numpy snakemake
+$ conda install -y -c bioconda graphviz matplotlib numpy snakemake
 ```
 {: .language-bash}
 
