@@ -167,16 +167,23 @@ $ tar -xvzf pipeline.tar.gz
 ```
 {: .language-bash}
 
-If Snakemake and Python are not already installed on your cluster,
-you can install them using the following commands:
+If Snakemake and Python are not already installed on your cluster, you can
+install them in an Anaconda Python environment using the following commands:
 
 ```
 $ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-$ bash Miniconda3-latest-Linux-x86_64.sh -b
-$ echo 'export PATH=~/miniconda3/bin:~/.local/bin:$PATH' >> ~/.bashrc
-$ source ~/.bashrc
-$ conda install -y matplotlib numpy graphviz
-$ pip install --user snakemake
+$ bash Miniconda3-latest-Linux-x86_64.sh
+```
+{: .language-bash}
+
+This is an interactive installation through the command line. Review and accept
+the license agreement, then work through the prompts. The defaults are probably
+fine. Accept its offer to initialize your environment (`conda init`), then run
+the suggested command to load the `conda` base environment so you can use it
+straightaway. Finally, install Snakemake:
+
+```
+$ conda install -y -c biodonda graphviz matplotlib numpy snakemake
 ```
 {: .language-bash}
 
@@ -208,7 +215,7 @@ Here we've used SLURM's `sbatch` command and arguments for setting time limits
 and resources with snakemake wildcards defining the requested values.
 
 We've also specified where to save SLURM logs and what to call them. **Note** that
-this folder must already exist. If the folders don't exist, snakemake will hang.
+this folder must already exist. If the folders don't exist, Snakemake will hang.
 
 Values for any command line argument to snakemake can be defined in our
 profile, although a value is required (e.g. the `--use-conda` argument could be

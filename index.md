@@ -35,7 +35,7 @@ At the end of this lesson, you will know how to:
 > <https://docs.conda.io/en/latest/miniconda.html>.
 > 
 > To install snakemake, please run the following in a command-line terminal:
-> `conda install snakemake`
+> `conda install -c bioconda snakemake`
 >
 > The files used in this lesson can be downloaded
 > [here](files/snakemake-lesson.zip).
