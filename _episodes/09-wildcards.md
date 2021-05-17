@@ -70,7 +70,7 @@ Snakefile but forget to rename it elsewhere).
 {: .callout}
 
 Let us set about removing some of the repetition from our Snakefile.
-In our `zip_test` rule we duplicate the data file names and the
+In our `zipf_test` rule we duplicate the data file names and the
 name of the results file name:
 
 ```
