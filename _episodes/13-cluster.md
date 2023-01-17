@@ -274,7 +274,7 @@ OK, time for the moment we've all been waiting for &mdash; let's run our
 workflow on the cluster with the profile we've created. Use this command:
 
 ```
-$ snakemake --profile slurm"
+$ snakemake --profile slurm
 ```
 {: .language-bash}
 
